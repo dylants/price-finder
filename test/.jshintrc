@@ -1,0 +1,10 @@
+{
+    "globalstrict": true,
+    "globals": {
+        "require": false,
+        "describe": false,
+        "beforeEach": false,
+        "it": false,
+        "expect": false
+    }
+}

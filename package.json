@@ -1,0 +1,33 @@
+{
+    "name": "price-finder",
+    "description": "Finds the prices of retail items online",
+    "version": "0.1.0",
+    "author": {
+        "name": "Dylan Smith"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dylants/price-finder.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dylants/price-finder/issues"
+    },
+    "homepage": "https://github.com/dylants/price-finder",
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/dylants/price-finder/raw/master/LICENSE"
+    }],
+    "main": "./lib/price-finder",
+    "scripts": {
+        "test": "jasmine-node --test-dir test --matchall --color --autotest --watch lib",
+        "test-single-run": "jasmine-node --test-dir test --matchall --color"
+    },
+    "dependencies": {
+        "async": "^0.7.0",
+        "request": "^2.34.0",
+        "cheerio": "^0.13.1"
+    },
+    "devDependencies": {
+        "jasmine-node": "^1.14.3"
+    }
+}
