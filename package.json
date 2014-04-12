@@ -17,6 +17,14 @@
         "type": "MIT",
         "url": "https://github.com/dylants/price-finder/raw/master/LICENSE"
     }],
+    "keywords": [
+        "price",
+        "finder",
+        "store",
+        "amazon",
+        "scan",
+        "scrape"
+    ],
     "main": "./lib/price-finder",
     "scripts": {
         "test": "jasmine-node --test-dir test --matchall --color --autotest --watch lib",
