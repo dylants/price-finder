@@ -20,11 +20,17 @@ describe("The Amazon Site", function() {
         });
     });
 
-    describe("A new Amazon Site", function() {
+    it("should throw an exception trying to create a new AmazonSite with an incorrect uri", function() {
+        expect(function() {
+            new AmazonSite("www.bad_uri.bad");
+        }).toThrow();
+    });
+
+    describe("a new Amazon Site", function() {
         var amazon;
 
         beforeEach(function() {
-            amazon = new AmazonSite();
+            amazon = new AmazonSite("www.amazon.com/123/product");
         });
 
         it("should exist", function() {
