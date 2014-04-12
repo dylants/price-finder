@@ -4,10 +4,21 @@ var siteUtils = require("../../lib/sites/site-utils"),
     cheerio = require("cheerio");
 
 describe("The Site Utils", function() {
+
     it("should exist", function() {
         expect(siteUtils).toBeDefined();
     });
 
+    it("should have categories", function() {
+        expect(siteUtils.categories).toBeDefined();
+    });
+
+    it("should be at least 1 category in categories", function() {
+        var keys;
+
+        keys = Object.keys(siteUtils.categories);
+        expect(keys.length).toBeGreaterThan(0);
+    });
 
     describe("with a populated page", function() {
         var $;
