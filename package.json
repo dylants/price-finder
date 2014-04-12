@@ -27,13 +27,13 @@
     ],
     "main": "./lib/price-finder",
     "scripts": {
-        "test": "jasmine-node --test-dir test --matchall --color --autotest --watch lib",
-        "test-single-run": "jasmine-node --test-dir test --matchall --color"
+        "test": "jasmine-node --test-dir test --matchall --color",
+        "test-watch": "jasmine-node --test-dir test --matchall --color --autotest --watch lib"
     },
     "dependencies": {
         "async": "^0.7.0",
-        "request": "^2.34.0",
-        "cheerio": "^0.13.1"
+        "cheerio": "^0.15.0",
+        "request": "^2.34.0"
     },
     "devDependencies": {
         "jasmine-node": "^1.14.3"
