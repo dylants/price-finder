@@ -1,6 +1,6 @@
 "use strict";
 
-var siteUtils = require("../../lib/sites/site-utils"),
+var siteUtils = require("../lib/site-utils"),
     cheerio = require("cheerio");
 
 describe("The Site Utils", function() {

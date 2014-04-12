@@ -2,7 +2,7 @@
 
 var AmazonSite = require("../../lib/sites/amazon"),
     cheerio = require("cheerio"),
-    siteUtils = require("../../lib/sites/site-utils");
+    siteUtils = require("../../lib/site-utils");
 
 describe("The Amazon Site", function() {
 
