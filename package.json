@@ -20,13 +20,18 @@
     "keywords": [
         "price",
         "finder",
-        "store",
-        "amazon",
         "scan",
-        "scrape"
+        "scrape",
+        "store",
+        "cost",
+        "product",
+        "amazon",
+        "google",
+        "bestbuy"
     ],
     "main": "./lib/price-finder",
     "scripts": {
+        "prepublish": "npm prune",
         "test": "jasmine-node --test-dir test --matchall --color --verbose",
         "test-watch": "jasmine-node --test-dir test --matchall --color --autotest --watch lib"
     },
