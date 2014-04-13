@@ -17,9 +17,9 @@ priceFinder.findItemPrice("http://www.amazon.com/product/dp/B000002J5K", functio
 });
 
 priceFinder.findItemDetails("http://www.amazon.com/product/dp/B001AQO446", function(err, itemDetails) {
-   console.log(itemDetails.price);    // 12.95
-   console.log(itemDetails.name);     // The Blues Brothers [Blu-ray] (1980)
-   console.log(itemDetails.category); // Movies & TV
+    console.log(itemDetails.price);    // 12.85
+    console.log(itemDetails.name);     // The Blues Brothers [Blu-ray] (1980)
+    console.log(itemDetails.category); // Movies & TV
 });
 ```
 ## API ##
