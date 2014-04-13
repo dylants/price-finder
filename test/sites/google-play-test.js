@@ -4,6 +4,9 @@ var GooglePlaySite = require("../../lib/sites/google-play"),
     cheerio = require("cheerio"),
     siteUtils = require("../../lib/site-utils");
 
+var VALID_URI = "https://play.google.com/store/product";
+var INVALID_URI = "http://www.bad.com/123/product";
+
 describe("The GooglePlay Site", function() {
 
     it("should exist", function() {
@@ -12,17 +15,17 @@ describe("The GooglePlay Site", function() {
 
     describe("isSite() function", function() {
         it("should return true for a correct site", function() {
-            expect(GooglePlaySite.isSite("play.google.com/store/product")).toBeTruthy();
+            expect(GooglePlaySite.isSite(VALID_URI)).toBeTruthy();
         });
 
         it("should return false for a bad site", function() {
-            expect(GooglePlaySite.isSite("www.bad.com/123/product")).toBeFalsy();
+            expect(GooglePlaySite.isSite(INVALID_URI)).toBeFalsy();
         });
     });
 
     it("should throw an exception trying to create a new GooglePlaySite with an incorrect uri", function() {
         expect(function() {
-            new GooglePlaySite("www.bad_uri.bad");
+            new GooglePlaySite(INVALID_URI);
         }).toThrow();
     });
 
@@ -30,7 +33,7 @@ describe("The GooglePlay Site", function() {
         var googlePlay;
 
         beforeEach(function() {
-            googlePlay = new GooglePlaySite("play.google.com/store/product");
+            googlePlay = new GooglePlaySite(VALID_URI);
         });
 
         it("should exist", function() {
@@ -39,6 +42,10 @@ describe("The GooglePlay Site", function() {
 
         it("should return false for isJSON()", function() {
             expect(googlePlay.isJSON()).toBeFalsy();
+        });
+
+        it("should return the same URI for getURIForPageData()", function() {
+            expect(googlePlay.getURIForPageData()).toEqual(VALID_URI);
         });
 
         describe("with a populated page", function() {

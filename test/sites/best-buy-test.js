@@ -5,6 +5,7 @@ var BestBuySite = require("../../lib/sites/best-buy"),
     siteUtils = require("../../lib/site-utils");
 
 var VALID_URI = "http://www.bestbuy.com/site/product";
+var INVALID_URI = "http://www.bad.com/123/product";
 
 describe("The Best Buy Site", function() {
 
@@ -18,13 +19,13 @@ describe("The Best Buy Site", function() {
         });
 
         it("should return false for a bad site", function() {
-            expect(BestBuySite.isSite("www.bad.com/123/product")).toBeFalsy();
+            expect(BestBuySite.isSite(INVALID_URI)).toBeFalsy();
         });
     });
 
     it("should throw an exception trying to create a new BestBuySite with an incorrect uri", function() {
         expect(function() {
-            new BestBuySite("www.bad_uri.bad");
+            new BestBuySite(INVALID_URI);
         }).toThrow();
     });
 
@@ -37,6 +38,10 @@ describe("The Best Buy Site", function() {
 
         it("should exist", function() {
             expect(bestBuy).toBeDefined();
+        });
+
+        it("should return the same URI for getURIForPageData()", function() {
+            expect(bestBuy.getURIForPageData()).toEqual(VALID_URI);
         });
 
         it("should return false for isJSON()", function() {

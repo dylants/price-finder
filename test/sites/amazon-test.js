@@ -4,6 +4,9 @@ var AmazonSite = require("../../lib/sites/amazon"),
     cheerio = require("cheerio"),
     siteUtils = require("../../lib/site-utils");
 
+var VALID_URI = "http://www.amazon.com/123/product";
+var INVALID_URI = "http://www.bad.com/123/product";
+
 describe("The Amazon Site", function() {
 
     it("should exist", function() {
@@ -12,17 +15,17 @@ describe("The Amazon Site", function() {
 
     describe("isSite() function", function() {
         it("should return true for a correct site", function() {
-            expect(AmazonSite.isSite("www.amazon.com/123/product")).toBeTruthy();
+            expect(AmazonSite.isSite(VALID_URI)).toBeTruthy();
         });
 
         it("should return false for a bad site", function() {
-            expect(AmazonSite.isSite("www.bad.com/123/product")).toBeFalsy();
+            expect(AmazonSite.isSite(INVALID_URI)).toBeFalsy();
         });
     });
 
     it("should throw an exception trying to create a new AmazonSite with an incorrect uri", function() {
         expect(function() {
-            new AmazonSite("www.bad_uri.bad");
+            new AmazonSite(INVALID_URI);
         }).toThrow();
     });
 
@@ -30,11 +33,15 @@ describe("The Amazon Site", function() {
         var amazon;
 
         beforeEach(function() {
-            amazon = new AmazonSite("www.amazon.com/123/product");
+            amazon = new AmazonSite(VALID_URI);
         });
 
         it("should exist", function() {
             expect(amazon).toBeDefined();
+        });
+
+        it("should return the same URI for getURIForPageData()", function() {
+            expect(amazon.getURIForPageData()).toEqual(VALID_URI);
         });
 
         it("should return false for isJSON()", function() {
