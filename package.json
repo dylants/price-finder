@@ -27,7 +27,7 @@
     ],
     "main": "./lib/price-finder",
     "scripts": {
-        "test": "jasmine-node --test-dir test --matchall --color",
+        "test": "jasmine-node --test-dir test --matchall --color --verbose",
         "test-watch": "jasmine-node --test-dir test --matchall --color --autotest --watch lib"
     },
     "dependencies": {
@@ -36,6 +36,7 @@
         "request": "^2.34.0"
     },
     "devDependencies": {
-        "jasmine-node": "^1.14.3"
+        "jasmine-node": "^1.14.3",
+        "rewire": "^2.0.0"
     }
 }
