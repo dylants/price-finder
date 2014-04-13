@@ -3,6 +3,7 @@
     "globals": {
         "module": false,
         "require": false,
-        "console": false
+        "console": false,
+        "__dirname": false
     }
 }
