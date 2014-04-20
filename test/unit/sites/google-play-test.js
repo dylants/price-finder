@@ -49,10 +49,12 @@ describe("The GooglePlay Site", function() {
         });
 
         describe("with a populated page", function() {
-            var $, bad$, price;
+            var $, bad$, price, category, name;
 
             beforeEach(function() {
                 price = 9.99;
+                category = siteUtils.categories.MOVIES_TV;
+                name = "Big";
 
                 $ = cheerio.load(
                     "<div class='details-actions'>" +
@@ -60,7 +62,15 @@ describe("The GooglePlay Site", function() {
                     "<span> $" + price + " </span>" +
                     "<span> something </span>" +
                     "</div>" +
-                    "</div>");
+                    "</div>" +
+                    "<ul class='nav'>" +
+                    "<li class='nav-list-item'>" +
+                    "<span class='title'>Movies & TV</span>" +
+                    "</li>" +
+                    "<li class='nav-list-item'>" +
+                    "</li>" +
+                    "</ul>" +
+                    "<div class='details-info'><div class='document-title'>Big</div></div>");
                 bad$ = cheerio.load("<h1>Nothin here</h1>");
             });
 
@@ -74,12 +84,39 @@ describe("The GooglePlay Site", function() {
                 expect(priceFound).toEqual(-1);
             });
 
-            it("should return null for category because it's not supported", function() {
-                expect(googlePlay.findCategoryOnPage($)).toEqual(null);
+            it("should return the category when displayed on the page", function() {
+                var categoryFound = googlePlay.findCategoryOnPage($);
+                expect(categoryFound).toEqual(category);
             });
 
-            it("should return null for name because it's not supported", function() {
-                expect(googlePlay.findNameOnPage($)).toEqual(null);
+            it("should return OTHER when the category is not setup", function() {
+                var categoryFound;
+
+                $ = cheerio.load("<ul class='nav'>" +
+                    "<li class='nav-list-item'>" +
+                    "<span class='title'>Something New</span>" +
+                    "</li>" +
+                    "<li class='nav-list-item'>" +
+                    "</li>" +
+                    "</ul>"
+                );
+                categoryFound = googlePlay.findCategoryOnPage($);
+                expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+            });
+
+            it("should return null when the category does not exist", function() {
+                var categoryFound = googlePlay.findCategoryOnPage(bad$);
+                expect(categoryFound).toEqual(null);
+            });
+
+            it("should return the name when displayed on the page", function() {
+                var nameFound = googlePlay.findNameOnPage($, category);
+                expect(nameFound).toEqual(name);
+            });
+
+            it("should return the name when displayed on the page", function() {
+                var nameFound = googlePlay.findNameOnPage(bad$, category);
+                expect(nameFound).toEqual(null);
             });
         });
     });
