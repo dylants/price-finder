@@ -57,7 +57,7 @@ describe("price-finder for Amazon URIs", function() {
      */
 
     // Video Games
-    describe("testing a Video Game item", function() {
+    describe("testing a Video Games item", function() {
         // Pikmin 3 Wii U
         var uri = "http://www.amazon.com/Pikmin-3-Nintendo-Wii-U/dp/B0050SWBAE";
 
