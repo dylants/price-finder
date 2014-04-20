@@ -49,13 +49,18 @@ describe("The Best Buy Site", function() {
         });
 
         describe("with a populated page", function() {
-            var $, bad$, price;
+            var $, bad$, price, category, name;
 
             beforeEach(function() {
                 price = 9.99;
+                category = siteUtils.categories.MOVIES_TV;
+                name = "The Blues Brothers";
 
                 $ = cheerio.load(
-                    "<div class='item-price'>$" + price + "</div>");
+                    "<div id='sku-title'>The Blues Brothers</div>" +
+                    "<div class='item-price'>$" + price + "</div>" +
+                    "<div id='foo' data-uber-cat='bar'>stuff</div>" +
+                    "<div id='analytics-data' data-uber-cat-name='Movies &amp; Music' data-parent-cat-name='Movies & TV Shows'>stuff</div>");
                 bad$ = cheerio.load("<h1>Nothin here</h1>");
             });
 
@@ -69,12 +74,32 @@ describe("The Best Buy Site", function() {
                 expect(priceFound).toEqual(-1);
             });
 
-            it("should return null for category because it's not supported", function() {
-                expect(bestBuy.findCategoryOnPage($)).toEqual(null);
+            it("should return the category when displayed on the page", function() {
+                var categoryFound = bestBuy.findCategoryOnPage($);
+                expect(categoryFound).toEqual(category);
             });
 
-            it("should return null for name because it's not supported", function() {
-                expect(bestBuy.findNameOnPage($)).toEqual(null);
+            it("should return OTHER when the category is not setup", function() {
+                var categoryFound;
+
+                $ = cheerio.load("<div id='analytics-data' data-uber-cat-name='Something Else'></div>");
+                categoryFound = bestBuy.findCategoryOnPage($);
+                expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+            });
+
+            it("should return null when the category does not exist", function() {
+                var categoryFound = bestBuy.findCategoryOnPage(bad$);
+                expect(categoryFound).toEqual(null);
+            });
+
+            it("should return the name when displayed on the page", function() {
+                var nameFound = bestBuy.findNameOnPage($, category);
+                expect(nameFound).toEqual(name);
+            });
+
+            it("should return the name when displayed on the page", function() {
+                var nameFound = bestBuy.findNameOnPage(bad$, category);
+                expect(nameFound).toEqual(null);
             });
         });
     });
