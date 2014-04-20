@@ -57,19 +57,13 @@ describe("The GooglePlay Site", function() {
                 name = "Big";
 
                 $ = cheerio.load(
+                    "<title>Big - Movies & TV on Google Play</title>" +
                     "<div class='details-actions'>" +
                     "<div class='price'>" +
                     "<span> $" + price + " </span>" +
                     "<span> something </span>" +
                     "</div>" +
                     "</div>" +
-                    "<ul class='nav'>" +
-                    "<li class='nav-list-item'>" +
-                    "<span class='title'>Movies & TV</span>" +
-                    "</li>" +
-                    "<li class='nav-list-item'>" +
-                    "</li>" +
-                    "</ul>" +
                     "<div class='details-info'><div class='document-title'>Big</div></div>");
                 bad$ = cheerio.load("<h1>Nothin here</h1>");
             });
@@ -92,14 +86,7 @@ describe("The GooglePlay Site", function() {
             it("should return OTHER when the category is not setup", function() {
                 var categoryFound;
 
-                $ = cheerio.load("<ul class='nav'>" +
-                    "<li class='nav-list-item'>" +
-                    "<span class='title'>Something New</span>" +
-                    "</li>" +
-                    "<li class='nav-list-item'>" +
-                    "</li>" +
-                    "</ul>"
-                );
+                $ = cheerio.load("<title>Big - Something Else on Google Play</title>");
                 categoryFound = googlePlay.findCategoryOnPage($);
                 expect(categoryFound).toEqual(siteUtils.categories.OTHER);
             });
