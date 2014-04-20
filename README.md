@@ -9,19 +9,46 @@ well).
 
 ## Quick Examples ##
 
+### Find an item's current price online ###
+
 ```JavaScript
 var priceFinder = require("price-finder");
 
-priceFinder.findItemPrice("http://www.amazon.com/product/dp/B000002J5K", function(err, price) {
-    console.log(price); // 9.95
+// Atoms for Peace : Amok  (from Amazon)
+var uri = "http://www.amazon.com/Amok/dp/B00BIQ1EL4";
+priceFinder.findItemPrice(uri, function(err, price) {
+    console.log(price); // 8.91
 });
 
-priceFinder.findItemDetails("http://www.amazon.com/product/dp/B001AQO446", function(err, itemDetails) {
-    console.log(itemDetails.price);    // 12.85
+// Ferris Bueller's Day Off  (from BestBuy)
+uri = "http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513";
+priceFinder.findItemPrice(uri, function(err, price) {
+    console.log(price); // 3.99
+});
+
+```
+### Find additional details on an item, including price ###
+
+```JavaScript
+var priceFinder = require("price-finder");
+
+// Plants vs Zombies  (from Google Play)
+var uri = "https://play.google.com/store/apps/details?id=com.popcap.pvz_na";
+priceFinder.findItemDetails(uri, function(err, itemDetails) {
+    console.log(itemDetails.price);    // 0.99
+    console.log(itemDetails.name);     // Plants vs. Zombies™
+    console.log(itemDetails.category); // Mobile Apps
+});
+
+// Blues Brothers  (from Amazon)
+uri = "http://www.amazon.com/Blues-Brothers-Blu-ray-John-Belushi/dp/B001AQO446";
+priceFinder.findItemDetails(uri, function(err, itemDetails) {
+    console.log(itemDetails.price);    // 13.01
     console.log(itemDetails.name);     // The Blues Brothers [Blu-ray] (1980)
     console.log(itemDetails.category); // Movies & TV
 });
 ```
+
 ## API ##
 
 ### findItemPrice(`uri`, `callback`)
@@ -61,8 +88,8 @@ The current supported sites are:
 
 <ul>
 <li>Amazon</li>
-<li>Google Play (*currently only supports finding item price)</li>
-<li>Best Buy (*currently only supports finding item price)</li>
+<li>Google Play</li>
+<li>Best Buy</li>
 </ul>
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
@@ -75,12 +102,24 @@ by issuing:
 
 <code>npm install</code>
 
-The project uses [Jasmine](http://jasmine.github.io/) for tests. To run the tests,
-execute:
+### Tests ###
+
+The project uses [Jasmine](http://jasmine.github.io/) for tests (please add tests
+for any new features). To run the unit tests execute:
 
 <code>npm test</code>
 
-(Please add tests for any new features.)
+These tests can additionally be run once, while watching the files for any changes,
+and if that occurs, re-run the tests. To do so execute:
+
+<code>npm run test-watch</code>
+
+End-to-end tests exist which will test the price-finder module using real URIs, scraping
+the pages to verify the code works correctly. Note that these tests should be run on
+a limited basis while coding since some sites have been known to throw up CAPTCHA's
+after repeated, automated page requests. To execute these tests run:
+
+<code>npm run test-e2e</code>
 
 ### Adding Sites ###
 
