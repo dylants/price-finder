@@ -1,8 +1,8 @@
 "use strict";
 
-var AmazonSite = require("../../lib/sites/amazon"),
+var AmazonSite = require("../../../lib/sites/amazon"),
     cheerio = require("cheerio"),
-    siteUtils = require("../../lib/site-utils");
+    siteUtils = require("../../../lib/site-utils");
 
 var VALID_URI = "http://www.amazon.com/123/product";
 var INVALID_URI = "http://www.bad.com/123/product";

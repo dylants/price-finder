@@ -32,8 +32,9 @@
     "main": "./lib/price-finder",
     "scripts": {
         "prepublish": "npm prune",
-        "test": "jasmine-node --test-dir test --matchall --color --verbose",
-        "test-watch": "jasmine-node --test-dir test --matchall --color --autotest --watch lib"
+        "test": "jasmine-node --test-dir test/unit --matchall --color --verbose",
+        "test-watch": "jasmine-node --test-dir test/unit --matchall --color --autotest --watch lib",
+        "test-e2e": "jasmine-node --test-dir test/e2e --matchall --color --verbose --noStack"
     },
     "dependencies": {
         "async": "^0.7.0",

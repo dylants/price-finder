@@ -1,8 +1,8 @@
 "use strict";
 
-var BestBuySite = require("../../lib/sites/best-buy"),
+var BestBuySite = require("../../../lib/sites/best-buy"),
     cheerio = require("cheerio"),
-    siteUtils = require("../../lib/site-utils");
+    siteUtils = require("../../../lib/site-utils");
 
 var VALID_URI = "http://www.bestbuy.com/site/product";
 var INVALID_URI = "http://www.bad.com/123/product";

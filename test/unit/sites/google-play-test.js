@@ -1,8 +1,8 @@
 "use strict";
 
-var GooglePlaySite = require("../../lib/sites/google-play"),
+var GooglePlaySite = require("../../../lib/sites/google-play"),
     cheerio = require("cheerio"),
-    siteUtils = require("../../lib/site-utils");
+    siteUtils = require("../../../lib/site-utils");
 
 var VALID_URI = "https://play.google.com/store/product";
 var INVALID_URI = "http://www.bad.com/123/product";

@@ -1,6 +1,6 @@
 "use strict";
 
-var siteManager = require("../lib/site-manager");
+var siteManager = require("../../lib/site-manager");
 
 var KNOWN_SITE = "www.amazon.com/123/product";
 

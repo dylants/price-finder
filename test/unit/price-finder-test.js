@@ -1,7 +1,7 @@
 "use strict";
 
 var rewire = require("rewire"),
-    priceFinder = rewire("../lib/price-finder");
+    priceFinder = rewire("../../lib/price-finder");
 
 describe("The Price Finder", function() {
 

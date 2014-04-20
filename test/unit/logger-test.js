@@ -1,6 +1,6 @@
 "use strict";
 
-var logger = require("../lib/logger");
+var logger = require("../../lib/logger");
 
 describe("The Logger", function() {
     it("should exist", function() {
