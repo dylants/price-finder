@@ -58,6 +58,13 @@ priceFinder.findItemDetails(uri, function(err, itemDetails) {
 ### Configuration Options ###
 
 When creating a new PriceFinder object, a configuration object can be specified.
+The following options are configurable:
+
+<ul>
+    <li><code>debug</code> : When true, will enable debug logging to console
+    (defaults to false)</li>
+</ul>
+
 For example:
 
 ```JavaScript
@@ -67,13 +74,6 @@ var priceFinder = new PriceFinder({
     debug: true 
 });
 ```
-
-The following options are configurable:
-
-<ul>
-    <li><code>debug</code> : When true, will enable debug logging to console
-    (defaults to false)</li>
-</ul>
 
 ### API ###
 
