@@ -1,6 +1,7 @@
 "use strict";
 
-var priceFinder = require("../../lib/price-finder");
+var PriceFinder = require("../../lib/price-finder"),
+    priceFinder = new PriceFinder();
 
 function verifyPrice(price) {
     expect(price).toBeDefined();

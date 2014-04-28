@@ -1,30 +1,39 @@
 "use strict";
 
 var rewire = require("rewire"),
-    priceFinder = rewire("../../lib/price-finder");
+    PriceFinder = rewire("../../lib/price-finder"),
+    logger = require("../../lib/logger");
 
-describe("The Price Finder", function() {
+describe("PriceFinder", function() {
 
     it("should exist", function() {
-        expect(priceFinder).toBeDefined();
+        expect(PriceFinder).toBeDefined();
     });
 
-    it("should throw an exception in findItemPrice() when presented with an unsupported URI", function(done) {
-        priceFinder.findItemPrice("www.bad_uri.bad", function(error, price) {
-            expect(error).toBeDefined();
-            done();
+    describe("default priceFinder with no options", function() {
+        var priceFinder;
+
+        beforeEach(function() {
+            priceFinder = new PriceFinder();
         });
-    });
 
-    it("should throw an exception in findItemDetails() when presented with an unsupported URI", function(done) {
-        priceFinder.findItemDetails("www.bad_uri.bad", function(error, itemDetails) {
-            expect(error).toBeDefined();
-            done();
+        it("should throw an exception in findItemPrice() when presented with an unsupported URI", function(done) {
+            priceFinder.findItemPrice("www.bad_uri.bad", function(error, price) {
+                expect(error).toBeDefined();
+                done();
+            });
+        });
+
+        it("should throw an exception in findItemDetails() when presented with an unsupported URI", function(done) {
+            priceFinder.findItemDetails("www.bad_uri.bad", function(error, itemDetails) {
+                expect(error).toBeDefined();
+                done();
+            });
         });
     });
 
     describe("with an Amazon URI and valid mock request data", function() {
-        var testPrice, testCategory, testName, _request;
+        var testPrice, testCategory, testName, _request, priceFinder;
 
         testPrice = 19.99;
         testCategory = "Books";
@@ -32,10 +41,10 @@ describe("The Price Finder", function() {
 
         beforeEach(function() {
             // save off the request
-            _request = priceFinder.__get__("request");
+            _request = PriceFinder.__get__("request");
 
             // set request to return a specific body
-            priceFinder.__set__("request", function(options, callback) {
+            PriceFinder.__set__("request", function(options, callback) {
                 var response, body;
 
                 // setup valid response
@@ -48,6 +57,8 @@ describe("The Price Finder", function() {
                     "<div id='title'>" + testName + "</div>";
                 callback(null, response, body);
             });
+
+            priceFinder = new PriceFinder();
         });
 
         it("should return the item price", function(done) {
@@ -74,19 +85,19 @@ describe("The Price Finder", function() {
         });
 
         afterEach(function() {
-            priceFinder.__set__("request", _request);
+            PriceFinder.__set__("request", _request);
         });
     });
 
     describe("with a valid URI and mock request data with status code 404", function() {
-        var _request;
+        var _request, priceFinder;
 
         beforeEach(function() {
             // save off the request
-            _request = priceFinder.__get__("request");
+            _request = PriceFinder.__get__("request");
 
             // set request to return a specific body
-            priceFinder.__set__("request", function(options, callback) {
+            PriceFinder.__set__("request", function(options, callback) {
                 var response, body;
 
                 // setup invalid response code
@@ -97,6 +108,8 @@ describe("The Price Finder", function() {
                 body = "Site Not Found";
                 callback(null, response, body);
             });
+
+            priceFinder = new PriceFinder();
         });
 
         it("should return an error for findItemPrice()", function(done) {
@@ -114,19 +127,19 @@ describe("The Price Finder", function() {
         });
 
         afterEach(function() {
-            priceFinder.__set__("request", _request);
+            PriceFinder.__set__("request", _request);
         });
     });
 
     describe("with a valid URI and invalid mock request data", function() {
-        var _request;
+        var _request, priceFinder;
 
         beforeEach(function() {
             // save off the request
-            _request = priceFinder.__get__("request");
+            _request = PriceFinder.__get__("request");
 
             // set request to return a specific body
-            priceFinder.__set__("request", function(options, callback) {
+            PriceFinder.__set__("request", function(options, callback) {
                 var response, body;
 
                 // setup invalid response code
@@ -137,6 +150,8 @@ describe("The Price Finder", function() {
                 body = "<h1>Nothin here</h1>";
                 callback(null, response, body);
             });
+
+            priceFinder = new PriceFinder();
         });
 
         it("should return an error for findItemPrice()", function(done) {
@@ -154,7 +169,28 @@ describe("The Price Finder", function() {
         });
 
         afterEach(function() {
-            priceFinder.__set__("request", _request);
+            PriceFinder.__set__("request", _request);
+        });
+    });
+
+    describe("with debug logging enabled", function() {
+        var _debug, priceFinder;
+
+        beforeEach(function() {
+            _debug = logger.DEBUG;
+
+            priceFinder = new PriceFinder({
+                debug: true
+            });
+        });
+
+        it("should have logging enabled", function() {
+            expect(PriceFinder.__get__("logger").DEBUG).toBeTruthy();
+        });
+
+        afterEach(function() {
+            // return logger's debug back to the original value
+            logger.DEBUG = _debug;
         });
     });
 });

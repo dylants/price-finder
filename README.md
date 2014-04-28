@@ -12,7 +12,9 @@ well).
 ### Find an item's current price online ###
 
 ```JavaScript
-var priceFinder = require("price-finder");
+var PriceFinder = require("price-finder");
+
+var priceFinder = new PriceFinder();
 
 // Atoms for Peace : Amok  (from Amazon)
 var uri = "http://www.amazon.com/Amok/dp/B00BIQ1EL4";
@@ -30,7 +32,9 @@ priceFinder.findItemPrice(uri, function(err, price) {
 ### Find additional details on an item, including price ###
 
 ```JavaScript
-var priceFinder = require("price-finder");
+var PriceFinder = require("price-finder");
+
+var priceFinder = new PriceFinder();
 
 // Plants vs Zombies  (from Google Play)
 var uri = "https://play.google.com/store/apps/details?id=com.popcap.pvz_na";
@@ -49,9 +53,31 @@ priceFinder.findItemDetails(uri, function(err, itemDetails) {
 });
 ```
 
-## API ##
+## Price Finder Documentation ##
 
-### findItemPrice(`uri`, `callback`)
+### Configuration Options ###
+
+When creating a new PriceFinder object, a configuration object can be specified.
+For example:
+
+```JavaScript
+var PriceFinder = require("price-finder");
+
+var priceFinder = new PriceFinder({
+    debug: true 
+});
+```
+
+The following options are configurable:
+
+<ul>
+    <li><code>debug</code> : When true, will enable debug logging to console
+    (defaults to false)</li>
+</ul>
+
+### API ###
+
+#### findItemPrice(`uri`, `callback`) ####
 
 Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the current price listed on the page,
@@ -63,7 +89,7 @@ the error information. If no errors occurred, this will be <code>null</code>.</l
 <code>Number</code>).</li>
 </ul>
 
-### findItemDetails(`uri`, `callback`)
+#### findItemDetails(`uri`, `callback`) ####
 
 Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the item details listed on the page,
@@ -84,12 +110,35 @@ the error information. If no errors occurred, this will be <code>null</code>.</l
 
 ## Supported Sites ##
 
-The current supported sites are:
+The current supported sites, along with categories supported within each site,
+are listed below.
 
 <ul>
 <li>Amazon</li>
+    <ul>
+        <li>Digital Music</li>
+        <li>Video Games</li>
+        <li>Mobile Apps</li>
+        <li>Movies & TV</li>
+        <li>Camera & Video</li>
+        <li>Toys & Games</li>
+        <li>Kindle Books</li>
+        <li>Books</li>
+        <li>Household</li>
+        <li>Health & Personal Care</li>
+    </ul>
 <li>Google Play</li>
+    <ul>
+        <li>Music</li>
+        <li>Movies & TV</li>
+        <li>Android Apps</li>
+    </ul>
 <li>Best Buy</li>
+    <ul>
+        <li>Movies & TV</li>
+        <li>Music</li>
+        <li>Video Games</li>
+    </ul>
 </ul>
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!

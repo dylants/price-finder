@@ -39,7 +39,8 @@
     "dependencies": {
         "async": "^0.7.0",
         "cheerio": "^0.15.0",
-        "request": "^2.34.0"
+        "request": "^2.34.0",
+        "xtend": "^3.0.0"
     },
     "devDependencies": {
         "jasmine-node": "^1.14.3",
