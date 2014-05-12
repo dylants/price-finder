@@ -37,8 +37,8 @@
         "test-e2e": "jasmine-node --test-dir test/e2e --matchall --color --verbose --noStack"
     },
     "dependencies": {
-        "async": "^0.7.0",
-        "cheerio": "^0.15.0",
+        "async": "^0.8.0",
+        "cheerio": "^0.16.0",
         "request": "^2.34.0",
         "xtend": "^3.0.0"
     },

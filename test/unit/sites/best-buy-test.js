@@ -60,7 +60,7 @@ describe("The Best Buy Site", function() {
                     "<div id='sku-title'>The Blues Brothers</div>" +
                     "<div class='item-price'>$" + price + "</div>" +
                     "<div id='foo' data-uber-cat='bar'>stuff</div>" +
-                    "<div id='analytics-data' data-uber-cat-name='Movies &amp; Music' data-parent-cat-name='Movies & TV Shows'>stuff</div>");
+                    "<div id='analytics-data' data-uber-cat-name='Movies & Music' data-parent-cat-name='Movies & TV Shows'>stuff</div>");
                 bad$ = cheerio.load("<h1>Nothin here</h1>");
             });
 
