@@ -29,6 +29,10 @@
         "google",
         "bestbuy"
     ],
+    "files": [
+        "LICENSE",
+        "lib"
+    ],
     "main": "./lib/price-finder",
     "scripts": {
         "prepublish": "npm prune",
