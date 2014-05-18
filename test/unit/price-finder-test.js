@@ -1,8 +1,7 @@
 "use strict";
 
 var rewire = require("rewire"),
-    PriceFinder = rewire("../../lib/price-finder"),
-    logger = require("../../lib/logger");
+    PriceFinder = rewire("../../lib/price-finder");
 
 describe("PriceFinder", function() {
 
@@ -170,27 +169,6 @@ describe("PriceFinder", function() {
 
         afterEach(function() {
             PriceFinder.__set__("request", _request);
-        });
-    });
-
-    describe("with debug logging enabled", function() {
-        var _debug, priceFinder;
-
-        beforeEach(function() {
-            _debug = logger.DEBUG;
-
-            priceFinder = new PriceFinder({
-                debug: true
-            });
-        });
-
-        it("should have logging enabled", function() {
-            expect(PriceFinder.__get__("logger").DEBUG).toBeTruthy();
-        });
-
-        afterEach(function() {
-            // return logger's debug back to the original value
-            logger.DEBUG = _debug;
         });
     });
 });
