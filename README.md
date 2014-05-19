@@ -66,7 +66,7 @@ The following options are configurable:
     <li><code>retryStatusCodes</code> : An array of status codes (Numbers) which
     when returned from the page scrape request, will trigger a retry request
     (meaning it will attempt to scrape the page again). Defaults to
-    <code>[ 503 ]</code>.</li>
+    <code>[503]</code>.</li>
     <li><code>retrySleepTime</code> : If a retry status code is returned from a
     page scrape request, this is the amount of time (in milliseconds) that the
     code will sleep prior to re-issuing the request. Defaults to
