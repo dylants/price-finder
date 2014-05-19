@@ -171,4 +171,51 @@ describe("PriceFinder", function() {
             PriceFinder.__set__("request", _request);
         });
     });
+
+    describe("with no options supplied", function() {
+        var priceFinder;
+
+        beforeEach(function() {
+            priceFinder = new PriceFinder();
+        });
+
+        it("should have the default options set", function() {
+            var config = priceFinder._config;
+            expect(config).toBeDefined();
+            expect(config.headers).toEqual({
+                "User-Agent": "Mozilla/5.0"
+            });
+            expect(config.retryStatusCodes).toEqual([503]);
+        });
+    });
+
+    describe("with options supplied", function() {
+        it("should use the correct options", function() {
+            var priceFinder, headers, retryStatusCodes;
+
+            headers = "123";
+            retryStatusCodes = [300, 301, 302];
+
+            priceFinder = new PriceFinder({
+                headers: headers
+            });
+            expect(priceFinder._config.headers).toEqual(headers);
+            expect(priceFinder._config.retryStatusCodes).toEqual([503]);
+
+            priceFinder = new PriceFinder({
+                retryStatusCodes: retryStatusCodes
+            });
+            expect(priceFinder._config.headers).toEqual({
+                "User-Agent": "Mozilla/5.0"
+            });
+            expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
+
+            priceFinder = new PriceFinder({
+                headers: headers,
+                retryStatusCodes: retryStatusCodes
+            });
+            expect(priceFinder._config.headers).toEqual(headers);
+            expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
+        });
+    });
 });
