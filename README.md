@@ -61,8 +61,16 @@ When creating a new PriceFinder object, a configuration object can be specified.
 The following options are configurable:
 
 <ul>
-    <li><code>debug</code> : When true, will enable debug logging to console
-    (defaults to false)</li>
+    <li><code>headers</code> : Any HTTP headers that should be sent within the page
+    scrape request. Defaults to <code>"User-Agent": "Mozilla/5.0"</code>.</li>
+    <li><code>retryStatusCodes</code> : An array of status codes (Numbers) which
+    when returned from the page scrape request, will trigger a retry request
+    (meaning it will attempt to scrape the page again). Defaults to
+    <code>[ 503 ]</code>.</li>
+    <li><code>retrySleepTime</code> : If a retry status code is returned from a
+    page scrape request, this is the amount of time (in milliseconds) that the
+    code will sleep prior to re-issuing the request. Defaults to
+    <code>1000</code> (ms).</li>
 </ul>
 
 For example:
@@ -71,7 +79,7 @@ For example:
 var PriceFinder = require("price-finder");
 
 var priceFinder = new PriceFinder({
-    debug: true 
+    retrySleepTime: 2000
 });
 ```
 
@@ -81,7 +89,7 @@ var priceFinder = new PriceFinder({
 
 Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the current price listed on the page,
-sending it to the <code>callback</code>.  The <code>callback</code>'s arguments are:
+sending it to the <code>callback</code>. The <code>callback</code>'s arguments are:
 <ul>
 <li><code>error</code> : If an error occurred during processing, this will contain
 the error information. If no errors occurred, this will be <code>null</code>.</li>
@@ -93,7 +101,7 @@ the error information. If no errors occurred, this will be <code>null</code>.</l
 
 Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the item details listed on the page,
-sending it to the <code>callback</code>.  The <code>callback</code>'s arguments are:
+sending it to the <code>callback</code>. The <code>callback</code>'s arguments are:
 <ul>
 <li><code>error</code> : If an error occurred during processing, this will contain
 the error information. If no errors occurred, this will be <code>null</code>.</li>
@@ -107,6 +115,16 @@ the error information. If no errors occurred, this will be <code>null</code>.</l
         the site implementation).</li>
     </ul>
 </ul>
+
+### Debugging Price Finder ###
+
+The <a href="https://www.npmjs.org/package/debug">debug</a> package is used
+within price-finder to output debugging information useful in tracking
+down any potential issues. To enable, export the <code>DEBUG</code> environment
+variable set to <code>price-finder*</code> to pick up all files (or include a
+specific library to only enable a certain module). For example:
+
+<code>$ DEBUG=price-finder* node app.js</code>
 
 ## Supported Sites ##
 
