@@ -191,31 +191,29 @@ describe("PriceFinder", function() {
 
     describe("with options supplied", function() {
         it("should use the correct options", function() {
-            var priceFinder, headers, retryStatusCodes;
+            var priceFinder, headers, retryStatusCodes, retrySleepTime;
 
             headers = "123";
             retryStatusCodes = [300, 301, 302];
+            retrySleepTime = 4000;
 
+            // override some, but not all...
             priceFinder = new PriceFinder({
                 headers: headers
             });
             expect(priceFinder._config.headers).toEqual(headers);
             expect(priceFinder._config.retryStatusCodes).toEqual([503]);
+            expect(priceFinder._config.retrySleepTime).toEqual(1000);
 
-            priceFinder = new PriceFinder({
-                retryStatusCodes: retryStatusCodes
-            });
-            expect(priceFinder._config.headers).toEqual({
-                "User-Agent": "Mozilla/5.0"
-            });
-            expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
-
+            // override all
             priceFinder = new PriceFinder({
                 headers: headers,
-                retryStatusCodes: retryStatusCodes
+                retryStatusCodes: retryStatusCodes,
+                retrySleepTime: retrySleepTime
             });
             expect(priceFinder._config.headers).toEqual(headers);
             expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
+            expect(priceFinder._config.retrySleepTime).toEqual(retrySleepTime);
         });
     });
 });

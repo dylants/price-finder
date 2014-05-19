@@ -4,6 +4,7 @@
         "module": false,
         "require": false,
         "console": false,
-        "__dirname": false
+        "__dirname": false,
+        "setTimeout": false
     }
 }
