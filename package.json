@@ -1,7 +1,7 @@
 {
     "name": "price-finder",
     "description": "Finds the prices of retail items online",
-    "version": "0.3.2",
+    "version": "0.4.0",
     "author": {
         "name": "Dylan Smith"
     },
@@ -41,11 +41,11 @@
         "test-e2e": "jasmine-node --test-dir test/e2e --matchall --color --verbose --noStack"
     },
     "dependencies": {
-        "async": "^0.8.0",
+        "async": "^0.9.0",
         "cheerio": "^0.16.0",
+        "debug": "^0.8.1",
         "request": "^2.34.0",
-        "xtend": "^3.0.0",
-        "debug": "^0.8.1"
+        "xtend": "^3.0.0"
     },
     "devDependencies": {
         "jasmine-node": "^1.14.3",
