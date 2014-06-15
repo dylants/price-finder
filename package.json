@@ -42,8 +42,8 @@
     },
     "dependencies": {
         "async": "^0.9.0",
-        "cheerio": "^0.16.0",
-        "debug": "^0.8.1",
+        "cheerio": "^0.17.0",
+        "debug": "^1.0.2",
         "request": "^2.34.0",
         "xtend": "^3.0.0"
     },
