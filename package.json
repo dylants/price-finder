@@ -1,7 +1,7 @@
 {
     "name": "price-finder",
     "description": "Finds the prices of retail items online",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "author": {
         "name": "Dylan Smith"
     },
@@ -27,7 +27,8 @@
         "product",
         "amazon",
         "google",
-        "bestbuy"
+        "bestbuy",
+        "sony"
     ],
     "files": [
         "LICENSE",
