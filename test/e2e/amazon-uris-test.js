@@ -1,5 +1,8 @@
 "use strict";
 
+// set the timeout of these tests to 10 seconds
+jasmine.getEnv().defaultTimeoutInterval = 10000;
+
 var PriceFinder = require("../../lib/price-finder"),
     priceFinder = new PriceFinder();
 

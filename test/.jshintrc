@@ -6,6 +6,7 @@
         "beforeEach": false,
         "afterEach": false,
         "it": false,
-        "expect": false
+        "expect": false,
+        "jasmine": false
     }
 }
