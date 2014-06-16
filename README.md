@@ -44,12 +44,12 @@ priceFinder.findItemDetails(uri, function(err, itemDetails) {
     console.log(itemDetails.category); // Mobile Apps
 });
 
-// Blues Brothers  (from Amazon)
-uri = "http://www.amazon.com/Blues-Brothers-Blu-ray-John-Belushi/dp/B001AQO446";
+// PixelJunk Monsters  (from Sony Entertainment Network Store)
+uri = "https://store.sonyentertainmentnetwork.com/#!/en-us/games/pixeljunk-monsters/cid=UP9000-NPUA80108_00-PJMONSTSFULL0001";
 priceFinder.findItemDetails(uri, function(err, itemDetails) {
-    console.log(itemDetails.price);    // 13.01
-    console.log(itemDetails.name);     // The Blues Brothers [Blu-ray] (1980)
-    console.log(itemDetails.category); // Movies & TV
+    console.log(itemDetails.price);    // 9.99
+    console.log(itemDetails.name);     // PixelJunk™ Monsters
+    console.log(itemDetails.category); // Video Games
 });
 ```
 
@@ -155,6 +155,10 @@ are listed below.
     <ul>
         <li>Movies & TV</li>
         <li>Music</li>
+        <li>Video Games</li>
+    </ul>
+<li>Sony Entertainment Network Store</li>
+    <ul>
         <li>Video Games</li>
     </ul>
 </ul>
