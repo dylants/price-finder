@@ -220,25 +220,28 @@ function Site(uri) {
     /**
      * Returns the price found on the page
      * 
-     * @param  {Object} $ jQuery object used to search the page
-     * @return {String}   The price found on the page
+     * @param  {Object} $/pageData jQuery object used to search the page, or
+     *                             JSON page data if JSON based site
+     * @return {String}            The price found on the page
      */
     function findPriceOnPage($);
 
     /**
      * Returns the category of the item found on the page
      * 
-     * @param  {Object} $ jQuery object used to search the page
-     * @return {String}   The category found on the page
+     * @param  {Object} $/pageData jQuery object used to search the page, or
+     *                             JSON page data if JSON based site
+     * @return {String}            The category found on the page
      */
     function findCategoryOnPage($);
 
     /**
      * Returns the name of the item found on the page
      * 
-     * @param  {Object} $        jQuery object used to search the page
-     * @param  {String} category The product's category
-     * @return {String}          The category found on the page
+     * @param  {Object} $/pageData jQuery object used to search the page,
+     *                             or JSON page data if JSON based site
+     * @param  {String} category   The product's category
+     * @return {String}            The name found on the page
      */
     function findNameOnPage($, category);
 }
