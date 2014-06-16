@@ -97,7 +97,7 @@ describe("The Best Buy Site", function() {
                 expect(nameFound).toEqual(name);
             });
 
-            it("should return the name when displayed on the page", function() {
+            it("should return null when the name is not displayed on the page", function() {
                 var nameFound = bestBuy.findNameOnPage(bad$, category);
                 expect(nameFound).toEqual(null);
             });

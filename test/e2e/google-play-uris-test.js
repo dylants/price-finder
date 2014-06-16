@@ -6,7 +6,7 @@ var PriceFinder = require("../../lib/price-finder"),
 function verifyPrice(price) {
     expect(price).toBeDefined();
     // we can't guarantee the price, so just make sure it's a number
-    // that's more than 0
+    // that's more than -1
     expect(price).toBeGreaterThan(-1);
 }
 

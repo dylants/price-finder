@@ -101,7 +101,7 @@ describe("The GooglePlay Site", function() {
                 expect(nameFound).toEqual(name);
             });
 
-            it("should return the name when displayed on the page", function() {
+            it("should return null when the name is not displayed on the page", function() {
                 var nameFound = googlePlay.findNameOnPage(bad$, category);
                 expect(nameFound).toEqual(null);
             });
