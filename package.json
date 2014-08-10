@@ -1,7 +1,7 @@
 {
     "name": "price-finder",
     "description": "Finds the prices of retail items online",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "author": {
         "name": "Dylan Smith"
     },
