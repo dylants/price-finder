@@ -47,7 +47,7 @@
         "cheerio": "^0.17.0",
         "debug": "^1.0.2",
         "request": "^2.34.0",
-        "xtend": "^3.0.0"
+        "xtend": "^4.0.0"
     },
     "devDependencies": {
         "jasmine-node": "^1.14.3",
