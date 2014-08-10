@@ -1,6 +1,6 @@
 # price-finder #
 
-[![Build Status](https://travis-ci.org/dylants/price-finder.svg)](https://travis-ci.org/dylants/price-finder) [![Dependency Status](https://david-dm.org/dylants/price-finder.svg)](https://david-dm.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
+[![Build Status](https://travis-ci.org/dylants/price-finder.svg)](https://travis-ci.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
 
 The price-finder module helps find the price of retail items online. It does this by
 taking in a URI for a webpage that displays the product information, and scrapes the
@@ -54,6 +54,16 @@ priceFinder.findItemDetails(uri, function(err, itemDetails) {
 ```
 
 ## Price Finder Documentation ##
+
+- [Configuration Options](#configuration-options)
+- [API](#api)
+  - [findItemPrice(`uri`, `callback`)](#finditempriceuri-callback)
+  - [findItemDetails(`uri`, `callback`)](#finditemdetailsuri-callback)
+- [Debugging Price Finder](#debugging-price-finder)
+- [Supported Sites](#supported-sites)
+- [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Adding Sites](#adding-sites)
 
 ### Configuration Options ###
 
@@ -126,7 +136,7 @@ specific library to only enable a certain module). For example:
 
 <code>$ DEBUG=price-finder* node app.js</code>
 
-## Supported Sites ##
+### Supported Sites ###
 
 The current supported sites, along with categories supported within each site,
 are listed below.
@@ -169,7 +179,7 @@ are listed below.
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
-## Contributing ##
+### Contributing ###
 
 The price-finder project is a [Node.js](http://nodejs.org/) module, so before
 cloning the repository make sure node is installed. Once cloned, install dependencies
@@ -177,7 +187,7 @@ by issuing:
 
 <code>npm install</code>
 
-### Tests ###
+#### Tests ####
 
 The project uses [Jasmine](http://jasmine.github.io/) for tests (please add tests
 for any new features). To run the unit tests execute:
@@ -196,7 +206,7 @@ after repeated, automated page requests. To execute these tests run:
 
 <code>npm run test-e2e</code>
 
-### Adding Sites ###
+#### Adding Sites ####
 
 This project was built to easily drop in support for new sites. The
 <code>site-manager</code> iterates over all files contained within the
@@ -263,6 +273,7 @@ function Site(uri) {
 Site.isSite = function(uri);
 ```
 
-## License ##
+## Etc ##
 
-[MIT](https://github.com/dylants/price-finder/blob/master/LICENSE)
+- Licence: [MIT](https://github.com/dylants/price-finder/blob/master/LICENSE)
+- Dependency Status: [![Dependency Status](https://david-dm.org/dylants/price-finder.svg)](https://david-dm.org/dylants/price-finder) 
