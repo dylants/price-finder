@@ -161,6 +161,10 @@ are listed below.
     <ul>
         <li>Video Games</li>
     </ul>
+<li>GameStop</li>
+    <ul>
+        <li>Video Games</li>
+    </ul>
 </ul>
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!

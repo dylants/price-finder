@@ -28,7 +28,8 @@
         "amazon",
         "google",
         "bestbuy",
-        "sony"
+        "sony",
+        "gamestop"
     ],
     "files": [
         "LICENSE",
