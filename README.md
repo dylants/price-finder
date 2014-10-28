@@ -141,41 +141,32 @@ specific library to only enable a certain module). For example:
 The current supported sites, along with categories supported within each site,
 are listed below.
 
-<ul>
-<li>Amazon</li>
-    <ul>
-        <li>Digital Music</li>
-        <li>Video Games</li>
-        <li>Mobile Apps</li>
-        <li>Movies & TV</li>
-        <li>Camera & Video</li>
-        <li>Toys & Games</li>
-        <li>Kindle Books</li>
-        <li>Books</li>
-        <li>Household</li>
-        <li>Health & Personal Care</li>
-    </ul>
-<li>Google Play</li>
-    <ul>
-        <li>Music</li>
-        <li>Movies & TV</li>
-        <li>Android Apps</li>
-    </ul>
-<li>Best Buy</li>
-    <ul>
-        <li>Movies & TV</li>
-        <li>Music</li>
-        <li>Video Games</li>
-    </ul>
-<li>Sony Entertainment Network Store</li>
-    <ul>
-        <li>Video Games</li>
-    </ul>
-<li>GameStop</li>
-    <ul>
-        <li>Video Games</li>
-    </ul>
-</ul>
+* Amazon
+    * Digital Music
+    * Video Games
+    * Mobile Apps
+    * Movies & TV
+    * Camera & Video
+    * Toys & Games
+    * Kindle Books
+    * Books
+    * Household
+    * Health & Personal Care
+* Google Play
+    * Music
+    * Movies & TV
+    * Android Apps
+* Best Buy
+    * Movies & TV
+    * Music
+    * Video Games
+* Sony Entertainment Network Store
+    * Video Games
+* GameStop
+    * Video Games
+* Crutchfield
+    * Television & Video
+    * Home Audio
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 

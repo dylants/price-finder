@@ -29,7 +29,8 @@
         "google",
         "bestbuy",
         "sony",
-        "gamestop"
+        "gamestop",
+        "crutchfield"
     ],
     "files": [
         "LICENSE",
