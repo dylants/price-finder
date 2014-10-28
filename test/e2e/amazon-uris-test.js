@@ -109,7 +109,7 @@ describe("price-finder for Amazon URIs", function() {
                 expect(itemDetails).toBeDefined();
 
                 verifyPrice(itemDetails.price);
-                verifyName(itemDetails.name, "The Blues Brothers [Blu-ray] (1980)");
+                verifyName(itemDetails.name, "The Blues Brothers [Blu-ray]");
                 verifyCategory(itemDetails.category, "Movies & TV");
 
                 done();
