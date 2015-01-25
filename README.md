@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/dylants/price-finder.svg)](https://travis-ci.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
 
+[![NPM](https://nodei.co/npm/price-finder.svg?downloads=true)](https://nodei.co/npm/price-finder/)
+
 The price-finder module helps find the price of retail items online. It does this by
 taking in a URI for a webpage that displays the product information, and scrapes the
 page to find the price (optionally able to find the name and category of products as
@@ -97,21 +99,21 @@ var priceFinder = new PriceFinder({
 
 #### findItemPrice(`uri`, `callback`) ####
 
-Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
+Given a `uri` (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the current price listed on the page,
-sending it to the <code>callback</code>. The <code>callback</code>'s arguments are:
+sending it to the `callback`. The `callback`'s arguments are:
 <ul>
-<li><code>error</code> : If an error occurred during processing, this will contain
-the error information. If no errors occurred, this will be <code>null</code>.</li>
-<li><code>price</code> : The current price of the item listed on the page (a
-<code>Number</code>).</li>
+    <li><code>error</code> : If an error occurred during processing, this will contain
+    the error information. If no errors occurred, this will be <code>null</code>.</li>
+    <li><code>price</code> : The current price of the item listed on the page (a
+    <code>Number</code>).</li>
 </ul>
 
 #### findItemDetails(`uri`, `callback`) ####
 
-Given a <code>uri</code> (that is for a [supported site](#supported-sites)), this
+Given a `uri` (that is for a [supported site](#supported-sites)), this
 function will scrape the page and attempt to find the item details listed on the page,
-sending it to the <code>callback</code>. The <code>callback</code>'s arguments are:
+sending it to the `callback`. The `callback`'s arguments are:
 <ul>
 <li><code>error</code> : If an error occurred during processing, this will contain
 the error information. If no errors occurred, this will be <code>null</code>.</li>
@@ -130,11 +132,11 @@ the error information. If no errors occurred, this will be <code>null</code>.</l
 
 The <a href="https://www.npmjs.org/package/debug">debug</a> package is used
 within price-finder to output debugging information useful in tracking
-down any potential issues. To enable, export the <code>DEBUG</code> environment
-variable set to <code>price-finder*</code> to pick up all files (or include a
+down any potential issues. To enable, export the `DEBUG` environment
+variable set to `price-finder*` to pick up all files (or include a
 specific library to only enable a certain module). For example:
 
-<code>$ DEBUG=price-finder* node app.js</code>
+`$ DEBUG=price-finder* node app.js`
 
 ### Supported Sites ###
 
@@ -176,34 +178,40 @@ The price-finder project is a [Node.js](http://nodejs.org/) module, so before
 cloning the repository make sure node is installed. Once cloned, install dependencies
 by issuing:
 
-<code>npm install</code>
+`$ npm install`
 
 #### Tests ####
 
 The project uses [Jasmine](http://jasmine.github.io/) for tests (please add tests
 for any new features). To run the unit tests execute:
 
-<code>npm test</code>
+`$ npm test`
 
 These tests can additionally be run once, while watching the files for any changes,
 and if that occurs, re-run the tests. To do so execute:
 
-<code>npm run test-watch</code>
+`$ npm run test-watch`
 
 End-to-end tests exist which will test the price-finder module using real URIs, scraping
 the pages to verify the code works correctly. Note that these tests should be run on
 a limited basis while coding since some sites have been known to throw up CAPTCHA's
 after repeated, automated page requests. To execute these tests run:
 
-<code>npm run test-e2e</code>
+`$ npm run test-e2e`
+
+Something to note, these tests often take a while and the prompt may appear to
+be unresponsive. It might be useful to run these test with debug mode enabled
+to see that things are taking place:
+
+`$ DEBUG=price-finder* npm run test-e2e`
 
 #### Adding Sites ####
 
 This project was built to easily drop in support for new sites. The
-<code>site-manager</code> iterates over all files contained within the
-<code>sites</code> directory, and adds it to the list of available sites. When a 
+`site-manager` iterates over all files contained within the
+`sites` directory, and adds it to the list of available sites. When a 
 request is issued to price-finder to look up a price, it asks each site if the
-<code>uri</code> is supported by the site, and if so, uses that site to find the
+`uri` is supported by the site, and if so, uses that site to find the
 price (or name, category).
 
 The site interface is:
