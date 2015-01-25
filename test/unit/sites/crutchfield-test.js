@@ -57,12 +57,12 @@ describe("The Crutchfield Site", function() {
                 name = "Samsung Blu-Ray Player";
 
                 $ = cheerio.load(
-                    "<div id='crumb-trail'>" +
+                    "<div id='breadCrumbNav'>" +
                     "<div class='crumb'>Home  /  </div>" +
                     "<div class='crumb'>TVs & Video  /  </div>" +
                     "<div class='crumb'>Category  /  </div>" +
                     "</div>" +
-                    "<h1 class='productHeading'>" +
+                    "<h1 class='productTitleMain'>" +
                     "Samsung Blu-Ray Player" +
                     "</h1>" +
                     "<div class='finalPrice'>" +
@@ -91,7 +91,7 @@ describe("The Crutchfield Site", function() {
                 var categoryFound;
 
                 $ = cheerio.load(
-                    "<div id='crumb-trail'>" +
+                    "<div id='breadCrumbNav'>" +
                     "<div class='crumb'>Home  /  </div>" +
                     "<div class='crumb'>Category  /  </div>" +
                     "</div>"
