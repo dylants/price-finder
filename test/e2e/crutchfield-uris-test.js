@@ -26,7 +26,7 @@ describe("price-finder for Crutchfield Store URIs", function() {
     // Television & Video
     describe("testing a Television & Video item", function() {
         // Samsung Blu-ray Player
-        var uri = "http://www.crutchfield.com/p_305BDF5700/Samsung-BD-F5700.html";
+        var uri = "http://www.crutchfield.com/p_305BDJ5700/Samsung-BD-J5700.html";
 
         it("should respond with a price for findItemPrice()", function(done) {
             priceFinder.findItemPrice(uri, function(err, price) {
@@ -42,7 +42,7 @@ describe("price-finder for Crutchfield Store URIs", function() {
                 expect(itemDetails).toBeDefined();
 
                 verifyPrice(itemDetails.price);
-                verifyName(itemDetails.name, "Samsung BD-F5700");
+                verifyName(itemDetails.name, "Samsung BD-J5700");
                 verifyCategory(itemDetails.category, "Television & Video");
 
                 done();
