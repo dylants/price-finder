@@ -13,7 +13,7 @@ well).
 
 ### Find an item's current price online ###
 
-```JavaScript
+```javascript
 var PriceFinder = require("price-finder");
 
 var priceFinder = new PriceFinder();
@@ -33,7 +33,7 @@ priceFinder.findItemPrice(uri, function(err, price) {
 ```
 ### Find additional details on an item, including price ###
 
-```JavaScript
+```javascript
 var PriceFinder = require("price-finder");
 
 var priceFinder = new PriceFinder();
@@ -87,7 +87,7 @@ The following options are configurable:
 
 For example:
 
-```JavaScript
+```javascript
 var PriceFinder = require("price-finder");
 
 var priceFinder = new PriceFinder({
@@ -216,7 +216,7 @@ price (or name, category).
 
 The site interface is:
 
-```JavaScript
+```javascript
 function Site(uri) {
     
     /**
