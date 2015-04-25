@@ -169,6 +169,7 @@ are listed below.
 * Crutchfield
     * Television & Video
     * Home Audio
+* PriceMinister
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
