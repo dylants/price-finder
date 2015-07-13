@@ -22,6 +22,10 @@ function verifyCategory(actualCategory, expectedCategory) {
 }
 
 describe("price-finder for Best Buy URIs", function() {
+    it("should have the API key defined", function(done){
+        expect(process.env.BESTBUY_KEY).toBeDefined();
+        done();
+    });
 
     // Music
     describe("testing a Music item", function() {
@@ -69,7 +73,7 @@ describe("price-finder for Best Buy URIs", function() {
                 expect(itemDetails).toBeDefined();
 
                 verifyPrice(itemDetails.price);
-                verifyName(itemDetails.name, "Ferris Bueller's Day Off (DVD) (Eng/Fre) 1986");
+                verifyName(itemDetails.name, "Ferris Bueller's Day Off (DVD)");
                 verifyCategory(itemDetails.category, "Movies & TV");
 
                 done();

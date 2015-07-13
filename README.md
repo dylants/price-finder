@@ -23,9 +23,16 @@ var uri = "http://www.amazon.com/Amok/dp/B00BIQ1EL4";
 priceFinder.findItemPrice(uri, function(err, price) {
     console.log(price); // 8.91
 });
+```
+### Find an item's current price using service that requires API key ###
+
+```javascript
+var PriceFinder = require("price-finder");
+
+var priceFinder = new PriceFinder({keys:{bestbuy:"Key from developer.bestbuy.com"}});
 
 // Ferris Bueller's Day Off  (from BestBuy)
-uri = "http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513";
+var uri = "http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513";
 priceFinder.findItemPrice(uri, function(err, price) {
     console.log(price); // 3.99
 });
@@ -83,6 +90,7 @@ The following options are configurable:
     page scrape request, this is the amount of time (in milliseconds) that the
     code will sleep prior to re-issuing the request. Defaults to
     <code>1000</code> (ms).</li>
+    <li><code>keys</code> : An object of API keys required by services dependent upon keys. <strong>Current services requiring an API key to operate: Best Buy.</strong> Keys can also be provided as environment variables, in the form of <code><em>SERVICE</em>_KEY</code>, such as <code>BESTBUY_KEY</code>.</li>
 </ul>
 
 For example:
@@ -159,9 +167,7 @@ are listed below.
     * Movies & TV
     * Android Apps
 * Best Buy
-    * Movies & TV
-    * Music
-    * Video Games
+    * Everything available on bestbuy.com
 * Sony Entertainment Network Store
     * Video Games
 * GameStop
@@ -211,7 +217,7 @@ to see that things are taking place:
 
 This project was built to easily drop in support for new sites. The
 `site-manager` iterates over all files contained within the
-`sites` directory, and adds it to the list of available sites. When a 
+`sites` directory, and adds it to the list of available sites. When a
 request is issued to price-finder to look up a price, it asks each site if the
 `uri` is supported by the site, and if so, uses that site to find the
 price (or name, category).
@@ -220,25 +226,25 @@ The site interface is:
 
 ```javascript
 function Site(uri) {
-    
+
     /**
      * Returns the URI used to find the page data
      * (most likely the same URI used in constructing this Site)
-     * 
+     *
      * @return {String} The URI used to find the page data
      */
     function getURIForPageData();
 
     /**
      * Returns true if the page data is JSON
-     *  
+     *
      * @return {Boolean} true if the page data is JSON, false otherwise
      */
     function isJSON();
 
     /**
      * Returns the price found on the page
-     * 
+     *
      * @param  {Object} $/pageData jQuery object used to search the page, or
      *                             JSON page data if JSON based site
      * @return {String}            The price found on the page
@@ -247,7 +253,7 @@ function Site(uri) {
 
     /**
      * Returns the category of the item found on the page
-     * 
+     *
      * @param  {Object} $/pageData jQuery object used to search the page, or
      *                             JSON page data if JSON based site
      * @return {String}            The category found on the page
@@ -256,7 +262,7 @@ function Site(uri) {
 
     /**
      * Returns the name of the item found on the page
-     * 
+     *
      * @param  {Object} $/pageData jQuery object used to search the page,
      *                             or JSON page data if JSON based site
      * @param  {String} category   The product's category
@@ -267,7 +273,7 @@ function Site(uri) {
 
 /**
  * Returns true if this site supports the incoming URI
- * 
+ *
  * @param  {String}  uri The URI to test
  * @return {Boolean}     true if this Site supports the URI, false otherwise
  */
@@ -277,4 +283,4 @@ Site.isSite = function(uri);
 ## Etc ##
 
 - Licence: [MIT](https://github.com/dylants/price-finder/blob/master/LICENSE)
-- Dependency Status: [![Dependency Status](https://david-dm.org/dylants/price-finder.svg)](https://david-dm.org/dylants/price-finder) 
+- Dependency Status: [![Dependency Status](https://david-dm.org/dylants/price-finder.svg)](https://david-dm.org/dylants/price-finder)
