@@ -90,7 +90,14 @@ The following options are configurable:
     page scrape request, this is the amount of time (in milliseconds) that the
     code will sleep prior to re-issuing the request. Defaults to
     <code>1000</code> (ms).</li>
-    <li><code>keys</code> : An object of API keys required by services dependent upon keys. <strong>Current services requiring an API key to operate: Best Buy.</strong> Keys can also be provided as environment variables, in the form of <code><em>SERVICE</em>_KEY</code>, such as <code>BESTBUY_KEY</code>.</li>
+    <li><code>keys</code> : An object of API keys required by services dependent upon keys. The following is the complete list of API services requiring keys:
+    <table><thead><tr><th>Service</th><th>Object Key</th><th>Environment Variable</th></tr></thead>
+    <tbody>
+        <tr>
+            <td><a href="https://developer.bestbuy.com">Best Buy</a></td><td><code>bestbuy</code></td><td><code>BESTBUY_KEY</code></td></tr>
+    </tbody>
+    </table>
+    </li>
 </ul>
 
 For example:
@@ -99,7 +106,10 @@ For example:
 var PriceFinder = require("price-finder");
 
 var priceFinder = new PriceFinder({
-    retrySleepTime: 2000
+    retrySleepTime: 2000,
+    keys: {
+        "sampleService": "abc123"
+    }
 });
 ```
 
