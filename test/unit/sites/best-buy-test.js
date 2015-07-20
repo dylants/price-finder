@@ -1,11 +1,12 @@
 "use strict";
 
 var BestBuySite = require("../../../lib/sites/best-buy"),
-    cheerio = require("cheerio"),
     siteUtils = require("../../../lib/site-utils");
 
-var VALID_URI = "http://www.bestbuy.com/site/product";
+var VALID_URI = "http://www.bestbuy.com/site/product?skuId=123";
 var INVALID_URI = "http://www.bad.com/123/product";
+var TRANSLATED_URI = "https://api.remix.bestbuy.com/v1/products/123.json?show=sku,name,salePrice,categoryPath&apiKey=junkKey";
+var CONFIG = {keys: {bestbuy: "junkKey"}};
 
 describe("The Best Buy Site", function() {
 
@@ -25,7 +26,7 @@ describe("The Best Buy Site", function() {
 
     it("should throw an exception trying to create a new BestBuySite with an incorrect uri", function() {
         expect(function() {
-            new BestBuySite(INVALID_URI);
+            new BestBuySite(INVALID_URI, CONFIG);
         }).toThrow();
     });
 
@@ -33,19 +34,19 @@ describe("The Best Buy Site", function() {
         var bestBuy;
 
         beforeEach(function() {
-            bestBuy = new BestBuySite(VALID_URI);
+            bestBuy = new BestBuySite(VALID_URI, CONFIG);
         });
 
         it("should exist", function() {
             expect(bestBuy).toBeDefined();
         });
 
-        it("should return the same URI for getURIForPageData()", function() {
-            expect(bestBuy.getURIForPageData()).toEqual(VALID_URI);
+        it("should return the translated URI for getURIForPageData()", function() {
+            expect(bestBuy.getURIForPageData()).toEqual(TRANSLATED_URI);
         });
 
         it("should return false for isJSON()", function() {
-            expect(bestBuy.isJSON()).toBeFalsy();
+            expect(bestBuy.isJSON()).toBeTruthy();
         });
 
         describe("with a populated page", function() {
@@ -56,12 +57,10 @@ describe("The Best Buy Site", function() {
                 category = siteUtils.categories.MOVIES_TV;
                 name = "The Blues Brothers";
 
-                $ = cheerio.load(
-                    "<div id='sku-title'>The Blues Brothers</div>" +
-                    "<div class='item-price'>$" + price + "</div>" +
-                    "<div id='foo' data-uber-cat='bar'>stuff</div>" +
-                    "<div id='analytics-data' data-uber-cat-name='Movies & Music' data-parent-cat-name='Movies & TV Shows'>stuff</div>");
-                bad$ = cheerio.load("<h1>Nothin here</h1>");
+                $ = require('./mock-data/bestbuy.full.json');
+                try {
+                    bad$ = JSON.parse("<h1>Developer Inactive</h1>");
+                } catch (err) {}
             });
 
             it("should return the price when displayed on the page", function() {
@@ -82,7 +81,7 @@ describe("The Best Buy Site", function() {
             it("should return OTHER when the category is not setup", function() {
                 var categoryFound;
 
-                $ = cheerio.load("<div id='analytics-data' data-uber-cat-name='Something Else'></div>");
+                $ = require('./mock-data/bestbuy-other_category.json');
                 categoryFound = bestBuy.findCategoryOnPage($);
                 expect(categoryFound).toEqual(siteUtils.categories.OTHER);
             });
