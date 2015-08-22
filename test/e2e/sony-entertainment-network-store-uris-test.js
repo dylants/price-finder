@@ -26,7 +26,7 @@ describe("price-finder for Sony Entertainment Network Store URIs", function() {
     // Video Games
     describe("testing a Video Game item", function() {
         // PixelJunk™ Monsters
-        var uri = "https://store.sonyentertainmentnetwork.com/#!/en-us/games/pixeljunk-monsters/cid=UP9000-NPUA80108_00-PJMONSTSFULL0001";
+        var uri = "https://store.playstation.com/#!/en-us/games/pixeljunk-monsters/cid=UP9000-NPUA80108_00-PJMONSTSFULL0001";
 
         it("should respond with a price for findItemPrice()", function(done) {
             priceFinder.findItemPrice(uri, function(err, price) {
