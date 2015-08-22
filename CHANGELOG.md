@@ -1,3 +1,14 @@
+New Features:
+
+- Support the new `playstation` URLs for the Sony Store
+- Add more jshint'ing, include Grunt to test process
+- Fully populate the changelog
+
+Bug Fixes:
+
+- Fix the Google Play site to support new page layout for some categories
+- Replace stale links in e2e tests
+
 # v2.0.0
 
 New Features:
