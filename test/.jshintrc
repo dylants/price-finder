@@ -1,12 +1,16 @@
 {
-    "globalstrict": true,
-    "globals": {
-        "require": false,
-        "describe": false,
-        "beforeEach": false,
-        "afterEach": false,
-        "it": false,
-        "expect": false,
-        "jasmine": false
-    }
+    "extends": "../.jshintrc",
+    "globals": {        // Globals variables.
+        "jasmine": true
+    },
+    "predef": [         // Extra globals.
+        "describe",
+        "before",
+        "beforeEach",
+        "after",
+        "afterEach",
+        "it",
+        "expect",
+        "inject"
+    ]
 }

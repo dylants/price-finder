@@ -1,7 +1,6 @@
 "use strict";
 
 var SonyENSSite = require("../../../lib/sites/sony-entertainment-network-store"),
-    cheerio = require("cheerio"),
     siteUtils = require("../../../lib/site-utils");
 
 var VALID_URI = "https://store.sonyentertainmentnetwork.com/#!/en-us/games/my-game/cid=123ABC",
