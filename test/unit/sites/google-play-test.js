@@ -58,7 +58,7 @@ describe("The GooglePlay Site", function() {
 
                 $ = cheerio.load(
                     "<title>Big - Movies & TV on Google Play</title>" +
-                    "<div class='details-actions'>" +
+                    "<div class='details-actions-right'>" +
                     "<div class='price'>" +
                     "<span> $" + price + " </span>" +
                     "<span> something </span>" +

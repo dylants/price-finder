@@ -53,7 +53,7 @@ describe("price-finder for Crutchfield Store URIs", function() {
     // Home Audio
     describe("testing a Home Audio item", function() {
         // Marantz Receiver
-        var uri = "http://www.crutchfield.com/p_642NR1403/Marantz-NR1403.html";
+        var uri = "http://www.crutchfield.com/p_642NR1504/Marantz-NR1504.html";
 
         it("should respond with a price for findItemPrice()", function(done) {
             priceFinder.findItemPrice(uri, function(err, price) {
@@ -69,7 +69,7 @@ describe("price-finder for Crutchfield Store URIs", function() {
                 expect(itemDetails).toBeDefined();
 
                 verifyPrice(itemDetails.price);
-                verifyName(itemDetails.name, "Marantz NR1403");
+                verifyName(itemDetails.name, "Marantz NR1504");
                 verifyCategory(itemDetails.category, "Home Audio");
 
                 done();
