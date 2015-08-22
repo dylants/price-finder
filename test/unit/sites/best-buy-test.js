@@ -30,6 +30,28 @@ describe("The Best Buy Site", function() {
         }).toThrow();
     });
 
+    it("should throw an exception trying to create a new BestBuySite without an API key", function() {
+        expect(function() {
+            new BestBuySite(VALID_URI, {});
+        }).toThrow();
+    });
+
+    describe("with an API key in the environment", function() {
+        beforeEach(function() {
+            process.env.BESTBUY_KEY = "123";
+        });
+
+        afterEach(function() {
+            process.env.BESTBUY_KEY = "";
+        });
+
+        it("should throw an exception trying to create a new BestBuySite without an API key", function() {
+            expect(function() {
+                new BestBuySite(VALID_URI, {});
+            }).not.toThrow();
+        });
+    });
+
     describe("a new Best Buy Site", function() {
         var bestBuy;
 
