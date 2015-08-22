@@ -53,8 +53,8 @@ priceFinder.findItemDetails(uri, function(err, itemDetails) {
     console.log(itemDetails.category); // Mobile Apps
 });
 
-// PixelJunk Monsters  (from Sony Entertainment Network Store)
-uri = "https://store.sonyentertainmentnetwork.com/#!/en-us/games/pixeljunk-monsters/cid=UP9000-NPUA80108_00-PJMONSTSFULL0001";
+// PixelJunk Monsters  (from Sony Entertainment Network / Playstation Store)
+uri = "https://store.playstation.com/#!/en-us/games/pixeljunk-monsters/cid=UP9000-NPUA80108_00-PJMONSTSFULL0001";
 priceFinder.findItemDetails(uri, function(err, itemDetails) {
     console.log(itemDetails.price);    // 9.99
     console.log(itemDetails.name);     // PixelJunk™ Monsters

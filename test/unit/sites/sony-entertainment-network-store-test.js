@@ -5,7 +5,8 @@ var SonyENSSite = require("../../../lib/sites/sony-entertainment-network-store")
     siteUtils = require("../../../lib/site-utils");
 
 var VALID_URI = "https://store.sonyentertainmentnetwork.com/#!/en-us/games/my-game/cid=123ABC",
-    VALID_API_URL = "https://store.sonyentertainmentnetwork.com/store/api/chihiro/00_09_000/container/US/en/999/123ABC",
+    VALID_URI_2 = "https://store.playstation.com/#!/en-us/games/my-game/cid=123ABC",
+    VALID_API_URL = "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/123ABC",
     INVALID_URI = "http://www.bad.com/123/product";
 
 describe("The Sony Entertainment Network Store Site", function() {
@@ -17,6 +18,10 @@ describe("The Sony Entertainment Network Store Site", function() {
     describe("isSite() function", function() {
         it("should return true for a correct site", function() {
             expect(SonyENSSite.isSite(VALID_URI)).toBeTruthy();
+        });
+
+        it("should return true for a correct (alternate) site", function() {
+            expect(SonyENSSite.isSite(VALID_URI_2)).toBeTruthy();
         });
 
         it("should return false for a bad site", function() {
