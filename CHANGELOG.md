@@ -1,3 +1,9 @@
+# vX.X.X
+
+Bug Fixes:
+
+- Fix locator for Amazon book price, and narrow the scope for the title of a book
+
 # v2.1.0
 
 New Features:

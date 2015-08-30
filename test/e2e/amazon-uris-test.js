@@ -117,4 +117,23 @@ describe("price-finder for Amazon URIs", function() {
         });
     });
 
+    // Books
+    describe("testing a Books item", function() {
+        // Origins / Neil deGrasse Tyson
+        var uri = "http://www.amazon.com/Origins-Fourteen-Billion-Cosmic-Evolution/dp/0393350398";
+
+        it("should respond with a price, and the right category and name for findItemDetails()", function(done) {
+            priceFinder.findItemDetails(uri, function(err, itemDetails) {
+                expect(err).toBeNull();
+                expect(itemDetails).toBeDefined();
+
+                verifyPrice(itemDetails.price);
+                verifyName(itemDetails.name, "Origins: Fourteen Billion Years of Cosmic Evolution");
+                verifyCategory(itemDetails.category, "Books");
+
+                done();
+            });
+        });
+    });
+
 });
