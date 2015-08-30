@@ -203,27 +203,37 @@ by issuing:
 #### Tests ####
 
 The project uses [Jasmine](http://jasmine.github.io/) for tests (please add tests
-for any new features). To run the unit tests execute:
+for any new features).
+
+##### Unit Tests #####
+
+To run the unit tests execute:
 
 `$ npm test`
 
-These tests can additionally be run once, while watching the files for any changes,
-and if that occurs, re-run the tests. To do so execute:
+These tests can be run in watch mode, listening for any file changes and re-running when
+that occurs. To do so execute:
 
 `$ npm run test-watch`
 
+##### End To End Tests #####
+
 End-to-end tests exist which will test the price-finder module using real URIs, scraping
-the pages to verify the code works correctly. Note that these tests should be run on
-a limited basis while coding since some sites have been known to throw up CAPTCHA's
-after repeated, automated page requests. To execute these tests run:
+the pages to verify the code works correctly. Because these tests can take a while to run,
+debug logging has been enabled in the npm script.
 
-`$ npm run test-e2e`
+The end to end tests for Best Buy require a developer API key available in the
+environment via the `BESTBUY_KEY` environment variable. For more information, please consult
+the site: https://developer.bestbuy.com.
 
-Something to note, these tests often take a while and the prompt may appear to
-be unresponsive. It might be useful to run these test with debug mode enabled
-to see that things are taking place:
+_Note that these tests should be run on a limited basis while coding since some sites have
+been known to throw up CAPTCHA's after repeated, automated page requests._
 
-`$ DEBUG=price-finder* npm run test-e2e`
+To execute the end to end tests run:
+
+`$ BESTBUY_KEY=<key> npm run test-e2e`
+
+Where `<key>` is the developer API key for Best Buy.
 
 #### Adding Sites ####
 

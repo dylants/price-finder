@@ -41,7 +41,7 @@
         "prepublish": "npm prune",
         "test": "grunt test",
         "test-watch": "jasmine-node --test-dir test/unit --matchall --color --autotest --watch lib",
-        "test-e2e": "jasmine-node --test-dir test/e2e --matchall --color --verbose --noStack"
+        "test-e2e": "DEBUG=price-finder* jasmine-node --test-dir test/e2e --matchall --color --verbose --noStack"
     },
     "dependencies": {
         "async": "^1.4.2",
