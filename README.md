@@ -91,7 +91,7 @@ The following options are configurable:
     code will sleep prior to re-issuing the request. Defaults to
     <code>1000</code> (ms).</li>
     <li><code>keys</code> : An object of API keys required by services dependent upon keys. The following is the complete list of API services requiring keys:
-    <table><thead><tr><th>Service</th><th>Object Key</th><th>Environment Variable</th></tr></thead>
+    <table><thead><tr><th>Service</th><th>Object Key</th><th>Environment Variable Override</th></tr></thead>
     <tbody>
         <tr>
             <td><a href="https://developer.bestbuy.com">Best Buy</a></td><td><code>bestbuy</code></td><td><code>BESTBUY_KEY</code></td></tr>
