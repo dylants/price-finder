@@ -187,6 +187,8 @@ are listed below.
     * Home Audio
 * PriceMinister
     * Video Games
+* eBags
+    * Luggage
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
