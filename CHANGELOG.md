@@ -3,6 +3,10 @@ New Features:
 - Support the new `playstation` URLs for the Sony Store
 - Add more jshint'ing, include Grunt to test process
 - Fully populate the changelog
+- Improve error handling for Best Buy site code
+- Add support for eBags.com
+- Enable debug logging by default for end to end tests
+- Update dependencies to latest
 
 Bug Fixes:
 
