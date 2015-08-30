@@ -1,3 +1,5 @@
+# v2.1.0
+
 New Features:
 
 - Support the new `playstation` URLs for the Sony Store
