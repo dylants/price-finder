@@ -1,3 +1,10 @@
+# v2.1.2
+
+Bug Fixes:
+
+- Fix Amazon books price selector ([#16](https://github.com/dylants/price-finder/pull/16)), closes [#13](https://github.com/dylants/price-finder/issues/13)
+- Fix eBags price selector ([#17](https://github.com/dylants/price-finder/pull/17)), closes [#14](https://github.com/dylants/price-finder/issues/14)
+
 # v2.1.1
 
 Bug Fixes:
