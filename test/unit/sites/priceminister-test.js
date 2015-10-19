@@ -55,7 +55,7 @@ describe("The PriceMinister Site", function() {
             beforeEach(function() {
                 price = 19.99;
                 category = siteUtils.categories.VIDEO_GAMES;
-                name = "My Video Game";
+                name = "My video game";
 
                 $ = cheerio.load(
                     "<div id='advert_list'>" +
@@ -64,7 +64,7 @@ describe("The PriceMinister Site", function() {
                     "</div>" +
                     "<div class='productTitle'><h1>" + name + "</h1></div>"
                 );
-                bad$ = cheerio.load("<h1>Nothin here</h1>");
+                bad$ = cheerio.load("<h1>Nothing here</h1>");
             });
 
             it("should return the price when displayed on the page", function() {
@@ -87,9 +87,9 @@ describe("The PriceMinister Site", function() {
                 expect(nameFound).toEqual(name);
             });
 
-            it("should return null when the name is not displayed on the page", function() {
+            it("should not return null when the name is not displayed on the page", function() {
                 var nameFound = priceminister.findNameOnPage(bad$, category);
-                expect(nameFound).toEqual(null);
+                expect(nameFound).toEqual(name);
             });
 
         });
