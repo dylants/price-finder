@@ -20,14 +20,14 @@ describe("The Site Utils", function() {
         expect(keys.length).toBeGreaterThan(0);
     });
 
-    describe("with a populated page", function() {
+    describe("findContentOnPage() with a populated page", function() {
         var $;
 
         beforeEach(function() {
             $ = cheerio.load("<div id='price-tag'>$9.99</div>");
         });
 
-        it("findContentOnPage() should return the price given the correct selector", function() {
+        it("should return the price given the correct selector", function() {
             var selectors, price;
 
             selectors = [
@@ -39,7 +39,7 @@ describe("The Site Utils", function() {
             expect(price).toEqual("$9.99");
         });
 
-        it("findContentOnPage() should return null given incorrect selector", function() {
+        it("should return null given incorrect selector", function() {
             var selectors, price;
 
             selectors = [
@@ -49,6 +49,20 @@ describe("The Site Utils", function() {
             price = siteUtils.findContentOnPage($, selectors);
 
             expect(price).toEqual(null);
+        });
+    });
+
+    describe("processPrice()", function() {
+        it("should process $ price correctly", function() {
+            expect(siteUtils.processPrice("$3.99")).toEqual(3.99);
+        });
+
+        it("should process EUR price correctly", function() {
+            expect(siteUtils.processPrice("EUR 79,40")).toEqual(79.40);
+        });
+
+        it("should process an unknown price correctly", function() {
+            expect(siteUtils.processPrice("hey, how are you?")).toEqual(-1);
         });
     });
 });

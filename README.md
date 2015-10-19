@@ -161,7 +161,7 @@ specific library to only enable a certain module). For example:
 The current supported sites, along with categories supported within each site,
 are listed below.
 
-* Amazon
+* Amazon (support for more than just .com)
     * Digital Music
     * Video Games
     * Mobile Apps
