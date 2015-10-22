@@ -189,6 +189,8 @@ are listed below.
     * Video Games
 * eBags
     * Luggage
+* Nintendo
+    * Video Games
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
