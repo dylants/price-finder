@@ -20,6 +20,12 @@ describe("The Site Utils", function() {
         expect(keys.length).toBeGreaterThan(0);
     });
 
+    it("should have some known categories", function() {
+        expect(siteUtils.categories.MUSIC).toEqual("Music");
+        expect(siteUtils.categories.VIDEO_GAMES).toEqual("Video Games");
+        expect(siteUtils.categories.BOOKS).toEqual("Books");
+    });
+
     describe("findContentOnPage() with a populated page", function() {
         var $;
 
@@ -59,6 +65,18 @@ describe("The Site Utils", function() {
 
         it("should process EUR price correctly", function() {
             expect(siteUtils.processPrice("EUR 79,40")).toEqual(79.40);
+        });
+
+        it("should process eur price correctly", function() {
+            expect(siteUtils.processPrice("eur 79,40")).toEqual(79.40);
+        });
+
+        it("should process Euros price correctly", function() {
+            expect(siteUtils.processPrice("Euros 79,40")).toEqual(79.40);
+        });
+
+        it("should process € price correctly", function() {
+            expect(siteUtils.processPrice("€ 79,40")).toEqual(79.40);
         });
 
         it("should process an unknown price correctly", function() {
