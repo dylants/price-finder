@@ -237,6 +237,11 @@ To execute the end to end tests run:
 
 Where `<key>` is the developer API key for Best Buy.
 
+If you would like to run a single end to end test (rather than all of them),
+use the `test-e2e-single` script. For example:
+
+`$ npm run test-e2e-single test/e2e/amazon-uris-test.js`
+
 #### Adding Sites ####
 
 This project was built to easily drop in support for new sites. The
