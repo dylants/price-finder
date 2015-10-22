@@ -13,10 +13,7 @@
         "url": "https://github.com/dylants/price-finder/issues"
     },
     "homepage": "https://github.com/dylants/price-finder",
-    "licenses": [{
-        "type": "MIT",
-        "url": "https://github.com/dylants/price-finder/raw/master/LICENSE"
-    }],
+    "license": "MIT",
     "keywords": [
         "price",
         "finder",
