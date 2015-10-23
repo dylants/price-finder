@@ -1,4 +1,4 @@
-# vX.X.X
+# v2.2.0
 
 New Features:
 - Update Travis CI versions to include Node v4 ([#23](https://github.com/dylants/price-finder/pull/23)), closes [#20](https://github.com/dylants/price-finder/issues/20)
