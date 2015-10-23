@@ -43,7 +43,7 @@ describe("price-finder for PriceMinister Store URIs", function() {
                 expect(itemDetails).toBeDefined();
 
                 verifyPrice(itemDetails.price);
-                verifyName(itemDetails.name, "Grand Theft Auto IV sur PS3");
+                verifyName(itemDetails.name, "Gta 4 jeu video");
                 verifyCategory(itemDetails.category, "Video Games");
 
                 done();
