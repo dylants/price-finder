@@ -5,6 +5,8 @@ New Features:
 - Support additional currencies to support additional Amazon sites ([#24](https://github.com/dylants/price-finder/pull/24)), closes [#19](https://github.com/dylants/price-finder/issues/19)
 - Add support for Nintendo.com ([#26](https://github.com/dylants/price-finder/pull/26)), closes [#15](https://github.com/dylants/price-finder/issues/15)
 - Add `test-e2e-single` npm script ([cb69abe](https://github.com/dylants/price-finder/commit/cb69abe96bbfe026a12f91947c004c736027cb27))
+- Correct license in `package.json` ([c488c9e](https://github.com/dylants/price-finder/commit/c488c9e224f668b50fe01930b33f9eadd0121fc2))
+- Improve PriceMinister scraping ([#27](https://github.com/dylants/price-finder/pull/27))
 
 Bug Fixes:
 - Fix for Amazon books accordion ([#22](https://github.com/dylants/price-finder/pull/22)), closes [#21](https://github.com/dylants/price-finder/issues/21)
