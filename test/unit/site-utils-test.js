@@ -79,6 +79,14 @@ describe("The Site Utils", function() {
             expect(siteUtils.processPrice("€ 79,40")).toEqual(79.40);
         });
 
+        it("should process YEN_TEXT price correctly", function() {
+            expect(siteUtils.processPrice("7,940 円")).toEqual(7940);
+        });
+
+        it("should process YEN_SYMBOL price correctly", function() {
+            expect(siteUtils.processPrice("￥ 7,940")).toEqual(7940);
+        });
+
         it("should process an unknown price correctly", function() {
             expect(siteUtils.processPrice("hey, how are you?")).toEqual(-1);
         });
