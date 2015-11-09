@@ -136,4 +136,24 @@ describe("price-finder for Amazon URIs", function() {
         });
     });
 
+    // Luggage
+    describe("testing a Luggage item", function() {
+        // eBags
+        var uri = "http://www.amazon.com/eBags-Mother-Wheeled-Duffel-Yonder/dp/B001N85VMK";
+
+        it("should respond with a price, and the right category and name for findItemDetails()", function(done) {
+            priceFinder.findItemDetails(uri, function(err, itemDetails) {
+                expect(err).toBeNull();
+                expect(itemDetails).toBeDefined();
+
+                verifyPrice(itemDetails.price);
+                verifyName(itemDetails.name, "eBags TLS Mother Lode Mini 21\" Wheeled Duffel");
+                // Amazon reports "apparel" for luggage, so we default to "other"
+                verifyCategory(itemDetails.category, "Other");
+
+                done();
+            });
+        });
+    });
+
 });
