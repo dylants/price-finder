@@ -1,6 +1,17 @@
+# v2.3.0
+
+New Features:
+
+- Add support for Japanese Yen ([#32](https://github.com/dylants/price-finder/pull/32)), closes [#30](https://github.com/dylants/price-finder/issues/30)
+
+Bug Fixes:
+
+- Fix for Amazon books ([36434ea](https://github.com/dylants/price-finder/commit/36434eaff7f53dc15c08b547646e105b27affdfd))
+
 # v2.2.0
 
 New Features:
+
 - Update Travis CI versions to include Node v4 ([#23](https://github.com/dylants/price-finder/pull/23)), closes [#20](https://github.com/dylants/price-finder/issues/20)
 - Support additional currencies to support additional Amazon sites ([#24](https://github.com/dylants/price-finder/pull/24)), closes [#19](https://github.com/dylants/price-finder/issues/19)
 - Add support for Nintendo.com ([#26](https://github.com/dylants/price-finder/pull/26)), closes [#15](https://github.com/dylants/price-finder/issues/15)
@@ -9,6 +20,7 @@ New Features:
 - Improve PriceMinister scraping ([#27](https://github.com/dylants/price-finder/pull/27))
 
 Bug Fixes:
+
 - Fix for Amazon books accordion ([#22](https://github.com/dylants/price-finder/pull/22)), closes [#21](https://github.com/dylants/price-finder/issues/21)
 
 # v2.1.2
