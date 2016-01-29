@@ -87,6 +87,10 @@ describe("The Site Utils", function() {
             expect(siteUtils.processPrice("￥ 7,940")).toEqual(7940);
         });
 
+        it("should process £ price correctly", function() {
+            expect(siteUtils.processPrice("£3.99")).toEqual(3.99);
+        });
+
         it("should process an unknown price correctly", function() {
             expect(siteUtils.processPrice("hey, how are you?")).toEqual(-1);
         });
