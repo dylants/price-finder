@@ -1,3 +1,13 @@
+# v2.4.0
+
+New Features:
+
+- Add support for GBP prices ([#35](https://github.com/dylants/price-finder/pull/35))
+
+Bug Fixes:
+
+- Add selector to help find luggage items ([#34](https://github.com/dylants/price-finder/pull/34)), closes [#33](https://github.com/dylants/price-finder/issues/33)
+
 # v2.3.0
 
 New Features:
