@@ -1,12 +1,9 @@
 {
-  "categoryPath": [
-    {
-      "id": "cat00000",
-      "name": "Best Buy"
-    },
-    {
-      "id": "other123",
-      "name": "Unrecognized Category"
-    }
-  ]
+  "categoryPath": [{
+    "id": "cat00000",
+    "name": "Best Buy"
+  }, {
+    "id": "other123",
+    "name": "Unrecognized Category"
+  }]
 }

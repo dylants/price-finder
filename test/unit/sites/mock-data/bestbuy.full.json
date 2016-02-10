@@ -2,18 +2,14 @@
   "sku": 7444513,
   "name": "The Blues Brothers",
   "salePrice": 9.99,
-  "categoryPath": [
-    {
-      "id": "cat00000",
-      "name": "Best Buy"
-    },
-    {
-      "id": "abcat0600000",
-      "name": "Movies & Music"
-    },
-    {
-      "id": "cat02015",
-      "name": "Movies & TV Shows"
-    }
-  ]
+  "categoryPath": [{
+    "id": "cat00000",
+    "name": "Best Buy"
+  }, {
+    "id": "abcat0600000",
+    "name": "Movies & Music"
+  }, {
+    "id": "cat02015",
+    "name": "Movies & TV Shows"
+  }]
 }
