@@ -1,7 +1,7 @@
 {
   "name": "price-finder",
   "description": "Finds the prices of retail items online",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "engines": {
     "node": "4.x"
   },
@@ -28,9 +28,9 @@
     "amazon",
     "google",
     "bestbuy",
-    "sony",
+    "playstation",
     "gamestop",
-    "crutchfield"
+    "steam"
   ],
   "files": [
     "LICENSE",

@@ -1,3 +1,18 @@
+# v3.0.0
+
+New Features:
+
+- **Breaking Change:** Update to ES6 syntax, apply Airbnb style guide, remove support for Node v0.10, v0.12, and iojs ([#36](https://github.com/dylants/price-finder/pull/36)), closes [#28](https://github.com/dylants/price-finder/issues/28)
+- Add Node v5 test coverage to Travis CI (to go along with Node v4) ([#39](https://github.com/dylants/price-finder/pull/39))
+- Use `siteUtils.processPrice` where possible ([#40](https://github.com/dylants/price-finder/pull/40)), closes [#29](https://github.com/dylants/price-finder/issues/29)
+- Add support for Steam (.com) ([#41](https://github.com/dylants/price-finder/pull/41)), closes [#38](https://github.com/dylants/price-finder/issues/38)
+
+Bug Fixes:
+
+- Improve Steam query ([#43](https://github.com/dylants/price-finder/pull/43))
+
+During this release a Yeoman generator was created for help in adding sites: https://github.com/dylants/generator-price-finder-site
+
 # v2.4.0
 
 New Features:
