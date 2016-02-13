@@ -1,39 +1,36 @@
-"use strict";
+'use strict';
 
-module.exports = function(grunt) {
-    grunt.initConfig({
-        jshint: {
-            files: [
-                "**/*.js"
-            ],
-            options: {
-                ignores: [
-                    "node_modules/**"
-                ],
-                jshintrc: true
-            }
+module.exports = function exports(grunt) {
+  grunt.initConfig({
+    eslint: {
+      files: [
+        '**/*.js',
+      ],
+      options: {
+        quiet: true,
+      },
+    },
+    jasmine_nodejs: {
+      options: {
+        specNameSuffix: 'test.js',
+        reporters: {
+          console: {
+            colors: true,
+            cleanStack: true,
+            verbosity: true,
+            listStyle: 'indent',
+            activity: false,
+          },
         },
-        jasmine_nodejs: {
-            options: {
-                specNameSuffix: "test.js",
-                reporters: {
-                    console: {
-                        colors: true,
-                        cleanStack: true,
-                        verbosity: true,
-                        listStyle: "indent",
-                        activity: false
-                    }
-                }
-            },
-            all: {
-                specs: ["test/unit/**"]
-            }
-        }
-    });
+      },
+      all: {
+        specs: ['test/unit/**'],
+      },
+    },
+  });
 
-    // load all the grunt tasks at once
-    require("load-grunt-tasks")(grunt);
+  // load all the grunt tasks at once
+  require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask("test", ["jshint", "jasmine_nodejs"]);
+  grunt.registerTask('test', ['eslint', 'jasmine_nodejs']);
 };

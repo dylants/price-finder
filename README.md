@@ -4,22 +4,23 @@
 
 [![NPM](https://nodei.co/npm/price-finder.svg?downloads=true)](https://nodei.co/npm/price-finder/)
 
-The price-finder module helps find the price of retail items online. It does this by
-taking in a URI for a webpage that displays the product information, and scrapes the
-page to find the price (optionally able to find the name and category of products as
-well).
+The price-finder module helps find the price of retail items online, either
+through scraping the product page or through product APIs (optionally able to
+find the name and category of products as well).
+
+price-finder supports Node v4.x and above.
 
 ## Quick Examples ##
 
 ### Find an item's current price online ###
 
 ```javascript
-var PriceFinder = require("price-finder");
+const PriceFinder = require("price-finder");
 
-var priceFinder = new PriceFinder();
+const priceFinder = new PriceFinder();
 
 // Atoms for Peace : Amok  (from Amazon)
-var uri = "http://www.amazon.com/Amok/dp/B00BIQ1EL4";
+const uri = "http://www.amazon.com/Amok/dp/B00BIQ1EL4";
 priceFinder.findItemPrice(uri, function(err, price) {
     console.log(price); // 8.91
 });
@@ -27,12 +28,12 @@ priceFinder.findItemPrice(uri, function(err, price) {
 ### Find an item's current price using service that requires API key ###
 
 ```javascript
-var PriceFinder = require("price-finder");
+const PriceFinder = require("price-finder");
 
-var priceFinder = new PriceFinder({keys:{bestbuy:"Key from developer.bestbuy.com"}});
+const priceFinder = new PriceFinder({keys:{bestbuy:"Key from developer.bestbuy.com"}});
 
 // Ferris Bueller's Day Off  (from BestBuy)
-var uri = "http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513";
+const uri = "http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513";
 priceFinder.findItemPrice(uri, function(err, price) {
     console.log(price); // 3.99
 });
@@ -41,12 +42,12 @@ priceFinder.findItemPrice(uri, function(err, price) {
 ### Find additional details on an item, including price ###
 
 ```javascript
-var PriceFinder = require("price-finder");
+const PriceFinder = require("price-finder");
 
-var priceFinder = new PriceFinder();
+const priceFinder = new PriceFinder();
 
 // Plants vs Zombies  (from Google Play)
-var uri = "https://play.google.com/store/apps/details?id=com.popcap.pvz_na";
+let uri = "https://play.google.com/store/apps/details?id=com.popcap.pvz_na";
 priceFinder.findItemDetails(uri, function(err, itemDetails) {
     console.log(itemDetails.price);    // 0.99
     console.log(itemDetails.name);     // Plants vs. Zombies™
@@ -103,13 +104,13 @@ The following options are configurable:
 For example:
 
 ```javascript
-var PriceFinder = require("price-finder");
+const PriceFinder = require("price-finder");
 
-var priceFinder = new PriceFinder({
-    retrySleepTime: 2000,
-    keys: {
-        "sampleService": "abc123"
-    }
+const priceFinder = new PriceFinder({
+  retrySleepTime: 2000,
+  keys: {
+    "sampleService": "abc123"
+  },
 });
 ```
 
@@ -254,59 +255,62 @@ price (or name, category).
 The site interface is:
 
 ```javascript
-function Site(uri) {
+class Site {
+  constructor(uri) {
+    // init Site, save off uri
+  }
 
-    /**
-     * Returns the URI used to find the page data
-     * (most likely the same URI used in constructing this Site)
-     *
-     * @return {String} The URI used to find the page data
-     */
-    function getURIForPageData();
+  /**
+   * Returns the URI used to find the page data
+   * (most likely the same URI used in constructing this Site)
+   *
+   * @return {String} The URI used to find the page data
+   */
+  getURIForPageData();
 
-    /**
-     * Returns true if the page data is JSON
-     *
-     * @return {Boolean} true if the page data is JSON, false otherwise
-     */
-    function isJSON();
+  /**
+   * Returns true if the page data is JSON
+   *
+   * @return {Boolean} true if the page data is JSON, false otherwise
+   */
+  isJSON();
 
-    /**
-     * Returns the price found on the page
-     *
-     * @param  {Object} $/pageData jQuery object used to search the page, or
-     *                             JSON page data if JSON based site
-     * @return {String}            The price found on the page
-     */
-    function findPriceOnPage($);
+  /**
+   * Returns the price found on the page
+   *
+   * @param  {Object} $/pageData jQuery object used to search the page, or
+   *                             JSON page data if JSON based site
+   * @return {String}            The price found on the page
+   */
+  findPriceOnPage($);
 
-    /**
-     * Returns the category of the item found on the page
-     *
-     * @param  {Object} $/pageData jQuery object used to search the page, or
-     *                             JSON page data if JSON based site
-     * @return {String}            The category found on the page
-     */
-    function findCategoryOnPage($);
+  /**
+   * Returns the category of the item found on the page
+   *
+   * @param  {Object} $/pageData jQuery object used to search the page, or
+   *                             JSON page data if JSON based site
+   * @return {String}            The category found on the page
+   */
+  findCategoryOnPage($);
 
-    /**
-     * Returns the name of the item found on the page
-     *
-     * @param  {Object} $/pageData jQuery object used to search the page,
-     *                             or JSON page data if JSON based site
-     * @param  {String} category   The product's category
-     * @return {String}            The name found on the page
-     */
-    function findNameOnPage($, category);
+  /**
+   * Returns the name of the item found on the page
+   *
+   * @param  {Object} $/pageData jQuery object used to search the page,
+   *                             or JSON page data if JSON based site
+   * @param  {String} category   The product's category
+   * @return {String}            The name found on the page
+   */
+  findNameOnPage($, category);
+
+  /**
+   * Returns true if this site supports the incoming URI
+   *
+   * @param  {String}  uri The URI to test
+   * @return {Boolean}     true if this Site supports the URI, false otherwise
+   */
+  static isSite(uri);
 }
-
-/**
- * Returns true if this site supports the incoming URI
- *
- * @param  {String}  uri The URI to test
- * @return {Boolean}     true if this Site supports the URI, false otherwise
- */
-Site.isSite = function(uri);
 ```
 
 ## Etc ##
