@@ -192,6 +192,8 @@ are listed below.
     * Luggage
 * Nintendo
     * Video Games
+* Steam
+    * Video Games
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
@@ -252,7 +254,13 @@ request is issued to price-finder to look up a price, it asks each site if the
 `uri` is supported by the site, and if so, uses that site to find the
 price (or name, category).
 
-The site interface is:
+##### Yeoman Generator #####
+
+A generator exists to create the site, along with the site's unit and end
+to end test. For more information on this generator, please see the project page:
+https://github.com/dylants/generator-price-finder-site
+
+For reference, the site interface is:
 
 ```javascript
 class Site {
