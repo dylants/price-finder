@@ -27,7 +27,12 @@ describe('The Site Utils', () => {
     let $;
 
     beforeEach(() => {
-      $ = cheerio.load('<div id="price-tag">$9.99</div>');
+      $ = cheerio.load(
+        `<div id='price-tag'>$9.99</div>
+         <div class='multi-price'>$1.99</div>
+         <div class='multi-price'>$2.99</div>
+         <div class='multi-price'>$3.99</div>`
+      );
     });
 
     it('should return the price given the correct selector', () => {
@@ -38,6 +43,16 @@ describe('The Site Utils', () => {
       const price = siteUtils.findContentOnPage($, selectors);
 
       expect(price).toEqual('$9.99');
+    });
+
+    it('should return the price given the multiple matches for selector', () => {
+      const selectors = [
+        '.multi-price',
+      ];
+
+      const price = siteUtils.findContentOnPage($, selectors);
+
+      expect(price).toEqual('$1.99');
     });
 
     it('should return null given incorrect selector', () => {
