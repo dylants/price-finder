@@ -61,12 +61,21 @@ describe('The Steam Site', () => {
         category = siteUtils.categories.VIDEO_GAMES;
         name = 'Cool Game';
 
-        $ = cheerio.load(`<div class='game_purchase_price'>
-          $${price}
-          </div>
-          <div class='apphub_AppName'>
-          ${name}
-          </div>'`);
+        $ = cheerio.load(`
+          <div class='game_area_purchase_game'>
+            <div class='game_purchase_price'>
+              $${price}
+            </div>
+            <div class='apphub_AppName'>
+              ${name}
+            </div>
+          </div>'
+          <div class='game_area_purchase_game'>
+            <div class='game_purchase_price'>
+              $999.99
+            </div>
+          </div>'
+        `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
@@ -76,7 +85,11 @@ describe('The Steam Site', () => {
       });
 
       it('should return the price when discounted on the page', () => {
-        $ = cheerio.load(`<div class='discount_final_price'>$${price}</div>`);
+        $ = cheerio.load(`
+          <div class='game_area_purchase_game'>
+            <div class='discount_final_price'>$${price}</div>
+          </div>
+        `);
         const priceFound = site.findPriceOnPage($);
         expect(priceFound).toEqual(price);
       });

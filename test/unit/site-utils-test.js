@@ -27,12 +27,18 @@ describe('The Site Utils', () => {
     let $;
 
     beforeEach(() => {
-      $ = cheerio.load(
-        `<div id='price-tag'>$9.99</div>
-         <div class='multi-price'>$1.99</div>
-         <div class='multi-price'>$2.99</div>
-         <div class='multi-price'>$3.99</div>`
-      );
+      $ = cheerio.load(`
+        <div id='price-tag'>$9.99</div>
+        <div class='multi-price'>$1.99</div>
+        <div class='multi-price'>$2.99</div>
+        <div class='multi-price'>$3.99</div>
+        <div class='outer-multi'>
+          <div class='inner'>$12.34</div>
+        </div>
+        <div class='outer-multi'>
+          <div class='inner'>$56.78</div>
+        </div>
+      `);
     });
 
     it('should return the price given the correct selector', () => {
@@ -53,6 +59,18 @@ describe('The Site Utils', () => {
       const price = siteUtils.findContentOnPage($, selectors);
 
       expect(price).toEqual('$1.99');
+    });
+
+    it('should return the price given a first() element', () => {
+      const jQuery = $('.outer-multi').first();
+
+      const selectors = [
+        '.inner',
+      ];
+
+      const price = siteUtils.findContentOnPage(jQuery, selectors);
+
+      expect(price).toEqual('$12.34');
     });
 
     it('should return null given incorrect selector', () => {
