@@ -4,7 +4,7 @@ const NewEggSite = require('../../../lib/sites/newegg');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
 
-const VALID_URI = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040&cm_sp=Homepage_FDD-_-P1_75-705-040-_-02162016';
+const VALID_URI = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The NewEgg Site', () => {
@@ -61,14 +61,16 @@ describe('The NewEgg Site', () => {
         category = siteUtils.categories.MOBILE;
         name = 'Axon by ZTE Unlocked GSM, 5.5", Qualcomm Snapdragon 801 2.4 GHz Quad-Core';
 
-        $ = cheerio.load(`<li class="price-current" itemprop="price" content="329.98"
-          id="singleFinalPrice"><meta itemprop="priceCurrency" content="USD">
-          <span class="price-current-label"></span>$<strong>329</strong>
-          <sup>.98</sup><span class="price-current-range">
-          <abbr title="to">–</abbr></span></li><h1 id="grpDescrip_h">
-          <span id="grpDescrip_75-705-040" itemprop="name" style="display: inline;">
-          Axon by ZTE Unlocked GSM, 5.5", Qualcomm Snapdragon 801 2.4 GHz Quad-Core</span></h1>
-          <div id="baBreadcrumbTop" data-category="something-new">stuff</div>`);
+        $ = cheerio.load(`
+          <html>
+            <div id='grpDescrip_h'>${name}</div>
+            <script type='text/javascript'>
+              var utag_data = {
+                foo:'bar',
+                product_sale_price:['329.98'],
+              };
+            </script>
+          </html>`);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
@@ -90,13 +92,13 @@ describe('The NewEgg Site', () => {
           Home</a>&nbsp;&gt;&nbsp;</dd><dd><a href="http://www.newegg.com/Electronics/Store"
           title="Electronics">Electronics</a>&nbsp;&gt;&nbsp;</dd><dd>
           <a href="http://www.newegg.com/Cell-Phones-Unlocked/Category/ID-249?Tid=161538"
-           title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
-           <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
-            title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
-            <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
-             title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
-             <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
-             </dd></dl></div>`);
+          title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
+          <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
+          title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
+          <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
+          title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
+          <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
+          </dd></dl></div>`);
         const categoryFound = newegg.findCategoryOnPage($);
         expect(categoryFound).toEqual(category);
       });
@@ -109,13 +111,13 @@ describe('The NewEgg Site', () => {
           Home</a>&nbsp;&gt;&nbsp;</dd><dd><a href="http://www.newegg.com/Electronics/Store"
           title="Electronics">Electronics</a>&nbsp;&gt;&nbsp;</dd><dd>
           <a href="http://www.newegg.com/Cell-Phones-Unlocked/Category/ID-249?Tid=161538"
-           title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
-           <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
-            title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
-            <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
-             title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
-             <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
-             </dd></dl></div>`);
+          title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
+          <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
+          title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
+          <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
+          title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
+          <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
+          </dd></dl></div>`);
         const categoryFound = newegg.findCategoryOnPage($);
         expect(categoryFound).toEqual(siteUtils.categories.OTHER);
       });
