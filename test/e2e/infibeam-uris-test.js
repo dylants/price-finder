@@ -41,8 +41,8 @@ describe('price-finder for Infibeam Store URIs', () => {
         expect(itemDetails).toBeDefined();
 
         verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, '');
-        verifyCategory(itemDetails.category, '');
+        verifyName(itemDetails.name, 'Sansui SJX22FB Full HD LED TV');
+        verifyCategory(itemDetails.category, 'Electronics');
 
         done();
       });
