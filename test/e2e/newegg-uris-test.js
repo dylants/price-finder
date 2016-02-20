@@ -8,6 +8,7 @@ const priceFinder = new PriceFinder();
 
 function verifyPrice(price) {
   expect(price).toBeDefined();
+
   // we can't guarantee the price, so just make sure it's a number
   // that's more than -1
   expect(price).toBeGreaterThan(-1);
@@ -28,10 +29,8 @@ function verifyCategory(actualCategory, expectedCategory) {
  * are thrown and the tests fail (and our IP is blacklisted).
  */
 describe('price-finder for NewEgg URIs', () => {
-  // Digital Music
   describe('testing a Mobile Phone item', () => {
-    // Atoms for Peace : Amok
-    const uri = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040&cm_sp=Homepage_FDD-_-P1_75-705-040-_-02162016';
+    const uri = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
