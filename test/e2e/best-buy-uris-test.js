@@ -6,6 +6,13 @@ const priceFinder = testHelper.priceFinder;
 const verifyPrice = testHelper.verifyPrice;
 const verifyItemDetails = testHelper.verifyItemDetails;
 
+/*
+ * To avoid spamming the API, sleep a bit between tests
+ */
+function waitForDone(done) {
+  setTimeout(() => done(), 5000);
+}
+
 describe('price-finder for Best Buy URIs', () => {
   it('should have the API key defined', (done) => {
     expect(process.env.BESTBUY_KEY).toBeDefined();
@@ -21,7 +28,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemPrice(uri, (err, price) => {
         expect(err).toBeNull();
         verifyPrice(price);
-        done();
+        waitForDone(done);
       });
     });
 
@@ -29,7 +36,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
         verifyItemDetails(itemDetails, 'Briefcase Full of Blues - CD', 'Music');
-        done();
+        waitForDone(done);
       });
     });
   });
@@ -43,7 +50,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemPrice(uri, (err, price) => {
         expect(err).toBeNull();
         verifyPrice(price);
-        done();
+        waitForDone(done);
       });
     });
 
@@ -51,7 +58,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
         verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off (DVD)', 'Movies & TV');
-        done();
+        waitForDone(done);
       });
     });
   });
@@ -65,7 +72,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemPrice(uri, (err, price) => {
         expect(err).toBeNull();
         verifyPrice(price);
-        done();
+        waitForDone(done);
       });
     });
 
@@ -73,7 +80,7 @@ describe('price-finder for Best Buy URIs', () => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
         verifyItemDetails(itemDetails, 'Super Mario 3D Land - Nintendo 3DS', 'Video Games');
-        done();
+        waitForDone(done);
       });
     });
   });
