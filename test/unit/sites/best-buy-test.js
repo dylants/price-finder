@@ -31,12 +31,24 @@ describe('The Best Buy Site', () => {
     }).toThrow();
   });
 
-  it('should throw an exception trying to create a new BestBuySite without an API key', () => {
-    expect(() => {
-      /* eslint-disable no-new */
-      new BestBuySite(VALID_URI, {});
-      /* eslint-enable no-new */
-    }).toThrow();
+  describe('without an API key in the environment', () => {
+    const EXISTING_ENV_KEY = process.env.BESTBUY_KEY;
+
+    beforeEach(() => {
+      process.env.BESTBUY_KEY = '';
+    });
+
+    afterEach(() => {
+      process.env.BESTBUY_KEY = EXISTING_ENV_KEY;
+    });
+
+    it('should throw an exception trying to create a new BestBuySite', () => {
+      expect(() => {
+        /* eslint-disable no-new */
+        new BestBuySite(VALID_URI, {});
+        /* eslint-enable no-new */
+      }).toThrow();
+    });
   });
 
   describe('with an API key in the environment', () => {
@@ -48,7 +60,7 @@ describe('The Best Buy Site', () => {
       process.env.BESTBUY_KEY = '';
     });
 
-    it('should throw an exception trying to create a new BestBuySite without an API key', () => {
+    it('should not throw an exception trying to create a new BestBuySite', () => {
       expect(() => {
         /* eslint-disable no-new */
         new BestBuySite(VALID_URI, {});
