@@ -1,25 +1,10 @@
 'use strict';
 
-// set the timeout of these tests to 10 seconds
-jasmine.getEnv().defaultTimeoutInterval = 10000;
+const testHelper = require('./test-helper');
 
-const PriceFinder = require('../../lib/price-finder');
-const priceFinder = new PriceFinder();
-
-function verifyPrice(price) {
-  expect(price).toBeDefined();
-  // we can't guarantee the price, so just make sure it's a number
-  // that's more than -1
-  expect(price).toBeGreaterThan(-1);
-}
-
-function verifyName(actualName, expectedName) {
-  expect(actualName).toEqual(expectedName);
-}
-
-function verifyCategory(actualCategory, expectedCategory) {
-  expect(actualCategory).toEqual(expectedCategory);
-}
+const priceFinder = testHelper.priceFinder;
+const verifyPrice = testHelper.verifyPrice;
+const verifyItemDetails = testHelper.verifyItemDetails;
 
 describe('price-finder for Crutchfield Store URIs', () => {
   // Television & Video
@@ -38,12 +23,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Samsung BD-J5700');
-        verifyCategory(itemDetails.category, 'Television & Video');
-
+        verifyItemDetails(itemDetails, 'Samsung BD-J5700', 'Television & Video');
         done();
       });
     });
@@ -65,12 +45,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Marantz NR1504');
-        verifyCategory(itemDetails.category, 'Home Audio');
-
+        verifyItemDetails(itemDetails, 'Marantz NR1504', 'Home Audio');
         done();
       });
     });

@@ -1,5 +1,16 @@
+env:
+  global:
+    # This is the encrypted best buy environment variable necessary for e2e tests
+    # https://docs.travis-ci.com/user/environment-variables/#Encrypted-Variables
+    - secure: rKDobPRIciKKXwpbPG8pt1wP7T5iSmyDrfigJPJ1nLj4R/hZUGokV3T8X3ugdmUzOChKpFQzH7wIPQYaXPKehmNDJpuaBLJExfjV35wUdQpsOBWjkdms92+2R+mN/mhi9U98w06kNwXRcMv/XhsZwnU+ev9sKBb4Cqx1Gh1Oi8Y=
+  matrix:
+    # We want to run both (unit) tests and end to end tests as a matrix
+    # https://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines
+    - TEST_SUITE=test
+    - TEST_SUITE=test-e2e
 language: node_js
 node_js:
   - "4"
   - "5"
+script: "npm run $TEST_SUITE"
 sudo: false

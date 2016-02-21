@@ -1,26 +1,10 @@
 'use strict';
 
-// set the timeout of these tests to 10 seconds
-jasmine.getEnv().defaultTimeoutInterval = 10000;
+const testHelper = require('./test-helper');
 
-const PriceFinder = require('../../lib/price-finder');
-const priceFinder = new PriceFinder();
-
-function verifyPrice(price) {
-  expect(price).toBeDefined();
-
-  // we can't guarantee the price, so just make sure it's a number
-  // that's more than -1
-  expect(price).toBeGreaterThan(-1);
-}
-
-function verifyName(actualName, expectedName) {
-  expect(actualName).toEqual(expectedName);
-}
-
-function verifyCategory(actualCategory, expectedCategory) {
-  expect(actualCategory).toEqual(expectedCategory);
-}
+const priceFinder = testHelper.priceFinder;
+const verifyPrice = testHelper.verifyPrice;
+const verifyItemDetails = testHelper.verifyItemDetails;
 
 describe('price-finder for Best Buy URIs', () => {
   it('should have the API key defined', (done) => {
@@ -44,12 +28,7 @@ describe('price-finder for Best Buy URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Briefcase Full of Blues - CD');
-        verifyCategory(itemDetails.category, 'Music');
-
+        verifyItemDetails(itemDetails, 'Briefcase Full of Blues - CD', 'Music');
         done();
       });
     });
@@ -71,12 +50,7 @@ describe('price-finder for Best Buy URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Ferris Bueller\'s Day Off (DVD)');
-        verifyCategory(itemDetails.category, 'Movies & TV');
-
+        verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off (DVD)', 'Movies & TV');
         done();
       });
     });
@@ -98,12 +72,7 @@ describe('price-finder for Best Buy URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Super Mario 3D Land - Nintendo 3DS');
-        verifyCategory(itemDetails.category, 'Video Games');
-
+        verifyItemDetails(itemDetails, 'Super Mario 3D Land - Nintendo 3DS', 'Video Games');
         done();
       });
     });
