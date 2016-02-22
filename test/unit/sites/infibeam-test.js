@@ -63,7 +63,7 @@ describe('The Infibeam Site', () => {
 
         // TODO provide content for unit test here!
         $ = cheerio.load('<div id="price-after-discount">' +
-          '<span style="font-family: rupee">R </span><span class="price">$9,444</span></div>' +
+          '<span style="font-family: rupee">R </span><span class="price">9,444</span></div>' +
           '<h1 class="product-title-big " itemprop="name">Sansui SJX22FB Full HD LED TV</h1>' +
           '<div class="breadcrumb-sdp no-padding-xs" itemscope="">' +
           '<a itemprop="url" href="/Electronics"><span itemprop="title">Electronics</span></a> ' +
