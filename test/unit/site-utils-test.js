@@ -117,8 +117,12 @@ describe('The Site Utils', () => {
       expect(siteUtils.processPrice('£3.99')).toEqual(3.99);
     });
 
+    it('should process INR price correctly', () => {
+      expect(siteUtils.processPrice('R 9,444')).toEqual(9444);
+    });
+
     it('should process an unknown price correctly', () => {
-      expect(siteUtils.processPrice('hey, how are you?')).toEqual(-1);
+      expect(siteUtils.processPrice('hey, without symbol?')).toEqual(-1);
     });
   });
 });
