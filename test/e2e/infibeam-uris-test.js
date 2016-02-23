@@ -24,7 +24,6 @@ function verifyCategory(actualCategory, expectedCategory) {
 
 describe('price-finder for Infibeam Store URIs', () => {
   describe('testing Sansui SJX22FB Full HD LED TV item', () => {
-    // TODO provide URI and contents for test here!
     const uri = 'http://www.infibeam.com/Home_Entertainment/sansui-sjx22fb-full-hd-led-tv/P-hoen-68091831042-cat-z.html#variantId=P-hoen-60492354794';
 
     it('should respond with a price for findItemPrice()', (done) => {
