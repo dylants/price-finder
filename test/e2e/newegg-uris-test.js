@@ -27,9 +27,9 @@ describe('price-finder for NewEgg URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        verifyItemDetails(itemDetails, 'Axon by ZTE Unlocked GSM, 5.5", Qualcomm ' +
-          'Snapdragon 801 2.4 GHz Quad-Core, 2GB Ram, 32GB Rom, 4G/LTE, JBL E13 ' +
-          'Headphones in package - Gold', 'Mobile Phones');
+        verifyItemDetails(itemDetails, 'Axon - ZTE Unlocked Smartphone, 5.5" ' +
+          'Qualcomm Snapdragon 801, 2GB RAM, 4G LTE, Quick-charge 2.0 - 32GB Gold',
+          'Mobile Phones');
         done();
       });
     });
