@@ -159,41 +159,20 @@ specific library to only enable a certain module). For example:
 
 ### Supported Sites ###
 
-The current supported sites, along with categories supported within each site,
-are listed below.
+The current supported sites are listed below.
 
-* Amazon (support for more than just .com)
-    * Digital Music
-    * Video Games
-    * Mobile Apps
-    * Movies & TV
-    * Camera & Video
-    * Toys & Games
-    * Kindle Books
-    * Books
-    * Household
-    * Health & Personal Care
-* Google Play
-    * Music
-    * Movies & TV
-    * Android Apps
-* Best Buy
-    * Everything available on bestbuy.com
-* Sony Entertainment Network Store
-    * Video Games
-* GameStop
-    * Video Games
-* Crutchfield
-    * Television & Video
-    * Home Audio
-* PriceMinister
-    * Video Games
-* eBags
-    * Luggage
-* Nintendo
-    * Video Games
-* Steam
-    * Video Games
+- Amazon (support for more than just .com)
+- Google Play
+- Best Buy
+- Sony Playstation
+- GameStop
+- Crutchfield
+- PriceMinister
+- eBags
+- Nintendo
+- Steam
+- Newegg
+- Infibeam
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 

@@ -1,15 +1,28 @@
+# v3.1.0
+
+New Features:
+
+- [#45](https://github.com/dylants/price-finder/pull/45) Add support for Newegg (@rajkumarpb)
+- [#55](https://github.com/dylants/price-finder/pull/55) E2E tests: refactor and add to Travis CI
+- [#56](https://github.com/dylants/price-finder/pull/56) Add support for Infibeam (@rajkumarpb)
+
+Bug Fixes:
+
+- [#50](https://github.com/dylants/price-finder/pull/50) Fix Newegg e2e test, closes [#49](https://github.com/dylants/price-finder/issues/49)
+- [#51](https://github.com/dylants/price-finder/pull/51) Correct callback error string, closes [#48](https://github.com/dylants/price-finder/issues/48)
+
 # v3.0.0
 
 New Features:
 
-- **Breaking Change:** Update to ES6 syntax, apply Airbnb style guide, remove support for Node v0.10, v0.12, and iojs ([#36](https://github.com/dylants/price-finder/pull/36)), closes [#28](https://github.com/dylants/price-finder/issues/28)
-- Add Node v5 test coverage to Travis CI (to go along with Node v4) ([#39](https://github.com/dylants/price-finder/pull/39))
-- Use `siteUtils.processPrice` where possible ([#40](https://github.com/dylants/price-finder/pull/40)), closes [#29](https://github.com/dylants/price-finder/issues/29)
-- Add support for Steam (.com) ([#41](https://github.com/dylants/price-finder/pull/41)), closes [#38](https://github.com/dylants/price-finder/issues/38)
+- [#36](https://github.com/dylants/price-finder/pull/36) **Breaking Change:** Update to ES6 syntax, apply Airbnb style guide, remove support for Node v0.10, v0.12, and iojs, closes [#28](https://github.com/dylants/price-finder/issues/28)
+- [#39](https://github.com/dylants/price-finder/pull/39) Add Node v5 test coverage to Travis CI (to go along with Node v4)
+- [#40](https://github.com/dylants/price-finder/pull/40) Use `siteUtils.processPrice` where possible, closes [#29](https://github.com/dylants/price-finder/issues/29)
+- [#41](https://github.com/dylants/price-finder/pull/41) Add support for Steam (.com), closes [#38](https://github.com/dylants/price-finder/issues/38)
 
 Bug Fixes:
 
-- Improve Steam query ([#43](https://github.com/dylants/price-finder/pull/43))
+- [#43](https://github.com/dylants/price-finder/pull/43) Improve Steam query
 
 During this release a Yeoman generator was created for help in adding sites: https://github.com/dylants/generator-price-finder-site
 
@@ -17,43 +30,43 @@ During this release a Yeoman generator was created for help in adding sites: htt
 
 New Features:
 
-- Add support for GBP prices ([#35](https://github.com/dylants/price-finder/pull/35))
+- [#35](https://github.com/dylants/price-finder/pull/35) Add support for GBP prices (@maiis)
 
 Bug Fixes:
 
-- Add selector to help find luggage items ([#34](https://github.com/dylants/price-finder/pull/34)), closes [#33](https://github.com/dylants/price-finder/issues/33)
+- [#34](https://github.com/dylants/price-finder/pull/34) Add selector to help find luggage items, closes [#33](https://github.com/dylants/price-finder/issues/33)
 
 # v2.3.0
 
 New Features:
 
-- Add support for Japanese Yen ([#32](https://github.com/dylants/price-finder/pull/32)), closes [#30](https://github.com/dylants/price-finder/issues/30)
+- [#32](https://github.com/dylants/price-finder/pull/32) Add support for Japanese Yen, closes [#30](https://github.com/dylants/price-finder/issues/30) (@devil-tamachan)
 
 Bug Fixes:
 
-- Fix for Amazon books ([36434ea](https://github.com/dylants/price-finder/commit/36434eaff7f53dc15c08b547646e105b27affdfd))
+- [36434ea](https://github.com/dylants/price-finder/commit/36434eaff7f53dc15c08b547646e105b27affdfd) Fix for Amazon books
 
 # v2.2.0
 
 New Features:
 
-- Update Travis CI versions to include Node v4 ([#23](https://github.com/dylants/price-finder/pull/23)), closes [#20](https://github.com/dylants/price-finder/issues/20)
-- Support additional currencies to support additional Amazon sites ([#24](https://github.com/dylants/price-finder/pull/24)), closes [#19](https://github.com/dylants/price-finder/issues/19)
-- Add support for Nintendo.com ([#26](https://github.com/dylants/price-finder/pull/26)), closes [#15](https://github.com/dylants/price-finder/issues/15)
-- Add `test-e2e-single` npm script ([cb69abe](https://github.com/dylants/price-finder/commit/cb69abe96bbfe026a12f91947c004c736027cb27))
-- Correct license in `package.json` ([c488c9e](https://github.com/dylants/price-finder/commit/c488c9e224f668b50fe01930b33f9eadd0121fc2))
-- Improve PriceMinister scraping ([#27](https://github.com/dylants/price-finder/pull/27))
+- [#23](https://github.com/dylants/price-finder/pull/23) Update Travis CI versions to include Node v4, closes [#20](https://github.com/dylants/price-finder/issues/20)
+- [#24](https://github.com/dylants/price-finder/pull/24) Support additional currencies to support additional Amazon sites, closes [#19](https://github.com/dylants/price-finder/issues/19)
+- [#26](https://github.com/dylants/price-finder/pull/26) Add support for Nintendo.com, closes [#15](https://github.com/dylants/price-finder/issues/15)
+- [cb69abe](https://github.com/dylants/price-finder/commit/cb69abe96bbfe026a12f91947c004c736027cb27) Add `test-e2e-single` npm script
+- [c488c9e](https://github.com/dylants/price-finder/commit/c488c9e224f668b50fe01930b33f9eadd0121fc2) Correct license in `package.json`
+- [#27](https://github.com/dylants/price-finder/pull/27) Improve PriceMinister scraping (@Shuunen)
 
 Bug Fixes:
 
-- Fix for Amazon books accordion ([#22](https://github.com/dylants/price-finder/pull/22)), closes [#21](https://github.com/dylants/price-finder/issues/21)
+- [#22](https://github.com/dylants/price-finder/pull/22) Fix for Amazon books accordion, closes [#21](https://github.com/dylants/price-finder/issues/21)
 
 # v2.1.2
 
 Bug Fixes:
 
-- Fix Amazon books price selector ([#16](https://github.com/dylants/price-finder/pull/16)), closes [#13](https://github.com/dylants/price-finder/issues/13)
-- Fix eBags price selector ([#17](https://github.com/dylants/price-finder/pull/17)), closes [#14](https://github.com/dylants/price-finder/issues/14)
+- [#16](https://github.com/dylants/price-finder/pull/16) Fix Amazon books price selector, closes [#13](https://github.com/dylants/price-finder/issues/13)
+- [#17](https://github.com/dylants/price-finder/pull/17) Fix eBags price selector, closes [#14](https://github.com/dylants/price-finder/issues/14)
 
 # v2.1.1
 
