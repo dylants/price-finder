@@ -1,25 +1,10 @@
 'use strict';
 
-// set the timeout of these tests to 10 seconds
-jasmine.getEnv().defaultTimeoutInterval = 10000;
+const testHelper = require('./test-helper');
 
-const PriceFinder = require('../../lib/price-finder');
-const priceFinder = new PriceFinder();
-
-function verifyPrice(price) {
-  expect(price).toBeDefined();
-  // we can't guarantee the price, so just make sure it's a number
-  // that's more than -1
-  expect(price).toBeGreaterThan(-1);
-}
-
-function verifyName(actualName, expectedName) {
-  expect(actualName).toEqual(expectedName);
-}
-
-function verifyCategory(actualCategory, expectedCategory) {
-  expect(actualCategory).toEqual(expectedCategory);
-}
+const priceFinder = testHelper.priceFinder;
+const verifyPrice = testHelper.verifyPrice;
+const verifyItemDetails = testHelper.verifyItemDetails;
 
 /*
  * I've seen some CAPTCHA's from Amazon if you hit them too much too often,
@@ -30,8 +15,8 @@ function verifyCategory(actualCategory, expectedCategory) {
 describe('price-finder for Amazon URIs', () => {
   // Digital Music
   describe('testing a Digital Music item', () => {
-    // Atoms for Peace : Amok
-    const uri = 'http://www.amazon.com/Amok/dp/B00BIQ1EL4';
+    // Coldplay: A Rush Of Blood To The Head
+    const uri = 'https://www.amazon.com/gp/product/B00KHEHEGM';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -44,12 +29,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Atoms For Peace: Amok');
-        verifyCategory(itemDetails.category, 'Digital Music');
-
+        verifyItemDetails(itemDetails, 'Coldplay: A Rush Of Blood To The Head', 'Digital Music');
         done();
       });
     });
@@ -67,12 +47,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Pikmin 3');
-        verifyCategory(itemDetails.category, 'Video Games');
-
+        verifyItemDetails(itemDetails, 'Pikmin 3', 'Video Games');
         done();
       });
     });
@@ -81,17 +56,12 @@ describe('price-finder for Amazon URIs', () => {
   // Mobile Apps
   describe('testing a Mobile Apps item', () => {
     // Minecraft
-    const uri = 'http://www.amazon.com/Mojang-Minecraft-Pocket-Edition/dp/B00992CF6W';
+    const uri = 'http://www.amazon.com/gp/product/B00992CF6W';
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Minecraft - Pocket Edition');
-        verifyCategory(itemDetails.category, 'Mobile Apps');
-
+        verifyItemDetails(itemDetails, 'Minecraft - Pocket Edition', 'Mobile Apps');
         done();
       });
     });
@@ -105,12 +75,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'The Blues Brothers [Blu-ray]');
-        verifyCategory(itemDetails.category, 'Movies & TV');
-
+        verifyItemDetails(itemDetails, 'The Blues Brothers [Blu-ray]', 'Movies & TV');
         done();
       });
     });
@@ -124,12 +89,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
-
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'Origins: Fourteen Billion Years of Cosmic Evolution');
-        verifyCategory(itemDetails.category, 'Books');
-
+        verifyItemDetails(itemDetails, 'Origins: Fourteen Billion Years of Cosmic Evolution', 'Books');
         done();
       });
     });
@@ -143,13 +103,9 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        expect(itemDetails).toBeDefined();
 
-        verifyPrice(itemDetails.price);
-        verifyName(itemDetails.name, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel');
         // Amazon reports 'apparel' for luggage, so we default to 'other'
-        verifyCategory(itemDetails.category, 'Other');
-
+        verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel', 'Other');
         done();
       });
     });

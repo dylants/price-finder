@@ -10,6 +10,11 @@ module.exports = function exports(grunt) {
         quiet: true,
       },
     },
+    env: {
+      e2e: {
+        DEBUG: 'price-finder*',
+      },
+    },
     jasmine_nodejs: {
       options: {
         specNameSuffix: 'test.js',
@@ -23,8 +28,11 @@ module.exports = function exports(grunt) {
           },
         },
       },
-      all: {
+      unit: {
         specs: ['test/unit/**'],
+      },
+      e2e: {
+        specs: ['test/e2e/**'],
       },
     },
   });
@@ -32,5 +40,6 @@ module.exports = function exports(grunt) {
   // load all the grunt tasks at once
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('test', ['eslint', 'jasmine_nodejs']);
+  grunt.registerTask('test', ['eslint', 'jasmine_nodejs:unit']);
+  grunt.registerTask('e2e', ['env:e2e', 'jasmine_nodejs:e2e']);
 };
