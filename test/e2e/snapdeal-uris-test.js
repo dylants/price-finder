@@ -21,7 +21,7 @@ describe('price-finder for Snapdeal Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         expect(err).toBeNull();
-        verifyItemDetails(itemDetails, '299', 'Other');
+        verifyItemDetails(itemDetails, 'Cheqqers Fashion PeachPuff Cotton Unstitched Dress Material', 'Other');
         done();
       });
     });
