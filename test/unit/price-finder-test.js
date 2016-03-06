@@ -45,17 +45,24 @@ describe('PriceFinder', () => {
       _request = PriceFinder.__get__('request');
 
       // set request to return a specific body
-      PriceFinder.__set__('request', (options, callback) => {
-        // setup valid response
-        const response = {};
-        response.statusCode = 200;
+      const request = {
+        get() {
+          return this;
+        },
 
-        // setup valid body
-        const body = `<div id='actualPriceValue'>$${testPrice}</div>
-            <div id='nav-subnav' data-category='books'>stuff</div>
-            <div id='title'>${testName}</div>`;
-        callback(null, response, body);
-      });
+        end(callback) {
+          // setup valid response
+          const response = {};
+          response.statusCode = 200;
+
+          // setup valid response text
+          response.text = `<div id='actualPriceValue'>$${testPrice}</div>
+              <div id='nav-subnav' data-category='books'>stuff</div>
+              <div id='title'>${testName}</div>`;
+          return callback(null, response);
+        },
+      };
+      PriceFinder.__set__('request', request);
 
       priceFinder = new PriceFinder();
     });
@@ -97,15 +104,22 @@ describe('PriceFinder', () => {
       _request = PriceFinder.__get__('request');
 
       // set request to return a specific body
-      PriceFinder.__set__('request', (options, callback) => {
-        // setup invalid response code
-        const response = {};
-        response.statusCode = 404;
+      const request = {
+        get() {
+          return this;
+        },
 
-        // setup valid body
-        const body = 'Site Not Found';
-        callback(null, response, body);
-      });
+        end(callback) {
+          // setup invalid response code
+          const response = {};
+          response.statusCode = 404;
+
+          // setup valid response text
+          response.text = 'Site Not Found';
+          return callback(null, response);
+        },
+      };
+      PriceFinder.__set__('request', request);
 
       priceFinder = new PriceFinder();
     });
@@ -138,15 +152,22 @@ describe('PriceFinder', () => {
       _request = PriceFinder.__get__('request');
 
       // set request to return a specific body
-      PriceFinder.__set__('request', (options, callback) => {
-        // setup invalid response code
-        const response = {};
-        response.statusCode = 200;
+      const request = {
+        get() {
+          return this;
+        },
 
-        // setup valid body
-        const body = '<h1>Nothin here</h1>';
-        callback(null, response, body);
-      });
+        end(callback) {
+          // setup valid response code
+          const response = {};
+          response.statusCode = 200;
+
+          // setup invalid body
+          response.text = '<h1>Nothin here</h1>';
+          return callback(null, response);
+        },
+      };
+      PriceFinder.__set__('request', request);
 
       priceFinder = new PriceFinder();
     });
@@ -180,35 +201,28 @@ describe('PriceFinder', () => {
     it('should have the default options set', () => {
       const config = priceFinder._config;
       expect(config).toBeDefined();
-      expect(config.headers).toEqual({
-        'User-Agent': 'Mozilla/5.0',
-      });
       expect(config.retryStatusCodes).toEqual([503]);
     });
   });
 
   describe('with options supplied', () => {
     it('should use the correct options', () => {
-      const headers = '123';
       const retryStatusCodes = [300, 301, 302];
       const retrySleepTime = 4000;
       let priceFinder;
 
       // override some, but not all...
       priceFinder = new PriceFinder({
-        headers,
+        retrySleepTime,
       });
-      expect(priceFinder._config.headers).toEqual(headers);
       expect(priceFinder._config.retryStatusCodes).toEqual([503]);
-      expect(priceFinder._config.retrySleepTime).toEqual(1000);
+      expect(priceFinder._config.retrySleepTime).toEqual(retrySleepTime);
 
       // override all
       priceFinder = new PriceFinder({
-        headers,
         retryStatusCodes,
         retrySleepTime,
       });
-      expect(priceFinder._config.headers).toEqual(headers);
       expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
       expect(priceFinder._config.retrySleepTime).toEqual(retrySleepTime);
     });

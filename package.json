@@ -50,7 +50,7 @@
     "cheerio": "^0.20.0",
     "debug-caller": "^2.0.0",
     "lodash": "^4.3.0",
-    "request": "^2.34.0",
+    "superagent": "^1.7.2",
     "xtend": "^4.0.0"
   },
   "devDependencies": {

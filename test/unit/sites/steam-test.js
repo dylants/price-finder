@@ -62,34 +62,15 @@ describe('The Steam Site', () => {
         name = 'Cool Game';
 
         $ = cheerio.load(`
-          <div class='game_area_purchase_game'>
-            <div class='game_purchase_price'>
-              $${price}
-            </div>
-            <div class='apphub_AppName'>
-              ${name}
-            </div>
-          </div>'
-          <div class='game_area_purchase_game'>
-            <div class='game_purchase_price'>
-              $999.99
-            </div>
-          </div>'
+          <div class='apphub_AppName'>
+            ${name}
+          </div>
+          <meta itemprop="price" content="${price}">
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
       it('should return the price when displayed on the page', () => {
-        const priceFound = site.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
-      });
-
-      it('should return the price when discounted on the page', () => {
-        $ = cheerio.load(`
-          <div class='game_area_purchase_game'>
-            <div class='discount_final_price'>$${price}</div>
-          </div>
-        `);
         const priceFound = site.findPriceOnPage($);
         expect(priceFound).toEqual(price);
       });

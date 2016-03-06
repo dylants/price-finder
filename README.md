@@ -81,8 +81,6 @@ When creating a new PriceFinder object, a configuration object can be specified.
 The following options are configurable:
 
 <ul>
-    <li><code>headers</code> : Any HTTP headers that should be sent within the page
-    scrape request. Defaults to <code>"User-Agent": "Mozilla/5.0"</code>.</li>
     <li><code>retryStatusCodes</code> : An array of status codes (Numbers) which
     when returned from the page scrape request, will trigger a retry request
     (meaning it will attempt to scrape the page again). Defaults to

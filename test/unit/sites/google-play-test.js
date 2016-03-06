@@ -63,12 +63,7 @@ describe('The GooglePlay Site', () => {
 
         $ = cheerio.load(
           `<title>Big - Movies & TV on Google Play</title>
-           <div class='details-actions-right'>
-           <div class='price'>
-           <span> $${price}</span>
-           <span> something </span>
-           </div>
-           </div>
+           <meta content="$${price}" itemprop="price">
            <div class='details-info'>
            <div class='document-title'>Big</div></div>`);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
