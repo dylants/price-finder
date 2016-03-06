@@ -1,6 +1,6 @@
 # price-finder #
 
-[![Build Status](https://travis-ci.org/dylants/price-finder.svg)](https://travis-ci.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
+[![Build Status](https://travis-ci.org/dylants/price-finder.svg?branch=master)](https://travis-ci.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
 
 [![NPM](https://nodei.co/npm/price-finder.svg?downloads=true)](https://nodei.co/npm/price-finder/)
 
