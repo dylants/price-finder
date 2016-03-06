@@ -63,6 +63,7 @@ describe('The Snapdeal Site', () => {
 
         $ = cheerio.load(`<span class="payBlkBig" itemprop="price">299</span>
         <h1 class="title" itemprop="name">${name}</h1>
+        <h1 class="title" itemprop="name">${name}</h1>
         <a class="bCrumbOmniTrack">Women's Ethnic Wear</a>
         <a class="bCrumbOmniTrack">Women's Ethnic Wear</a>`);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
