@@ -64,7 +64,8 @@ describe('The GreenmanGaming Site', () => {
         $ = cheerio.load(`<strong class="curPrice">₹4199.30</strong>
           <h1 itemprop="name">Homefront: The Revolution</h1>
           <script>var utag_data = {"currency_code": "INR",
-          "request_path": "/s/in/en/pc/games/action/far-cry-primal/"};</script>`);
+          "request_path": "/s/in/en/pc/games/action/far-cry-primal/",
+          "product_price_readable": "4199.30"};</script>`);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
