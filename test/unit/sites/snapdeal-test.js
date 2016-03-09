@@ -58,14 +58,14 @@ describe('The Snapdeal Site', () => {
 
       beforeEach(() => {
         price = 299;
-        category = siteUtils.categories.OTHER;
-        name = 'Cheqqers Fashion PeachPuff Cotton Unstitched Dress Material';
+        category = siteUtils.categories.TELEVISION_VIDEO;
+        name = 'Product Name';
 
-        $ = cheerio.load(`<span class="payBlkBig" itemprop="price">299</span>
-        <h1 class="title" itemprop="name">${name}</h1>
-        <h1 class="title" itemprop="name">${name}</h1>
-        <a class="bCrumbOmniTrack">Women's Ethnic Wear</a>
-        <a class="bCrumbOmniTrack">Women's Ethnic Wear</a>`);
+        $ = cheerio.load(`
+          <span itemprop="price">${price}</span>
+          <h1 itemprop="name">${name}</h1>
+          <div id="catUrl" value="tv"></div>
+        `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
