@@ -1,5 +1,6 @@
 'use strict';
 
+const should = require('should');
 const testHelper = require('./test-helper');
 
 const priceFinder = testHelper.priceFinder;
@@ -20,7 +21,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyPrice(price);
         done();
       });
@@ -28,7 +29,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Coldplay: A Rush Of Blood To The Head', 'Digital Music');
         done();
       });
@@ -46,7 +47,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Pikmin 3', 'Video Games');
         done();
       });
@@ -60,7 +61,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Minecraft - Pocket Edition', 'Mobile Apps');
         done();
       });
@@ -74,7 +75,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'The Blues Brothers [Blu-ray]', 'Movies & TV');
         done();
       });
@@ -88,7 +89,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Origins: Fourteen Billion Years of Cosmic Evolution', 'Books');
         done();
       });
@@ -102,7 +103,7 @@ describe('price-finder for Amazon URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
 
         // Amazon reports 'apparel' for luggage, so we default to 'other'
         verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel', 'Other');

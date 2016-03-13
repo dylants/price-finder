@@ -1,33 +1,34 @@
 'use strict';
 
-const NintendoSite = require('../../../lib/sites/nintendo');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const NintendoSite = require('../../../lib/sites/nintendo');
 
 const VALID_URI = 'http://www.nintendo.com/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The Nintendo Site', () => {
   it('should exist', () => {
-    expect(NintendoSite).toBeDefined();
+    should.exist(NintendoSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(NintendoSite.isSite(VALID_URI)).toBeTruthy();
+      should(NintendoSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(NintendoSite.isSite(INVALID_URI)).toBeFalsy();
+      should(NintendoSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new NintendoSite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new NintendoSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new Nintento Site', () => {
@@ -38,15 +39,15 @@ describe('The Nintendo Site', () => {
     });
 
     it('should exist', () => {
-      expect(nintendo).toBeDefined();
+      should.exist(nintendo);
     });
 
     it('should return false for isJSON()', () => {
-      expect(nintendo.isJSON()).toBeFalsy();
+      should(nintendo.isJSON()).be.false();
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(nintendo.getURIForPageData()).toEqual(VALID_URI);
+      should(nintendo.getURIForPageData()).equal(VALID_URI);
     });
 
     describe('with a populated page', () => {
@@ -72,27 +73,27 @@ describe('The Nintendo Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = nintendo.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = nintendo.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category', () => {
         const categoryFound = nintendo.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = nintendo.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = nintendo.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

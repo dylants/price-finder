@@ -1,5 +1,6 @@
 'use strict';
 
+const should = require('should');
 const testHelper = require('./test-helper');
 
 const priceFinder = testHelper.priceFinder;
@@ -14,7 +15,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyPrice(price);
         done();
       });
@@ -22,7 +23,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Samsung BD-J5700', 'Television & Video');
         done();
       });
@@ -36,7 +37,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyPrice(price);
         done();
       });
@@ -44,7 +45,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Marantz NR1504', 'Home Audio');
         done();
       });

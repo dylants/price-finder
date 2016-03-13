@@ -1,8 +1,9 @@
 'use strict';
 
-const PriceMinisterSite = require('../../../lib/sites/priceminister');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const PriceMinisterSite = require('../../../lib/sites/priceminister');
 
 const VALID_URI = 'http://www.priceminister.com/mfp/123/my-video-game#pid=456';
 const TRANSLATED_URL = 'http://www.priceminister.com/mfp?cid=123&urlname=my-video-game&pid=456&action=advlstmeta';
@@ -10,25 +11,25 @@ const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The PriceMinister Site', () => {
   it('should exist', () => {
-    expect(PriceMinisterSite).toBeDefined();
+    should.exist(PriceMinisterSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(PriceMinisterSite.isSite(VALID_URI)).toBeTruthy();
+      should(PriceMinisterSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(PriceMinisterSite.isSite(INVALID_URI)).toBeFalsy();
+      should(PriceMinisterSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new site with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new PriceMinisterSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new PriceMinister Site', () => {
@@ -39,15 +40,15 @@ describe('The PriceMinister Site', () => {
     });
 
     it('should exist', () => {
-      expect(priceminister).toBeDefined();
+      should.exist(priceminister);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(priceminister.getURIForPageData()).toEqual(TRANSLATED_URL);
+      should(priceminister.getURIForPageData()).equal(TRANSLATED_URL);
     });
 
     it('should return false for isJSON()', () => {
-      expect(priceminister.isJSON()).toBeFalsy();
+      should(priceminister.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -76,27 +77,27 @@ describe('The PriceMinister Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = priceminister.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = priceminister.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should always return the VIDEO_GAMES category', () => {
         const categoryFound = priceminister.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = priceminister.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
-      it('should not return null when the name is not displayed on the page', () => {
+      it('should return the name without displayed on page, from uri', () => {
         const nameFound = priceminister.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
     });
   });
