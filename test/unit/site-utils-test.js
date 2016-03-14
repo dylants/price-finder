@@ -90,6 +90,10 @@ describe('The Site Utils', () => {
       should(siteUtils.processPrice('$3.99')).equal(3.99);
     });
 
+    it('should process USD price correctly', () => {
+      should(siteUtils.processPrice('USD 3.99')).equal(3.99);
+    });
+
     it('should process EUR price correctly', () => {
       should(siteUtils.processPrice('EUR 79,40')).equal(79.40);
     });
@@ -118,8 +122,16 @@ describe('The Site Utils', () => {
       should(siteUtils.processPrice('£3.99')).equal(3.99);
     });
 
-    it('should process INR price correctly', () => {
+    it('should process GBP price correctly', () => {
+      should(siteUtils.processPrice('GBP 3.99')).equal(3.99);
+    });
+
+    it('should process R (INR) price correctly', () => {
       should(siteUtils.processPrice('R 9,444')).equal(9444);
+    });
+
+    it('should process INR price correctly', () => {
+      should(siteUtils.processPrice('INR 9,444')).equal(9444);
     });
 
     it('should process an unknown price correctly', () => {
