@@ -1,14 +1,11 @@
 # price-finder #
 
-[![Build Status](https://travis-ci.org/dylants/price-finder.svg?branch=master)](https://travis-ci.org/dylants/price-finder) [![NPM version](https://badge.fury.io/js/price-finder.svg)](http://badge.fury.io/js/price-finder)
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
 
-[![NPM](https://nodei.co/npm/price-finder.svg?downloads=true)](https://nodei.co/npm/price-finder/)
-
-The price-finder module helps find the price of retail items online, either
-through scraping the product page or through product APIs (also able to
-find the name and category of products).
-
-price-finder supports Node v4.x and above.
+Finds the price of retail items online, either by scraping the web page or
+through product APIs.
 
 ## Quick Examples ##
 
@@ -104,7 +101,8 @@ information. If no errors occurred, this will be `null`.
 - `itemDetails` : This object contains three things:
   - `price` : The current price of the item listed on the page (a `Number`).
   - `name` : The name of the product (if supported by the site implementation).
-  - `category` : The category of the product (if supported by the site implementation).
+  - `category` : The category of the product (if supported by the site
+    implementation).
 
 ### Debugging Price Finder ###
 
@@ -122,17 +120,19 @@ $ DEBUG=price-finder* node app.js
 
 The current supported sites are listed below.
 
-- Amazon (support for more than just .com)
+- Amazon
 - Best Buy
-  - API support is available, enabled when the `BESTBUY_KEY` environment variable
-  is populated with an API key. For more information on how to obtain an API key,
-  refer to the [Best Buy developer documentation](https://developer.bestbuy.com).
+  - API support is available but requires an API key.  To enable, set the
+   `BESTBUY_KEY` environment variable to the value of the API key. For more
+   information on how to obtain an API key, refer to the
+   [Best Buy developer documentation](https://developer.bestbuy.com).
 - Crutchfield
 - eBags
 - Flipkart
 - GameStop
 - GOG
 - Google Play
+- Greenman Gaming
 - Infibeam
 - Newegg
 - Nintendo
@@ -141,13 +141,14 @@ The current supported sites are listed below.
 - Sony Playstation
 - Steam
 
-Don't see your site listed? Please consider [contributing](#contributing) to the project!
+Don't see your site listed? Please consider [contributing](#contributing) to
+the project!
 
 ### Contributing ###
 
 The price-finder project is a [Node.js](http://nodejs.org/) module, so before
-cloning the repository make sure node is installed. Once cloned, install dependencies
-by issuing:
+cloning the repository make sure node is installed. Once cloned, install
+dependencies by issuing:
 
 ```
 $ npm install
@@ -155,8 +156,9 @@ $ npm install
 
 #### Tests ####
 
-The project uses [Jasmine](http://jasmine.github.io/) for tests (please add tests
-for any new features).
+The project uses the [Mocha test framework](https://mochajs.org/) along with
+the [Should assertion library](http://shouldjs.github.io/) for tests (please add
+tests for any new features).
 
 ##### Unit Tests #####
 
@@ -273,5 +275,20 @@ class Site {
 
 ## Etc ##
 
-- Licence: [MIT](https://github.com/dylants/price-finder/blob/master/LICENSE)
-- Dependency Status: [![Dependency Status](https://david-dm.org/dylants/price-finder.svg)](https://david-dm.org/dylants/price-finder)
+- [Contributors](https://github.com/dylants/price-finder/graphs/contributors)
+- [![License][license-image]][license-url]
+- [![Dependency Status][david-image]][david-url]
+- [![Node Version][node-image]][node-url]
+
+[npm-image]: https://img.shields.io/npm/v/price-finder.svg
+[npm-url]: https://npmjs.org/package/price-finder
+[downloads-image]: https://img.shields.io/npm/dm/price-finder.svg
+[downloads-url]: https://npmjs.org/package/price-finder
+[travis-image]: https://img.shields.io/travis/dylants/price-finder/master.svg
+[travis-url]: https://travis-ci.org/dylants/price-finder
+[license-image]: https://img.shields.io/github/license/dylants/price-finder.svg
+[license-url]: LICENSE
+[david-image]: https://img.shields.io/david/dylants/price-finder.svg
+[david-url]: https://david-dm.org/dylants/price-finder
+[node-image]: https://img.shields.io/node/v/price-finder.svg
+[node-url]: https://npmjs.org/package/price-finder

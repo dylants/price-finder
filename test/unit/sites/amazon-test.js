@@ -1,33 +1,34 @@
 'use strict';
 
-const AmazonSite = require('../../../lib/sites/amazon');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const AmazonSite = require('../../../lib/sites/amazon');
 
 const VALID_URI = 'http://www.amazon.com/123/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The Amazon Site', () => {
   it('should exist', () => {
-    expect(AmazonSite).toBeDefined();
+    should.exist(AmazonSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(AmazonSite.isSite(VALID_URI)).toBeTruthy();
+      should(AmazonSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(AmazonSite.isSite(INVALID_URI)).toBeFalsy();
+      should(AmazonSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new AmazonSite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new AmazonSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new Amazon Site', () => {
@@ -38,15 +39,15 @@ describe('The Amazon Site', () => {
     });
 
     it('should exist', () => {
-      expect(amazon).toBeDefined();
+      should.exist(amazon);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(amazon.getURIForPageData()).toEqual(VALID_URI);
+      should(amazon.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(amazon.isJSON()).toBeFalsy();
+      should(amazon.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -69,38 +70,38 @@ describe('The Amazon Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = amazon.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = amazon.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category when displayed on the page', () => {
         const categoryFound = amazon.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
         $ = cheerio.load('<div id="nav-subnav" data-category="something-new">stuff</div>');
         const categoryFound = amazon.findCategoryOnPage($);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = amazon.findCategoryOnPage(bad$);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = amazon.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = amazon.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

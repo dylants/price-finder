@@ -1,3 +1,22 @@
+# v4.0.0
+
+New Features:
+
+- [#64](https://github.com/dylants/price-finder/pull/64) **Breaking Change:** Switch from `request` to `superagent` internally, remove HTTP request header configuration support
+- [#67](https://github.com/dylants/price-finder/pull/67) Add support for Flipkart (@rajkumarpb)
+- [#68](https://github.com/dylants/price-finder/pull/68) Add support for GOG.com
+- [#71](https://github.com/dylants/price-finder/pull/71) Snapdeal Added (@rajkumarpb)
+- [#74](https://github.com/dylants/price-finder/pull/74) Greenman Gaming Added (@rajkumarpb)
+- [#75](https://github.com/dylants/price-finder/pull/75) **Breaking Change:** Best Buy supports both scraping and API, remove API key within price-finder configuration
+
+Bug Fixes:
+
+- [#85](https://github.com/dylants/price-finder/pull/85) Attempt to fix PriceMinister e2e tests
+
+Additional changes made in the release:
+
+- [#87](https://github.com/dylants/price-finder/pull/87) Move from Jasmine to Mocha for internal tests
+
 # v3.1.0
 
 New Features:

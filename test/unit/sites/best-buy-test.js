@@ -1,8 +1,9 @@
 'use strict';
 
-const BestBuySite = require('../../../lib/sites/best-buy');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const BestBuySite = require('../../../lib/sites/best-buy');
 
 const VALID_URI = 'http://www.bestbuy.com/site/product?skuId=123';
 const INVALID_URI = 'http://www.bad.com/123/product';
@@ -10,25 +11,25 @@ const TRANSLATED_URI = 'https://api.remix.bestbuy.com/v1/products/123.json?show=
 
 describe('The Best Buy Site', () => {
   it('should exist', () => {
-    expect(BestBuySite).toBeDefined();
+    should.exist(BestBuySite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(BestBuySite.isSite(VALID_URI)).toBeTruthy();
+      should(BestBuySite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(BestBuySite.isSite(INVALID_URI)).toBeFalsy();
+      should(BestBuySite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new BestBuySite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new BestBuySite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('without an API key in the environment', () => {
@@ -46,23 +47,23 @@ describe('The Best Buy Site', () => {
     });
 
     it('should not throw an exception trying to create a new BestBuySite', () => {
-      expect(() => {
+      should.doesNotThrow(() => {
         /* eslint-disable no-new */
         new BestBuySite(VALID_URI);
         /* eslint-enable no-new */
-      }).not.toThrow();
+      });
     });
 
     it('should exist', () => {
-      expect(site).toBeDefined();
+      should.exist(site);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(site.getURIForPageData()).toEqual(VALID_URI);
+      should(site.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(site.isJSON()).toBeFalsy();
+      should(site.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -90,27 +91,27 @@ describe('The Best Buy Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = site.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = site.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should always return the category', () => {
         const categoryFound = site.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = site.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = site.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });
@@ -129,23 +130,23 @@ describe('The Best Buy Site', () => {
     });
 
     it('should not throw an exception trying to create a new BestBuySite', () => {
-      expect(() => {
+      should.doesNotThrow(() => {
         /* eslint-disable no-new */
         new BestBuySite(VALID_URI, {});
         /* eslint-enable no-new */
-      }).not.toThrow();
+      });
     });
 
     it('should exist', () => {
-      expect(bestBuy).toBeDefined();
+      should.exist(bestBuy);
     });
 
     it('should return the translated URI for getURIForPageData()', () => {
-      expect(bestBuy.getURIForPageData()).toEqual(TRANSLATED_URI);
+      should(bestBuy.getURIForPageData()).equal(TRANSLATED_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(bestBuy.isJSON()).toBeTruthy();
+      should(bestBuy.isJSON()).be.true();
     });
 
     describe('with a populated page', () => {
@@ -170,38 +171,38 @@ describe('The Best Buy Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = bestBuy.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = bestBuy.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category when displayed on the page', () => {
         const categoryFound = bestBuy.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
         $ = require('./mock-data/bestbuy-other_category.json');
         const categoryFound = bestBuy.findCategoryOnPage($);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = bestBuy.findCategoryOnPage(bad$);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = bestBuy.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = bestBuy.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

@@ -1,11 +1,25 @@
 'use strict';
 
-const rewire = require('rewire');
-const PriceFinder = rewire('../../lib/price-finder');
+const proxyquire = require('proxyquire').noCallThru();
+const should = require('should');
+
+const MODULE_PATH = '../../lib/price-finder';
+
+function mockModule(request) {
+  return proxyquire(MODULE_PATH, {
+    superagent: request,
+  });
+}
 
 describe('PriceFinder', () => {
+  let PriceFinder;
+
+  beforeEach(() => {
+    PriceFinder = require(MODULE_PATH);
+  });
+
   it('should exist', () => {
-    expect(PriceFinder).toBeDefined();
+    should.exist(PriceFinder);
   });
 
   describe('default priceFinder with no options', () => {
@@ -18,7 +32,7 @@ describe('PriceFinder', () => {
     it('should throw an exception in findItemPrice() when presented with an unsupported URI',
     (done) => {
       priceFinder.findItemPrice('www.bad_uri.bad', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
     });
@@ -26,14 +40,13 @@ describe('PriceFinder', () => {
     it('should throw an exception in findItemDetails() when presented with an unsupported URI',
     (done) => {
       priceFinder.findItemDetails('www.bad_uri.bad', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
     });
   });
 
   describe('with an Amazon URI and valid mock request data', () => {
-    let _request;
     let priceFinder;
 
     const testPrice = 19.99;
@@ -41,9 +54,6 @@ describe('PriceFinder', () => {
     const testName = 'The Expensive Cat in the Hat';
 
     beforeEach(() => {
-      // save off the request
-      _request = PriceFinder.__get__('request');
-
       // set request to return a specific body
       const request = {
         get() {
@@ -62,47 +72,38 @@ describe('PriceFinder', () => {
           return callback(null, response);
         },
       };
-      PriceFinder.__set__('request', request);
-
+      PriceFinder = mockModule(request);
       priceFinder = new PriceFinder();
     });
 
     it('should return the item price', (done) => {
       priceFinder.findItemPrice('http://www.amazon.com/product/cat-in-the-hat', (error, price) => {
-        expect(error).toBeNull();
-        expect(price).toEqual(testPrice);
+        should(error).be.null();
+        should(price).equal(testPrice);
         done();
       });
     });
 
     it('should return the item details', (done) => {
       priceFinder.findItemDetails('http://www.amazon.com/product/cat-in-the-hat', (error, itemDetails) => {
-        expect(error).toBe(null);
+        should(error).be.null();
 
-        expect(itemDetails).toBeDefined();
-        expect(itemDetails.price).toBeDefined();
-        expect(itemDetails.price).toEqual(testPrice);
-        expect(itemDetails.category).toBeDefined();
-        expect(itemDetails.category).toEqual(testCategory);
-        expect(itemDetails.name).toBeDefined();
-        expect(itemDetails.name).toEqual(testName);
+        should.exist(itemDetails);
+        should.exist(itemDetails.price);
+        should(itemDetails.price).equal(testPrice);
+        should.exist(itemDetails.category);
+        should(itemDetails.category).equal(testCategory);
+        should.exist(itemDetails.name);
+        should(itemDetails.name).equal(testName);
         done();
       });
-    });
-
-    afterEach(() => {
-      PriceFinder.__set__('request', _request);
     });
   });
 
   describe('with a valid URI and mock request data with status code 404', () => {
-    let _request;
     let priceFinder;
 
     beforeEach(() => {
-      // save off the request
-      _request = PriceFinder.__get__('request');
-
       // set request to return a specific body
       const request = {
         get() {
@@ -119,38 +120,29 @@ describe('PriceFinder', () => {
           return callback(null, response);
         },
       };
-      PriceFinder.__set__('request', request);
-
+      PriceFinder = mockModule(request);
       priceFinder = new PriceFinder();
     });
 
     it('should return an error for findItemPrice()', (done) => {
       priceFinder.findItemPrice('http://www.amazon.com/product/cat-in-the-hat', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
     });
 
     it('should return the item details', (done) => {
       priceFinder.findItemDetails('http://www.amazon.com/product/cat-in-the-hat', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
-    });
-
-    afterEach(() => {
-      PriceFinder.__set__('request', _request);
     });
   });
 
   describe('with a valid URI and invalid mock request data', () => {
-    let _request;
     let priceFinder;
 
     beforeEach(() => {
-      // save off the request
-      _request = PriceFinder.__get__('request');
-
       // set request to return a specific body
       const request = {
         get() {
@@ -167,27 +159,22 @@ describe('PriceFinder', () => {
           return callback(null, response);
         },
       };
-      PriceFinder.__set__('request', request);
-
+      PriceFinder = mockModule(request);
       priceFinder = new PriceFinder();
     });
 
     it('should return an error for findItemPrice()', (done) => {
       priceFinder.findItemPrice('http://www.amazon.com/product/cat-in-the-hat', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
     });
 
     it('should return the item details', (done) => {
       priceFinder.findItemDetails('http://www.amazon.com/product/cat-in-the-hat', (error) => {
-        expect(error).toBeDefined();
+        should.exist(error);
         done();
       });
-    });
-
-    afterEach(() => {
-      PriceFinder.__set__('request', _request);
     });
   });
 
@@ -200,8 +187,8 @@ describe('PriceFinder', () => {
 
     it('should have the default options set', () => {
       const config = priceFinder._config;
-      expect(config).toBeDefined();
-      expect(config.retryStatusCodes).toEqual([503]);
+      should.exist(config);
+      should(config.retryStatusCodes).deepEqual([503]);
     });
   });
 
@@ -215,16 +202,16 @@ describe('PriceFinder', () => {
       priceFinder = new PriceFinder({
         retrySleepTime,
       });
-      expect(priceFinder._config.retryStatusCodes).toEqual([503]);
-      expect(priceFinder._config.retrySleepTime).toEqual(retrySleepTime);
+      should(priceFinder._config.retryStatusCodes).deepEqual([503]);
+      should(priceFinder._config.retrySleepTime).equal(retrySleepTime);
 
       // override all
       priceFinder = new PriceFinder({
         retryStatusCodes,
         retrySleepTime,
       });
-      expect(priceFinder._config.retryStatusCodes).toEqual(retryStatusCodes);
-      expect(priceFinder._config.retrySleepTime).toEqual(retrySleepTime);
+      should(priceFinder._config.retryStatusCodes).equal(retryStatusCodes);
+      should(priceFinder._config.retrySleepTime).equal(retrySleepTime);
     });
   });
 });

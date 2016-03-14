@@ -2,25 +2,26 @@
 
 const siteUtils = require('../../lib/site-utils');
 const cheerio = require('cheerio');
+const should = require('should');
 
 describe('The Site Utils', () => {
   it('should exist', () => {
-    expect(siteUtils).toBeDefined();
+    should.exist(siteUtils);
   });
 
   it('should have categories', () => {
-    expect(siteUtils.categories).toBeDefined();
+    should.exist(siteUtils.categories);
   });
 
   it('should be at least 1 category in categories', () => {
     const keys = Object.keys(siteUtils.categories);
-    expect(keys.length).toBeGreaterThan(0);
+    should(keys.length).be.above(0);
   });
 
   it('should have some known categories', () => {
-    expect(siteUtils.categories.MUSIC).toEqual('Music');
-    expect(siteUtils.categories.VIDEO_GAMES).toEqual('Video Games');
-    expect(siteUtils.categories.BOOKS).toEqual('Books');
+    should(siteUtils.categories.MUSIC).equal('Music');
+    should(siteUtils.categories.VIDEO_GAMES).equal('Video Games');
+    should(siteUtils.categories.BOOKS).equal('Books');
   });
 
   describe('findContentOnPage() with a populated page', () => {
@@ -48,7 +49,7 @@ describe('The Site Utils', () => {
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      expect(price).toEqual('$9.99');
+      should(price).equal('$9.99');
     });
 
     it('should return the price given the multiple matches for selector', () => {
@@ -58,7 +59,7 @@ describe('The Site Utils', () => {
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      expect(price).toEqual('$1.99');
+      should(price).equal('$1.99');
     });
 
     it('should return the price given a first() element', () => {
@@ -70,7 +71,7 @@ describe('The Site Utils', () => {
 
       const price = siteUtils.findContentOnPage(jQuery, selectors);
 
-      expect(price).toEqual('$12.34');
+      should(price).equal('$12.34');
     });
 
     it('should return null given incorrect selector', () => {
@@ -80,49 +81,61 @@ describe('The Site Utils', () => {
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      expect(price).toEqual(null);
+      should(price).be.null();
     });
   });
 
   describe('processPrice()', () => {
     it('should process $ price correctly', () => {
-      expect(siteUtils.processPrice('$3.99')).toEqual(3.99);
+      should(siteUtils.processPrice('$3.99')).equal(3.99);
+    });
+
+    it('should process USD price correctly', () => {
+      should(siteUtils.processPrice('USD 3.99')).equal(3.99);
     });
 
     it('should process EUR price correctly', () => {
-      expect(siteUtils.processPrice('EUR 79,40')).toEqual(79.40);
+      should(siteUtils.processPrice('EUR 79,40')).equal(79.40);
     });
 
     it('should process eur price correctly', () => {
-      expect(siteUtils.processPrice('eur 79,40')).toEqual(79.40);
+      should(siteUtils.processPrice('eur 79,40')).equal(79.40);
     });
 
     it('should process Euros price correctly', () => {
-      expect(siteUtils.processPrice('Euros 79,40')).toEqual(79.40);
+      should(siteUtils.processPrice('Euros 79,40')).equal(79.40);
     });
 
     it('should process € price correctly', () => {
-      expect(siteUtils.processPrice('€ 79,40')).toEqual(79.40);
+      should(siteUtils.processPrice('€ 79,40')).equal(79.40);
     });
 
     it('should process YEN_TEXT price correctly', () => {
-      expect(siteUtils.processPrice('7,940 円')).toEqual(7940);
+      should(siteUtils.processPrice('7,940 円')).equal(7940);
     });
 
     it('should process YEN_SYMBOL price correctly', () => {
-      expect(siteUtils.processPrice('￥ 7,940')).toEqual(7940);
+      should(siteUtils.processPrice('￥ 7,940')).equal(7940);
     });
 
     it('should process £ price correctly', () => {
-      expect(siteUtils.processPrice('£3.99')).toEqual(3.99);
+      should(siteUtils.processPrice('£3.99')).equal(3.99);
+    });
+
+    it('should process GBP price correctly', () => {
+      should(siteUtils.processPrice('GBP 3.99')).equal(3.99);
+    });
+
+    it('should process R (INR) price correctly', () => {
+      should(siteUtils.processPrice('R 9,444')).equal(9444);
     });
 
     it('should process INR price correctly', () => {
-      expect(siteUtils.processPrice('R 9,444')).toEqual(9444);
+      should(siteUtils.processPrice('INR 9,444')).equal(9444);
     });
 
     it('should process an unknown price correctly', () => {
-      expect(siteUtils.processPrice('hey, without symbol?')).toEqual(-1);
+      should(siteUtils.processPrice('hey, without symbol?')).equal(-1);
     });
   });
 });

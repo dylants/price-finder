@@ -3,39 +3,39 @@
 const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
-const GogSite = require('../../../lib/sites/gog');
+const GreenmanGamingSite = require('../../../lib/sites/greenman-gaming');
 
-const VALID_URI = 'http://www.gog.com/123/product';
+const VALID_URI = 'http://greenmangaming.com/123/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
-describe('The Gog Site', () => {
+describe('The GreenmanGaming Site', () => {
   it('should exist', () => {
-    should.exist(GogSite);
+    should.exist(GreenmanGamingSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      should(GogSite.isSite(VALID_URI)).be.true();
+      should(GreenmanGamingSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      should(GogSite.isSite(INVALID_URI)).be.false();
+      should(GreenmanGamingSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new site with an incorrect uri', () => {
     should.throws(() => {
       /* eslint-disable no-new */
-      new GogSite(INVALID_URI);
+      new GreenmanGamingSite(INVALID_URI);
       /* eslint-enable no-new */
     });
   });
 
-  describe('a new Gog Site', () => {
+  describe('a new GreenmanGaming Site', () => {
     let site;
 
     beforeEach(() => {
-      site = new GogSite(VALID_URI);
+      site = new GreenmanGamingSite(VALID_URI);
     });
 
     it('should exist', () => {
@@ -58,13 +58,18 @@ describe('The Gog Site', () => {
       let name;
 
       beforeEach(() => {
-        price = 1.99;
+        price = 4199.3;
         category = siteUtils.categories.VIDEO_GAMES;
-        name = 'Some Product';
+        name = 'Homefront: The Revolution';
 
         $ = cheerio.load(`
-          <h1 class="header__title" itemprop="name">${name}</h1>
-          <span itemprop="price">${price}</span>
+          <h1 itemprop="name">Homefront: The Revolution</h1>
+          <script>
+            var utag_data = {
+              "currency_code": "INR",
+              "product_price_readable": "4199.30"
+            };
+          </script>
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
