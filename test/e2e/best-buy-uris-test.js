@@ -1,5 +1,6 @@
 'use strict';
 
+const should = require('should');
 const testHelper = require('./test-helper');
 
 const priceFinder = testHelper.priceFinder;
@@ -27,7 +28,7 @@ describe('price-finder for Best Buy URIs', () => {
 
       it('should respond with a price for findItemPrice()', (done) => {
         priceFinder.findItemPrice(uri, (err, price) => {
-          expect(err).toBeNull();
+          should(err).be.null();
           verifyPrice(price);
           waitForDone(done);
         });
@@ -35,7 +36,7 @@ describe('price-finder for Best Buy URIs', () => {
 
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
-          expect(err).toBeNull();
+          should(err).be.null();
           verifyItemDetails(itemDetails, 'Briefcase Full of Blues - CD', 'Music');
           waitForDone(done);
         });
@@ -61,7 +62,7 @@ describe('price-finder for Best Buy URIs', () => {
 
       it('should respond with a price for findItemPrice()', (done) => {
         priceFinder.findItemPrice(uri, (err, price) => {
-          expect(err).toBeNull();
+          should(err).be.null();
           verifyPrice(price);
           done();
         });
@@ -69,7 +70,7 @@ describe('price-finder for Best Buy URIs', () => {
 
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
-          expect(err).toBeNull();
+          should(err).be.null();
           verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off (DVD) (Eng/Fre) 1986', 'Movies & TV');
           done();
         });
@@ -83,7 +84,7 @@ describe('price-finder for Best Buy URIs', () => {
 
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
-          expect(err).toBeNull();
+          should(err).be.null();
           verifyItemDetails(itemDetails, 'Super Mario 3D Land - Nintendo 3DS', 'Video Games');
           done();
         });

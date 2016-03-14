@@ -1,33 +1,34 @@
 'use strict';
 
-const InfibeamSite = require('../../../lib/sites/infibeam');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const InfibeamSite = require('../../../lib/sites/infibeam');
 
 const VALID_URI = 'http://www.infibeam.com/Home_Entertainment/sansui-sjx22fb-full-hd-led-tv/P-hoen-68091831042-cat-z.html#variantId=P-hoen-60492354794';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The Infibeam Site', () => {
   it('should exist', () => {
-    expect(InfibeamSite).toBeDefined();
+    should.exist(InfibeamSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(InfibeamSite.isSite(VALID_URI)).toBeTruthy();
+      should(InfibeamSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(InfibeamSite.isSite(INVALID_URI)).toBeFalsy();
+      should(InfibeamSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new site with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new InfibeamSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new Infibeam Site', () => {
@@ -38,15 +39,15 @@ describe('The Infibeam Site', () => {
     });
 
     it('should exist', () => {
-      expect(site).toBeDefined();
+      should.exist(site);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(site.getURIForPageData()).toEqual(VALID_URI);
+      should(site.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(site.isJSON()).toBeFalsy();
+      should(site.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -73,27 +74,27 @@ describe('The Infibeam Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = site.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = site.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should always return the category', () => {
         const categoryFound = site.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = site.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = site.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

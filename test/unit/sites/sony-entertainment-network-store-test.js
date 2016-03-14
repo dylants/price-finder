@@ -1,7 +1,8 @@
 'use strict';
 
-const SonyENSSite = require('../../../lib/sites/sony-entertainment-network-store');
+const should = require('should');
 const siteUtils = require('../../../lib/site-utils');
+const SonyENSSite = require('../../../lib/sites/sony-entertainment-network-store');
 
 const VALID_URI = 'https://store.sonyentertainmentnetwork.com/#!/en-us/games/my-game/cid=123ABC';
 const VALID_URI_2 = 'https://store.playstation.com/#!/en-us/games/my-game/cid=123ABC';
@@ -10,29 +11,29 @@ const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The Sony Entertainment Network Store Site', () => {
   it('should exist', () => {
-    expect(SonyENSSite).toBeDefined();
+    should.exist(SonyENSSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(SonyENSSite.isSite(VALID_URI)).toBeTruthy();
+      should(SonyENSSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return true for a correct (alternate) site', () => {
-      expect(SonyENSSite.isSite(VALID_URI_2)).toBeTruthy();
+      should(SonyENSSite.isSite(VALID_URI_2)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(SonyENSSite.isSite(INVALID_URI)).toBeFalsy();
+      should(SonyENSSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new SonyENSSite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new SonyENSSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new Sony Entertainment Network Store Site', () => {
@@ -43,15 +44,15 @@ describe('The Sony Entertainment Network Store Site', () => {
     });
 
     it('should exist', () => {
-      expect(sony).toBeDefined();
+      should.exist(sony);
     });
 
     it('should return the API URI for getURIForPageData()', () => {
-      expect(sony.getURIForPageData()).toEqual(VALID_API_URL);
+      should(sony.getURIForPageData()).equal(VALID_API_URL);
     });
 
     it('should return true for isJSON()', () => {
-      expect(sony.isJSON()).toBeTruthy();
+      should(sony.isJSON()).be.true();
     });
 
     describe('with page data', () => {
@@ -95,43 +96,43 @@ describe('The Sony Entertainment Network Store Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = sony.findPriceOnPage(pageData);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = sony.findPriceOnPage(badPageData);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the playstation plus price when available', () => {
         const priceFound = sony.findPriceOnPage(pageDataWithPlaystationPlus);
-        expect(priceFound).toEqual(playstationPlusPrice);
+        should(priceFound).equal(playstationPlusPrice);
       });
 
       it('should return the category when displayed on the page', () => {
         const categoryFound = sony.findCategoryOnPage(pageData);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
         pageData.bucket = 'somethingElse';
         const categoryFound = sony.findCategoryOnPage(pageData);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = sony.findCategoryOnPage(badPageData);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = sony.findNameOnPage(pageData, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = sony.findNameOnPage(badPageData, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

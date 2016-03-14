@@ -1,33 +1,34 @@
 'use strict';
 
-const GameStopSite = require('../../../lib/sites/gamestop');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const GameStopSite = require('../../../lib/sites/gamestop');
 
 const VALID_URI = 'http://www.gamestop.com/games/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The GameStop Site', () => {
   it('should exist', () => {
-    expect(GameStopSite).toBeDefined();
+    should.exist(GameStopSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(GameStopSite.isSite(VALID_URI)).toBeTruthy();
+      should(GameStopSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(GameStopSite.isSite(INVALID_URI)).toBeFalsy();
+      should(GameStopSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new GameStopSite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new GameStopSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new GameStop Site', () => {
@@ -38,15 +39,15 @@ describe('The GameStop Site', () => {
     });
 
     it('should exist', () => {
-      expect(gamestop).toBeDefined();
+      should.exist(gamestop);
     });
 
     it('should return false for isJSON()', () => {
-      expect(gamestop.isJSON()).toBeFalsy();
+      should(gamestop.isJSON()).be.false();
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(gamestop.getURIForPageData()).toEqual(VALID_URI);
+      should(gamestop.getURIForPageData()).equal(VALID_URI);
     });
 
     describe('with a populated page', () => {
@@ -77,27 +78,27 @@ describe('The GameStop Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = gamestop.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = gamestop.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should always return the video games category', () => {
         const categoryFound = gamestop.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = gamestop.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = gamestop.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

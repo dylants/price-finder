@@ -1,5 +1,6 @@
 'use strict';
 
+const should = require('should');
 const testHelper = require('./test-helper');
 
 const priceFinder = testHelper.priceFinder;
@@ -12,7 +13,7 @@ describe('price-finder for Flipkart Store URIs', () => {
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyPrice(price);
         done();
       });
@@ -20,7 +21,7 @@ describe('price-finder for Flipkart Store URIs', () => {
 
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        expect(err).toBeNull();
+        should(err).be.null();
         verifyItemDetails(itemDetails, 'Apple iPhone 6', 'Other');
         done();
       });

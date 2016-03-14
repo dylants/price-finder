@@ -1,23 +1,25 @@
 'use strict';
 
+const should = require('should');
 const siteManager = require('../../lib/site-manager');
 
 const KNOWN_SITE = 'www.amazon.com/123/product';
+const BAD_SITE = 'www.bad_uri.bad';
 
 describe('The Site Manager', () => {
   it('should exist', () => {
-    expect(siteManager).toBeDefined();
+    should.exist(siteManager);
   });
 
   it('should throw an exception for an unknown uri', () => {
-    expect(() => {
-      siteManager.loadSite('www.bad_uri.bad');
-    }).toThrow();
+    should.throws(() => {
+      siteManager.loadSite(BAD_SITE);
+    });
   });
 
   it('should return the site for a known URI', () => {
     const site = siteManager.loadSite(KNOWN_SITE);
-    expect(site).toBeDefined();
+    should.exist(site);
   });
 
   describe('loading a specific site', () => {
@@ -28,11 +30,11 @@ describe('The Site Manager', () => {
     });
 
     it('should exist', () => {
-      expect(site).toBeDefined();
+      should.exist(site);
     });
 
     it('should have site operations available', () => {
-      expect(site.isJSON).toBeDefined();
+      should.exist(site.isJSON);
     });
   });
 });

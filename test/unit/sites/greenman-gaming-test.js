@@ -1,33 +1,34 @@
 'use strict';
 
-const GreenmanGamingSite = require('../../../lib/sites/greenman-gaming');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const GreenmanGamingSite = require('../../../lib/sites/greenman-gaming');
 
 const VALID_URI = 'http://greenmangaming.com/123/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The GreenmanGaming Site', () => {
   it('should exist', () => {
-    expect(GreenmanGamingSite).toBeDefined();
+    should.exist(GreenmanGamingSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(GreenmanGamingSite.isSite(VALID_URI)).toBeTruthy();
+      should(GreenmanGamingSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(GreenmanGamingSite.isSite(INVALID_URI)).toBeFalsy();
+      should(GreenmanGamingSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new site with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new GreenmanGamingSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new GreenmanGaming Site', () => {
@@ -38,15 +39,15 @@ describe('The GreenmanGaming Site', () => {
     });
 
     it('should exist', () => {
-      expect(site).toBeDefined();
+      should.exist(site);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(site.getURIForPageData()).toEqual(VALID_URI);
+      should(site.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(site.isJSON()).toBeFalsy();
+      should(site.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -61,37 +62,41 @@ describe('The GreenmanGaming Site', () => {
         category = siteUtils.categories.VIDEO_GAMES;
         name = 'Homefront: The Revolution';
 
-        $ = cheerio.load(`<strong class="curPrice">₹4199.30</strong>
+        $ = cheerio.load(`
           <h1 itemprop="name">Homefront: The Revolution</h1>
-          <script>var utag_data = {"currency_code": "INR",
-          "request_path": "/s/in/en/pc/games/action/far-cry-primal/",
-          "product_price_readable": "4199.30"};</script>`);
+          <script>
+            var utag_data = {
+              "currency_code": "INR",
+              "product_price_readable": "4199.30"
+            };
+          </script>
+        `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
       it('should return the price when displayed on the page', () => {
         const priceFound = site.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = site.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should always return the category', () => {
         const categoryFound = site.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = site.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = site.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

@@ -1,33 +1,34 @@
 'use strict';
 
-const NewEggSite = require('../../../lib/sites/newegg');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const NewEggSite = require('../../../lib/sites/newegg');
 
 const VALID_URI = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The NewEgg Site', () => {
   it('should exist', () => {
-    expect(NewEggSite).toBeDefined();
+    should.exist(NewEggSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(NewEggSite.isSite(VALID_URI)).toBeTruthy();
+      should(NewEggSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(NewEggSite.isSite(INVALID_URI)).toBeFalsy();
+      should(NewEggSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new NewEggSite with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new NewEggSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new NewEgg Site', () => {
@@ -38,15 +39,15 @@ describe('The NewEgg Site', () => {
     });
 
     it('should exist', () => {
-      expect(newegg).toBeDefined();
+      should.exist(newegg);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(newegg.getURIForPageData()).toEqual(VALID_URI);
+      should(newegg.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
-      expect(newegg.isJSON()).toBeFalsy();
+      should(newegg.isJSON()).be.false();
     });
 
     describe('with a populated page', () => {
@@ -76,12 +77,12 @@ describe('The NewEgg Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = newegg.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = newegg.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category when displayed on the page', () => {
@@ -100,7 +101,7 @@ describe('The NewEgg Site', () => {
           <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
           </dd></dl></div>`);
         const categoryFound = newegg.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
@@ -119,22 +120,22 @@ describe('The NewEgg Site', () => {
           <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
           </dd></dl></div>`);
         const categoryFound = newegg.findCategoryOnPage($);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = newegg.findCategoryOnPage(bad$);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = newegg.findNameOnPage($);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = newegg.findNameOnPage(bad$);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

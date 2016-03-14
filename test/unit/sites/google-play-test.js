@@ -1,33 +1,34 @@
 'use strict';
 
-const GooglePlaySite = require('../../../lib/sites/google-play');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const GooglePlaySite = require('../../../lib/sites/google-play');
 
 const VALID_URI = 'https://play.google.com/store/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The GooglePlay Site', () => {
   it('should exist', () => {
-    expect(GooglePlaySite).toBeDefined();
+    should.exist(GooglePlaySite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(GooglePlaySite.isSite(VALID_URI)).toBeTruthy();
+      should(GooglePlaySite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(GooglePlaySite.isSite(INVALID_URI)).toBeFalsy();
+      should(GooglePlaySite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new site with an incorrect uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new GooglePlaySite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new GooglePlay Site', () => {
@@ -38,15 +39,15 @@ describe('The GooglePlay Site', () => {
     });
 
     it('should exist', () => {
-      expect(googlePlay).toBeDefined();
+      should.exist(googlePlay);
     });
 
     it('should return false for isJSON()', () => {
-      expect(googlePlay.isJSON()).toBeFalsy();
+      should(googlePlay.isJSON()).be.false();
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(googlePlay.getURIForPageData()).toEqual(VALID_URI);
+      should(googlePlay.getURIForPageData()).equal(VALID_URI);
     });
 
     describe('with a populated page', () => {
@@ -71,38 +72,38 @@ describe('The GooglePlay Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = googlePlay.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = googlePlay.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category when displayed on the page', () => {
         const categoryFound = googlePlay.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
         $ = cheerio.load('<title>Big - Something Else on Google Play</title>');
         const categoryFound = googlePlay.findCategoryOnPage($);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = googlePlay.findCategoryOnPage(bad$);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = googlePlay.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = googlePlay.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });

@@ -1,33 +1,34 @@
 'use strict';
 
-const CrutchfieldSite = require('../../../lib/sites/crutchfield');
+const should = require('should');
 const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
+const CrutchfieldSite = require('../../../lib/sites/crutchfield');
 
 const VALID_URI = 'http://www.crutchfield.com/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The Crutchfield Site', () => {
   it('should exist', () => {
-    expect(CrutchfieldSite).toBeDefined();
+    should.exist(CrutchfieldSite);
   });
 
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(CrutchfieldSite.isSite(VALID_URI)).toBeTruthy();
+      should(CrutchfieldSite.isSite(VALID_URI)).be.true();
     });
 
     it('should return false for a bad site', () => {
-      expect(CrutchfieldSite.isSite(INVALID_URI)).toBeFalsy();
+      should(CrutchfieldSite.isSite(INVALID_URI)).be.false();
     });
   });
 
   it('should throw an exception trying to create a new CrutchfieldSite with an bad uri', () => {
-    expect(() => {
+    should.throws(() => {
       /* eslint-disable no-new */
       new CrutchfieldSite(INVALID_URI);
       /* eslint-enable no-new */
-    }).toThrow();
+    });
   });
 
   describe('a new Crutchfield Site', () => {
@@ -38,15 +39,15 @@ describe('The Crutchfield Site', () => {
     });
 
     it('should exist', () => {
-      expect(crutchfield).toBeDefined();
+      should.exist(crutchfield);
     });
 
     it('should return false for isJSON()', () => {
-      expect(crutchfield.isJSON()).toBeFalsy();
+      should(crutchfield.isJSON()).be.false();
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      expect(crutchfield.getURIForPageData()).toEqual(VALID_URI);
+      should(crutchfield.getURIForPageData()).equal(VALID_URI);
     });
 
     describe('with a populated page', () => {
@@ -79,17 +80,17 @@ describe('The Crutchfield Site', () => {
 
       it('should return the price when displayed on the page', () => {
         const priceFound = crutchfield.findPriceOnPage($);
-        expect(priceFound).toEqual(price);
+        should(priceFound).equal(price);
       });
 
       it('should return -1 when the price is not found', () => {
         const priceFound = crutchfield.findPriceOnPage(bad$);
-        expect(priceFound).toEqual(-1);
+        should(priceFound).equal(-1);
       });
 
       it('should return the category when displayed on the page', () => {
         const categoryFound = crutchfield.findCategoryOnPage($);
-        expect(categoryFound).toEqual(category);
+        should(categoryFound).equal(category);
       });
 
       it('should return OTHER when the category is not setup', () => {
@@ -100,22 +101,22 @@ describe('The Crutchfield Site', () => {
           '</div>'
         );
         const categoryFound = crutchfield.findCategoryOnPage($);
-        expect(categoryFound).toEqual(siteUtils.categories.OTHER);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return null when the category does not exist', () => {
         const categoryFound = crutchfield.findCategoryOnPage(bad$);
-        expect(categoryFound).toEqual(null);
+        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {
         const nameFound = crutchfield.findNameOnPage($, category);
-        expect(nameFound).toEqual(name);
+        should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
         const nameFound = crutchfield.findNameOnPage(bad$, category);
-        expect(nameFound).toEqual(null);
+        should(nameFound).be.null();
       });
     });
   });
