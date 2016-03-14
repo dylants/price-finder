@@ -132,6 +132,7 @@ The current supported sites are listed below.
 - GameStop
 - GOG
 - Google Play
+- Greenman Gaming
 - Infibeam
 - Newegg
 - Nintendo
