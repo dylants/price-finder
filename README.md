@@ -155,7 +155,8 @@ $ npm install
 
 #### Tests ####
 
-The project uses [Jasmine](http://jasmine.github.io/) for tests (please add
+The project uses the [Mocha test framework](https://mochajs.org/) along with
+the [Should assertion library](http://shouldjs.github.io/) for tests (please add
 tests for any new features).
 
 ##### Unit Tests #####
