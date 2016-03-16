@@ -62,7 +62,6 @@ describe('The Walmart Site', () => {
         category = siteUtils.categories.ELECTRONICS;
         name = 'Intel Core i7-4790K Processor';
 
-        // TODO provide content for unit test here!
         $ = cheerio.load(`<div itemprop="price"><span class="Price-sup">$</span>339
           <span>.</span><span>99</span></div><h1 itemprop="name">
           <span>Intel Core i7-4790K Processor</span></h1><ol class="breadcrumb-list"><nav>
