@@ -9,9 +9,7 @@ const verifyItemDetails = testHelper.verifyItemDetails;
 
 describe('price-finder for Walmart Store URIs', () => {
   describe('testing Intel Core i5-4690K Processor item', () => {
-    const uri = `http://www.walmart.com/ip/
-    Intel-Core-i5-4690K-Processor-Quad-Core-3.5GHz-6M-
-    Cache-up-to-3.90-GHz-2-Memory-Channels-16-Max-PCI-Express-Lane/41996623`;
+    const uri = 'http://www.walmart.com/ip/Intel-Core-i5-4690K-Processor-Quad-Core-3.5GHz-6M-Cache-up-to-3.90-GHz-2-Memory-Channels-16-Max-PCI-Express-Lane/41996623';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
