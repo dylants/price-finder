@@ -80,11 +80,11 @@ describe('The Best Buy Site', () => {
 
         $ = cheerio.load(`
           <meta itemprop="price" content="${price}">
-          <div id="analytics-data"
-            data-uber-cat-name="Movies & Music"
-            data-parent-cat-name="Music (CDs & Vinyl): R&B & Soul">
-          </div>
           <div id="sku-title" itemprop="name">${name}</div>
+          <script>
+            track.uberCatName = "Movies & Music";foo = "bar";
+            track.parentCatName = "Music (CDs & Vinyl): R&B & Soul";bar = "baz";
+          </script>
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
