@@ -71,7 +71,7 @@ describe('price-finder for Best Buy URIs', () => {
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
-          verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off (DVD) (Eng/Fre) 1986', 'Movies & TV');
+          verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off (DVD)  (Eng/Fre)  1986', 'Movies & TV');
           done();
         });
       });
