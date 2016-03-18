@@ -39,7 +39,7 @@
     "test": "grunt test",
     "test-e2e": "grunt e2e",
     "test-watch": "mocha --colors --watch --recursive test/unit",
-    "test-e2e-single": "DEBUG=price-finder* mocha --colors --reporter list $1"
+    "test-e2e-single": "DEBUG=price-finder* mocha --colors --reporter list --timeout 10000 $1"
   },
   "dependencies": {
     "accounting": "^0.4.0",
