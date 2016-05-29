@@ -64,7 +64,7 @@ describe('The Gog Site', () => {
 
         $ = cheerio.load(`
           <h1 class="header__title" itemprop="name">${name}</h1>
-          <span itemprop="price">${price}</span>
+          <meta itemprop="price" content="${price}">
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });

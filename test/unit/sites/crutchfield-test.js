@@ -68,12 +68,10 @@ describe('The Crutchfield Site', () => {
           '<div class="crumb">TVs & Video  /  </div>' +
           '<div class="crumb">Category  /  </div>' +
           '</div>' +
-          '<h1 class="productTitleMain">' +
-          'Samsung Blu-Ray Player' +
+          '<h1>' +
+          `<span itemprop="name">${name}</span>` +
           '</h1>' +
-          '<div class="finalPrice">' +
-          '$59.99' +
-          '</div>'
+          `<meta itemprop="price" content="${price}">`
         );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });

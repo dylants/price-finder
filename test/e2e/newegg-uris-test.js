@@ -28,8 +28,8 @@ describe('price-finder for NewEgg URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Axon - ZTE Unlocked Smartphone, 5.5" ' +
-          'Qualcomm Snapdragon 801, 2GB RAM, 4G LTE, Quick-charge 2.0 - 32GB Gold',
+        verifyItemDetails(itemDetails, 'ZTE AXON Unlocked Smartphone, 32GB ' +
+          'Storage 2GB RAM, 5.5" Gold Color (North America Warranty)',
           'Mobile Phones');
         done();
       });
