@@ -1,3 +1,14 @@
+# v4.1.0
+
+New Features:
+
+- [#95](https://github.com/dylants/price-finder/pull/95) Add Walmart Support (@rajkumarpb)
+
+Bug Fixes:
+
+- [#93](https://github.com/dylants/price-finder/pull/93) Update Best Buy category query
+- [#94](https://github.com/dylants/price-finder/pull/94) Site fixes, test fixes, travis improvements
+
 # v4.0.0
 
 New Features:

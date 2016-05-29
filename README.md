@@ -140,6 +140,7 @@ The current supported sites are listed below.
 - Snapdeal
 - Sony Playstation
 - Steam
+- Walmart
 
 Don't see your site listed? Please consider [contributing](#contributing) to
 the project!
