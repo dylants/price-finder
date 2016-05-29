@@ -64,12 +64,7 @@ describe('The GreenmanGaming Site', () => {
 
         $ = cheerio.load(`
           <h1 itemprop="name">Homefront: The Revolution</h1>
-          <script>
-            var utag_data = {
-              "currency_code": "INR",
-              "product_price_readable": "4199.30"
-            };
-          </script>
+          <meta itemprop="price" content="${price}">
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
