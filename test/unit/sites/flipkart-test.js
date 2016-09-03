@@ -64,8 +64,8 @@ describe('The Flipkart Site', () => {
 
         // TODO provide content for unit test here!
         $ = cheerio.load(`
-          <h1 class="title" itemprop="name">${name}</h1>
-          <meta itemprop="price" content="24,999">
+          <title>${name}</title>
+          <meta name="Description" content="Buy this thing for Rs.24999 Online">
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
