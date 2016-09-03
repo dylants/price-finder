@@ -5,8 +5,7 @@ const cheerio = require('cheerio');
 const siteUtils = require('../../../lib/site-utils');
 const PriceMinisterSite = require('../../../lib/sites/priceminister');
 
-const VALID_URI = 'http://www.priceminister.com/mfp/123/my-video-game#pid=456';
-const TRANSLATED_URL = 'http://www.priceminister.com/mfp?cid=123&urlname=my-video-game&pid=456&action=advlstmeta';
+const VALID_URI = 'http://www.priceminister.com/mfp/123/my-video-game?pid=456';
 const INVALID_URI = 'http://www.bad.com/123/product';
 
 describe('The PriceMinister Site', () => {
@@ -44,7 +43,7 @@ describe('The PriceMinister Site', () => {
     });
 
     it('should return the same URI for getURIForPageData()', () => {
-      should(priceminister.getURIForPageData()).equal(TRANSLATED_URL);
+      should(priceminister.getURIForPageData()).equal(VALID_URI);
     });
 
     it('should return false for isJSON()', () => {
@@ -59,25 +58,22 @@ describe('The PriceMinister Site', () => {
       let name;
 
       beforeEach(() => {
-        price = 19.99;
+        price = `19,99`;
         category = siteUtils.categories.VIDEO_GAMES;
         name = 'My video game';
 
-        $ = cheerio.load(
-          `<div id='advert_list'>
-           <ul class='priceInfos'>
-           <li class='price'>${price}€</li></ul>
-           </div>
-           <div class='productTitle'>
-           <h1>${name}</h1>
-           </div>`
-        );
+        $ = cheerio.load(`
+          <div id='prdBuyBoxV2'>
+          <p class='price'>${price} €</p>
+          </div>
+          <meta itemprop='name' content='${name}'/>
+        `);
         bad$ = cheerio.load('<h1>Nothing here</h1>');
       });
 
       it('should return the price when displayed on the page', () => {
         const priceFound = priceminister.findPriceOnPage($);
-        should(priceFound).equal(price);
+        should(priceFound).equal(19.99);
       });
 
       it('should return -1 when the price is not found', () => {
@@ -95,9 +91,9 @@ describe('The PriceMinister Site', () => {
         should(nameFound).equal(name);
       });
 
-      it('should return the name without displayed on page, from uri', () => {
+      it('should return null when the name is not displayed on page', () => {
         const nameFound = priceminister.findNameOnPage(bad$, category);
-        should(nameFound).equal(name);
+        should(nameFound).be.null();
       });
     });
   });

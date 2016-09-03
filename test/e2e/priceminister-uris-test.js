@@ -10,8 +10,8 @@ const verifyItemDetails = testHelper.verifyItemDetails;
 describe('price-finder for PriceMinister Store URIs', () => {
   // Video Games
   describe('testing a Video Game item', () => {
-    // Call Of Duty : Black Ops III sur PS4
-    const uri = 'http://www.priceminister.com/offer/buy/999031035/call-of-duty-black-ops-iii.html';
+    // Uncharted 4
+    const uri = 'http://www.priceminister.com/mfp/5458480/uncharted-4-a-thief-s-end?pid=563103245';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -24,7 +24,7 @@ describe('price-finder for PriceMinister Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Call of duty black ops iii', 'Video Games');
+        verifyItemDetails(itemDetails, 'Uncharted 4: A Thief\'s End', 'Video Games');
         done();
       });
     });
