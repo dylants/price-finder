@@ -134,8 +134,12 @@ describe('The Site Utils', () => {
       should(siteUtils.processPrice('INR 9,444')).equal(9444);
     });
 
-    it('should process an unknown price correctly', () => {
-      should(siteUtils.processPrice('hey, without symbol?')).equal(-1);
+    it('should process a price without a currency correctly', () => {
+      should(siteUtils.processPrice('35')).equal(35);
+    });
+
+    it('should process a non-price correctly', () => {
+      should(siteUtils.processPrice('no')).equal(-1);
     });
   });
 });
