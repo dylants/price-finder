@@ -1,7 +1,7 @@
 {
   "name": "price-finder",
   "description": "Finds the prices of retail items online",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "engines": {
     "node": "4.x"
   },

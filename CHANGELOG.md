@@ -1,3 +1,15 @@
+# v4.2.0
+
+New Features:
+
+- [#103](https://github.com/dylants/price-finder/pull/103) Add support for Target.com
+
+Bug Fixes:
+
+- [#100](https://github.com/dylants/price-finder/pull/100) Fix Flipkart
+- [#101](https://github.com/dylants/price-finder/pull/101) Fix PriceMinister
+- [#102](https://github.com/dylants/price-finder/pull/102) Defaults for no currency symbol, fix Amazon video games
+
 # v4.1.0
 
 New Features:
