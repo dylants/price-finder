@@ -22,7 +22,7 @@ describe('price-finder for Snapdeal Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'iPhone 6s (16GB)', 'Mobile Phones');
+        verifyItemDetails(itemDetails, '\n   \t\t\tiPhone 6s (16GB)', 'Mobile Phones');
         done();
       });
     });

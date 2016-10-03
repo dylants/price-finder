@@ -22,7 +22,7 @@ describe('price-finder for Thinkgeek Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, '', '');
+        verifyItemDetails(itemDetails, 'BB-8 Tea Set', 'Other');
         done();
       });
     });
