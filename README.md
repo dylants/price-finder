@@ -141,6 +141,7 @@ The current supported sites are listed below.
 - Sony Playstation
 - Steam
 - Target
+- Thinkgeek
 - Walmart
 
 Don't see your site listed? Please consider [contributing](#contributing) to
