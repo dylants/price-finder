@@ -7,7 +7,13 @@ const priceFinder = testHelper.priceFinder;
 const verifyPrice = testHelper.verifyPrice;
 const verifyItemDetails = testHelper.verifyItemDetails;
 
-describe('price-finder for Flipkart Store URIs', () => {
+/*
+ * TODO Skip the tests until we can work out Flipkart's problems
+ * See:
+ * https://github.com/dylants/price-finder/issues/98
+ * https://github.com/dylants/price-finder/issues/106
+ */
+describe.skip('price-finder for Flipkart Store URIs', () => {
   describe('testing Nexus 6 item', () => {
     const uri = 'https://www.flipkart.com/apple-iphone-6/p/itme8dvfeuxxbm4r?pid=MOBEYHZ2YAXZMF2J';
 
