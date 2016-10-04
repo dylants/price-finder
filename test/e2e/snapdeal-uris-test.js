@@ -9,7 +9,7 @@ const verifyItemDetails = testHelper.verifyItemDetails;
 
 describe('price-finder for Snapdeal Store URIs', () => {
   describe('testing item', () => {
-    const uri = 'http://www.snapdeal.com/product/iphone-6s-16gb/663413326062';
+    const uri = 'https://www.snapdeal.com/product/apple-iphone-7-32gb-gold/626098478748';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -22,7 +22,7 @@ describe('price-finder for Snapdeal Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'iPhone 6s (16GB)', 'Mobile Phones');
+        verifyItemDetails(itemDetails, '\n   \t\t\tApple iPhone 7 32GB', 'Mobile Phones');
         done();
       });
     });
