@@ -128,7 +128,6 @@ The current supported sites are listed below.
    [Best Buy developer documentation](https://developer.bestbuy.com).
 - Crutchfield
 - eBags
-- Flipkart
 - GameStop
 - GOG
 - Google Play
