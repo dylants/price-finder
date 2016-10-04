@@ -63,7 +63,6 @@ describe('The Thinkgeek Site', () => {
         category = siteUtils.categories.OTHER;
         name = 'BB-8 Tea Set';
 
-        // TODO provide content for unit test here!
         $ = cheerio.load(`
           <form id="buy" class="header">
             <h1 itemprop="name" class="homeoffice title title-page">${name}</h1>
