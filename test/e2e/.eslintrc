@@ -1,5 +1,2 @@
-{
-  "rules": {
-    max-len: 0
-  }
-}
+rules:
+  max-len: 0

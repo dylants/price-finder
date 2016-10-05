@@ -58,7 +58,7 @@ describe('The PriceMinister Site', () => {
       let name;
 
       beforeEach(() => {
-        price = `19,99`;
+        price = '19,99';
         category = siteUtils.categories.VIDEO_GAMES;
         name = 'My video game';
 
