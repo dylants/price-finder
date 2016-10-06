@@ -15,7 +15,7 @@ describe('PriceFinder', () => {
   let PriceFinder;
 
   beforeEach(() => {
-    PriceFinder = require(MODULE_PATH);
+    PriceFinder = require(MODULE_PATH); // eslint-disable-line import/no-dynamic-require
   });
 
   it('should exist', () => {

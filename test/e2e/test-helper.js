@@ -8,6 +8,7 @@ const RETRY_SLEEP_TIME = 5000;
 
 // create a single instance of price-finder that will be used by e2e tests
 const PriceFinder = require('../../lib/price-finder');
+
 exports.priceFinder = new PriceFinder({
   retrySleepTime: RETRY_SLEEP_TIME,
 });

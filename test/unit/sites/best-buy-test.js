@@ -162,6 +162,7 @@ describe('The Best Buy Site', () => {
         name = 'The Blues Brothers';
 
         $ = require('./mock-data/bestbuy.full.json');
+
         try {
           bad$ = JSON.parse('<h1>Developer Inactive</h1>');
         } catch (err) {
@@ -186,6 +187,7 @@ describe('The Best Buy Site', () => {
 
       it('should return OTHER when the category is not setup', () => {
         $ = require('./mock-data/bestbuy-other_category.json');
+
         const categoryFound = bestBuy.findCategoryOnPage($);
         should(categoryFound).equal(siteUtils.categories.OTHER);
       });
