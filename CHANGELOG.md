@@ -1,3 +1,14 @@
+# v4.3.0
+
+New Features:
+
+- [#105](https://github.com/dylants/price-finder/pull/105) Add support for Thinkgeek (@maxmill)
+
+Additional changes made in this release:
+
+- [#109](https://github.com/dylants/price-finder/pull/109) Update dependencies / eslint changes
+- [#110](https://github.com/dylants/price-finder/pull/110) Remove support for Flipkart
+
 # v4.2.0
 
 New Features:
