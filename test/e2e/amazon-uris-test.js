@@ -62,7 +62,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Minecraft - Pocket Edition', 'Mobile Apps');
+        verifyItemDetails(itemDetails, 'Minecraft: Pocket Edition', 'Mobile Apps');
         done();
       });
     });
