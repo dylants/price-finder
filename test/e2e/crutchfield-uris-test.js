@@ -32,8 +32,8 @@ describe('price-finder for Crutchfield Store URIs', () => {
 
   // Home Audio
   describe('testing a Home Audio item', () => {
-    // Marantz Receiver
-    const uri = 'http://www.crutchfield.com/p_642NR1504/Marantz-NR1504.html';
+    // Sony Receiver
+    const uri = 'http://www.crutchfield.com/p_158STDH770/Sony-STR-DH770.html?tp=179';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -46,7 +46,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Marantz NR1504', 'Home Audio');
+        verifyItemDetails(itemDetails, 'Sony STR-DH770', 'Home Audio');
         done();
       });
     });
