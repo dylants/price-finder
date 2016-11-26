@@ -1,3 +1,9 @@
+# v4.3.1
+
+Bug Fixes:
+
+- [#114](https://github.com/dylants/price-finder/pull/114) Amazon fixes, e2e fixes, closes [#112](https://github.com/dylants/price-finder/issues/112) and [#113](https://github.com/dylants/price-finder/issues/113)
+
 # v4.3.0
 
 New Features:
