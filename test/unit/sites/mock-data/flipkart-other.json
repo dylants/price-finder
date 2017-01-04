@@ -1,0 +1,21 @@
+{
+  "productIdentifier":{
+    "productId": "TVSEDCZHETCHUMFX",
+    "categoryPaths":{
+      "categoryPath":[[{
+        "title": "Electronics>Entertainment>TV & Video>TVs"
+      }]]
+    }
+  },
+  "productAttributes":{
+    "title": "Vu 80cm (32) HD Ready Smart LED TV",
+    "maximumRetailPrice":{
+      "amount": 21000,
+      "currency": "INR"
+    },
+    "sellingPrice":{
+      "amount": 19990,
+      "currency": "INR"
+    }
+  }
+}
