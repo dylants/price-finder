@@ -20,7 +20,7 @@ describe('price-finder for Walmart Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Intel Core i5-4690K Processor', 'Electronics');
+        verifyItemDetails(itemDetails, 'Intel Core i5-4690K Processor', 'Other');
         done();
       });
     });

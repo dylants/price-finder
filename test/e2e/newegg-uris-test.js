@@ -13,7 +13,7 @@ const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
  */
 describe('price-finder for NewEgg URIs', () => {
   describe('testing a Mobile Phone item', () => {
-    const uri = 'http://www.newegg.com/Product/Product.aspx?Item=N82E16875705040';
+    const uri = 'https://www.newegg.com/Product/Product.aspx?Item=9SIAA8H6F95133';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -26,9 +26,7 @@ describe('price-finder for NewEgg URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'ZTE AXON Unlocked Smartphone, 32GB '
-          + 'Storage 2GB RAM, 5.5" Gold Color (North America Warranty)',
-        'Mobile Phones');
+        verifyItemDetails(itemDetails, 'Apple iPhone 8 Plus 4G LTE Unlocked Cell Phone 5.5" Gold 64GB 3GB RAM', 'Other');
         done();
       });
     });

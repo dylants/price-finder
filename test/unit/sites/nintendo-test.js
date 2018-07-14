@@ -63,12 +63,12 @@ describe('The Nintendo Site', () => {
         name = 'New Super Mario Bros. U';
 
         $ = cheerio.load(
-          `<div itemprop='price'>
+          `<div id='purchase-options'><div class="msrp">
            $${price}<sup>*</sup>
-           </div>
-           <h1 itemprop='name'>${name}</h1>`,
+           </div></div>
+           <h1>${name}</h1>`,
         );
-        bad$ = cheerio.load('<h1>Nothin here</h1>');
+        bad$ = cheerio.load('<div>Nothin here</div>');
       });
 
       it('should return the price when displayed on the page', () => {
@@ -87,12 +87,12 @@ describe('The Nintendo Site', () => {
       });
 
       it('should return the name when displayed on the page', () => {
-        const nameFound = nintendo.findNameOnPage($, category);
+        const nameFound = nintendo.findNameOnPage($);
         should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
-        const nameFound = nintendo.findNameOnPage(bad$, category);
+        const nameFound = nintendo.findNameOnPage(bad$);
         should(nameFound).be.null();
       });
     });

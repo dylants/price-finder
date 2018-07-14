@@ -57,10 +57,10 @@ describe('price-finder for Amazon URIs', () => {
     // Minecraft
     const uri = 'http://www.amazon.com/gp/product/B00992CF6W';
 
-    it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
-      priceFinder.findItemDetails(uri, (err, itemDetails) => {
+    it('should respond with a price for findItemPrice()', (done) => {
+      priceFinder.findItemPrice(uri, (err, price) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Minecraft: Pocket Edition', 'Mobile Apps');
+        verifyPrice(price);
         done();
       });
     });
@@ -74,7 +74,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'The Blues Brothers [Blu-ray]', 'Movies & TV');
+        verifyItemDetails(itemDetails, 'The Blues Brothers', 'Movies & TV');
         done();
       });
     });

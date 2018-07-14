@@ -22,7 +22,7 @@ describe('price-finder for eBags Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'TLS Mother Lode Mini 21" Wheeled Duffel', 'Luggage');
+        verifyItemDetails(itemDetails, 'TLS Mother Lode Mini 21" Wheeled Carry-On Duffel', 'Luggage');
         done();
       });
     });

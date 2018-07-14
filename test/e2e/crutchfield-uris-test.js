@@ -9,7 +9,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
   // Television & Video
   describe('testing a Television & Video item', () => {
     // Samsung Blu-ray Player
-    const uri = 'http://www.crutchfield.com/p_305BDJ5700/Samsung-BD-J5700.html';
+    const uri = 'https://www.crutchfield.com/p_305BDJ5700/Samsung-BD-J5700.html';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -31,7 +31,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
   // Home Audio
   describe('testing a Home Audio item', () => {
     // Sony Receiver
-    const uri = 'http://www.crutchfield.com/p_158STDH770/Sony-STR-DH770.html?tp=179';
+    const uri = 'https://www.crutchfield.com/p_158STDH790/Sony-STR-DH790.html';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -44,7 +44,7 @@ describe('price-finder for Crutchfield Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Sony STR-DH770', 'Home Audio');
+        verifyItemDetails(itemDetails, 'Sony STR-DH790', 'Home Audio');
         done();
       });
     });

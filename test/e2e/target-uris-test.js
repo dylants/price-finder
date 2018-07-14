@@ -21,7 +21,7 @@ describe('price-finder for Target Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Super Mario Maker (Nintendo Wii U)', 'Video Game - Console Games');
+        verifyItemDetails(itemDetails, 'Super Mario Maker Nintendo Wii U', 'video games');
         done();
       });
     });

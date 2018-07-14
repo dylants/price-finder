@@ -27,48 +27,4 @@ describe('price-finder for Google Play URIs', () => {
       });
     });
   });
-
-  // Movies & TV
-  describe('testing a Movies & TV item', () => {
-    // Big
-    const uri = 'https://play.google.com/store/movies/details/Big?id=uBohu3ZBg9g';
-
-    it('should respond with a price for findItemPrice()', (done) => {
-      priceFinder.findItemPrice(uri, (err, price) => {
-        should(err).be.null();
-        verifyPrice(price);
-        done();
-      });
-    });
-
-    it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
-      priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        should(err).be.null();
-        verifyItemDetails(itemDetails, 'Big', 'Movies & TV');
-        done();
-      });
-    });
-  });
-
-  // Mobile Apps
-  describe('testing a Mobile Apps item', () => {
-    // Plants vs Zombies
-    const uri = 'https://play.google.com/store/apps/details?id=com.popcap.pvz_na';
-
-    it('should respond with a price for findItemPrice()', (done) => {
-      priceFinder.findItemPrice(uri, (err, price) => {
-        should(err).be.null();
-        verifyPrice(price);
-        done();
-      });
-    });
-
-    it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
-      priceFinder.findItemDetails(uri, (err, itemDetails) => {
-        should(err).be.null();
-        verifyItemDetails(itemDetails, 'Plants vs. Zombies™', 'Mobile Apps');
-        done();
-      });
-    });
-  });
 });

@@ -22,7 +22,7 @@ describe('price-finder for Best Buy URIs', () => {
     // Music
     describe('testing a Music item', () => {
       // Blues Brothers: Briefcase Full of Blues
-      const uri = 'http://www.bestbuy.com/site/briefcase-full-of-blues-cd/17112312.p?id=1889657&skuId=17112312';
+      const uri = 'https://www.bestbuy.com/site/briefcase-full-of-blues-cd/17112312.p?id=1889657&skuId=17112312';
 
       it('should respond with a price for findItemPrice()', (done) => {
         priceFinder.findItemPrice(uri, (err, price) => {
@@ -53,37 +53,15 @@ describe('price-finder for Best Buy URIs', () => {
       process.env.BESTBUY_KEY = EXISTING_ENV_KEY;
     });
 
-    // Movies & TV
-    describe('testing a Movies & TV item', () => {
-      // Ferris Bueller's Day Off
-      const uri = 'http://www.bestbuy.com/site/ferris-buellers-day-off-dvd/7444513.p?id=47476&skuId=7444513';
-
-      it('should respond with a price for findItemPrice()', (done) => {
-        priceFinder.findItemPrice(uri, (err, price) => {
-          should(err).be.null();
-          verifyPrice(price);
-          done();
-        });
-      });
-
-      it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
-        priceFinder.findItemDetails(uri, (err, itemDetails) => {
-          should(err).be.null();
-          verifyItemDetails(itemDetails, 'Ferris Bueller\'s Day Off [DVD] [Eng/Fre] [1986]', 'Movies & TV');
-          done();
-        });
-      });
-    });
-
     // Video Games
     describe('testing a Video Games item', () => {
-      // Super Mario 3D Land
-      const uri = 'http://www.bestbuy.com/site/super-mario-3d-land-nintendo-3ds/2809399.p?id=1218353391490&skuId=2809399';
+      // Legend of Zelda
+      const uri = 'https://www.bestbuy.com/site/the-legend-of-zelda-breath-of-the-wild-nintendo-switch/5721500.p?skuId=5721500';
 
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
-          verifyItemDetails(itemDetails, 'Super Mario 3D Land - Nintendo 3DS', 'Video Games');
+          verifyItemDetails(itemDetails, 'The Legend of Zelda: Breath of the Wild - Nintendo Switch', 'Video Games');
           done();
         });
       });

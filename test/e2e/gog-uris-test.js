@@ -21,7 +21,7 @@ describe('price-finder for Gog Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'DON\'T STARVE', 'Video Games');
+        verifyItemDetails(itemDetails, 'Don\'t Starve', 'Video Games');
         done();
       });
     });
