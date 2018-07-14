@@ -66,7 +66,7 @@ describe('The Nintendo Site', () => {
           `<div itemprop='price'>
            $${price}<sup>*</sup>
            </div>
-           <h1 itemprop='name'>${name}</h1>`
+           <h1 itemprop='name'>${name}</h1>`,
         );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });

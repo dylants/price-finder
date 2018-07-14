@@ -1,8 +1,8 @@
 'use strict';
 
-const siteUtils = require('../../lib/site-utils');
 const cheerio = require('cheerio');
 const should = require('should');
+const siteUtils = require('../../lib/site-utils');
 
 describe('The Site Utils', () => {
   it('should exist', () => {

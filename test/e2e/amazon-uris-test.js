@@ -3,9 +3,7 @@
 const should = require('should');
 const testHelper = require('./test-helper');
 
-const priceFinder = testHelper.priceFinder;
-const verifyPrice = testHelper.verifyPrice;
-const verifyItemDetails = testHelper.verifyItemDetails;
+const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 /*
  * I've seen some CAPTCHA's from Amazon if you hit them too much too often,

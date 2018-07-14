@@ -3,9 +3,7 @@
 const should = require('should');
 const testHelper = require('./test-helper');
 
-const priceFinder = testHelper.priceFinder;
-const verifyPrice = testHelper.verifyPrice;
-const verifyItemDetails = testHelper.verifyItemDetails;
+const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 /*
  * I've seen some CAPTCHA's from NewEgg if you hit them too much too often,
@@ -28,9 +26,9 @@ describe('price-finder for NewEgg URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'ZTE AXON Unlocked Smartphone, 32GB ' +
-          'Storage 2GB RAM, 5.5" Gold Color (North America Warranty)',
-          'Mobile Phones');
+        verifyItemDetails(itemDetails, 'ZTE AXON Unlocked Smartphone, 32GB '
+          + 'Storage 2GB RAM, 5.5" Gold Color (North America Warranty)',
+        'Mobile Phones');
         done();
       });
     });

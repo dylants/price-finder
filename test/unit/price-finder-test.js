@@ -30,20 +30,20 @@ describe('PriceFinder', () => {
     });
 
     it('should throw an exception in findItemPrice() when presented with an unsupported URI',
-    (done) => {
-      priceFinder.findItemPrice('www.bad_uri.bad', (error) => {
-        should.exist(error);
-        done();
+      (done) => {
+        priceFinder.findItemPrice('www.bad_uri.bad', (error) => {
+          should.exist(error);
+          done();
+        });
       });
-    });
 
     it('should throw an exception in findItemDetails() when presented with an unsupported URI',
-    (done) => {
-      priceFinder.findItemDetails('www.bad_uri.bad', (error) => {
-        should.exist(error);
-        done();
+      (done) => {
+        priceFinder.findItemDetails('www.bad_uri.bad', (error) => {
+          should.exist(error);
+          done();
+        });
       });
-    });
   });
 
   describe('with an Amazon URI and valid mock request data', () => {
