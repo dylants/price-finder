@@ -174,7 +174,7 @@ These tests can be run in watch mode, listening for any file changes and
 re-running when that occurs. To do so execute:
 
 ```
-$ npm run test-watch
+$ npm run test:watch
 ```
 
 ##### End To End Tests #####
