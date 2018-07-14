@@ -3,7 +3,7 @@
   "description": "Finds the prices of retail items online",
   "version": "4.3.1",
   "engines": {
-    "node": "10.x"
+    "node": ">=8"
   },
   "author": {
     "name": "Dylan Smith"
