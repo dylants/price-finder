@@ -1,3 +1,10 @@
+# v5.0.0
+
+New Features and Bug Fixes:
+
+- [#120](https://github.com/dylants/price-finder/pull/120) **Breaking Change:** Update dependencies, fix broken sites, fix linting errors, remove support for Node 4 and 6. Also disable some e2e tests for Greenman Gaming, Infibeam, and Priceminister (support for those sites is unknown at this time). Closes [#119](https://github.com/dylants/price-finder/issues/119)
+
+
 # v4.3.1
 
 Bug Fixes:
