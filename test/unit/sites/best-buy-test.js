@@ -79,8 +79,8 @@ describe('The Best Buy Site', () => {
         name = 'Awesome Product';
 
         $ = cheerio.load(`
-          <meta itemprop="price" content="${price}">
-          <div id="sku-title" itemprop="name">${name}</div>
+          <div id="price"><div class="price-block" data-customer-price="${price}"></div></div>
+          <div class="sku-title" itemprop="name">${name}</div>
           <script>
             track.uberCatName = "Movies & Music";foo = "bar";
             track.parentCatName = "Music (CDs & Vinyl): R&B & Soul";bar = "baz";

@@ -3,9 +3,7 @@
 const should = require('should');
 const testHelper = require('./test-helper');
 
-const priceFinder = testHelper.priceFinder;
-const verifyPrice = testHelper.verifyPrice;
-const verifyItemDetails = testHelper.verifyItemDetails;
+const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 describe('price-finder for GameStop Store URIs', () => {
   // Video Games

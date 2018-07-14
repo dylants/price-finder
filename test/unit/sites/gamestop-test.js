@@ -63,15 +63,15 @@ describe('The GameStop Site', () => {
         name = 'Mario Kart 8';
 
         $ = cheerio.load(
-          '<div class="cartridgeProductHeader">' +
-          '<h1>Mario Kart 8 ' +
-          '<cite>by ' +
-          'Nintendo of America</cite>' +
-          '</h1>' +
-          '</div>' +
-          '<div class="buy1">' +
-          '<h3>$59.99</h3>' +
-          '</div>'
+          '<div class="cartridgeProductHeader">'
+          + '<h1>Mario Kart 8 '
+          + '<cite>by '
+          + 'Nintendo of America</cite>'
+          + '</h1>'
+          + '</div>'
+          + '<div class="buy1">'
+          + '<h3>$59.99</h3>'
+          + '</div>',
         );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });

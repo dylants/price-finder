@@ -5,8 +5,7 @@ env:
   - TEST_SUITE=test-e2e
 language: node_js
 node_js:
-  - "4"
-  - "5"
-  - "6"
+  - "8"
+  - "10"
 script: "npm run $TEST_SUITE"
 sudo: false

@@ -3,9 +3,7 @@
 const should = require('should');
 const testHelper = require('./test-helper');
 
-const priceFinder = testHelper.priceFinder;
-const verifyPrice = testHelper.verifyPrice;
-const verifyItemDetails = testHelper.verifyItemDetails;
+const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 describe('price-finder for Target Store URIs', () => {
   describe('testing Video Game item', () => {
@@ -23,7 +21,7 @@ describe('price-finder for Target Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Super Mario Maker (Nintendo Wii U)', 'Video Game - Console Games');
+        verifyItemDetails(itemDetails, 'Super Mario Maker Nintendo Wii U', 'video games');
         done();
       });
     });

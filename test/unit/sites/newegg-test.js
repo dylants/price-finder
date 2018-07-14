@@ -54,12 +54,10 @@ describe('The NewEgg Site', () => {
       let $;
       let bad$;
       let price;
-      let category;
       let name;
 
       beforeEach(() => {
         price = 329.98;
-        category = siteUtils.categories.MOBILE;
         name = 'Axon by ZTE Unlocked GSM, 5.5", Qualcomm Snapdragon 801 2.4 GHz Quad-Core';
 
         $ = cheerio.load(`
@@ -85,47 +83,10 @@ describe('The NewEgg Site', () => {
         should(priceFound).equal(-1);
       });
 
-      it('should return the category when displayed on the page', () => {
-        $ = cheerio.load(`<div id="baBreadcrumbTop" style="max-width:1420px; margin:0px auto;">
-          <dl><dd class="egg"><a href="http://www.newegg.com/" class="noline">
-          <img src="http://images10.newegg.com/WebResource/Themes/2005/Nest/whiteEgg.gif"
-          alt="Home" title="Home"></a></dd><dd><a href="http://www.newegg.com/" title="Home">
-          Home</a>&nbsp;&gt;&nbsp;</dd><dd><a href="http://www.newegg.com/Electronics/Store"
-          title="Electronics">Electronics</a>&nbsp;&gt;&nbsp;</dd><dd>
-          <a href="http://www.newegg.com/Cell-Phones-Unlocked/Category/ID-249?Tid=161538"
-          title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
-          <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
-          title="Cell Phones - Unlocked">Cell Phones - Unlocked</a>&nbsp;&gt;&nbsp;</dd>
-          <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
-          title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
-          <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
-          </dd></dl></div>`);
-        const categoryFound = newegg.findCategoryOnPage($);
-        should(categoryFound).equal(category);
-      });
-
-      it('should return OTHER when the category is not setup', () => {
-        $ = cheerio.load(`<div id="baBreadcrumbTop" style="max-width:1420px; margin:0px auto;">
-          <dl><dd class="egg"><a href="http://www.newegg.com/" class="noline">
-          <img src="http://images10.newegg.com/WebResource/Themes/2005/Nest/whiteEgg.gif"
-          alt="Home" title="Home"></a></dd><dd><a href="http://www.newegg.com/" title="Home">
-          Home</a>&nbsp;&gt;&nbsp;</dd><dd><a href="http://www.newegg.com/Electronics/Store"
-          title="Electronics">Electronics</a>&nbsp;&gt;&nbsp;</dd><dd>
-          <a href="http://www.newegg.com/Cell-Phones-Unlocked/Category/ID-249?Tid=161538"
-          title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
-          <dd><a href="http://www.newegg.com/Cell-Phones-Unlocked/SubCategory/ID-2961?Tid=161551"
-          title="Cell Phones - Unlocked"></a>&nbsp;&gt;&nbsp;</dd>
-          <dd><a href="http://www.newegg.com/ZTE-Cell-Phones-Unlocked/BrandSubCat/ID-14576-2961"
-          title="ZTE">ZTE</a>&nbsp;&gt;&nbsp;</dd>
-          <dd style="font-weight:bold;font-style:italic;">Item#:&nbsp;<em>N82E16875705040</em>
-          </dd></dl></div>`);
+      it('should return OTHER for the category', () => {
+        $ = cheerio.load('<div></div>');
         const categoryFound = newegg.findCategoryOnPage($);
         should(categoryFound).equal(siteUtils.categories.OTHER);
-      });
-
-      it('should return null when the category does not exist', () => {
-        const categoryFound = newegg.findCategoryOnPage(bad$);
-        should(categoryFound).be.null();
       });
 
       it('should return the name when displayed on the page', () => {

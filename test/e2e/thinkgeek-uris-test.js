@@ -3,13 +3,11 @@
 const should = require('should');
 const testHelper = require('./test-helper');
 
-const priceFinder = testHelper.priceFinder;
-const verifyPrice = testHelper.verifyPrice;
-const verifyItemDetails = testHelper.verifyItemDetails;
+const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 describe('price-finder for Thinkgeek Store URIs', () => {
-  describe('testing BB-8 Tea Set item', () => {
-    const uri = 'http://www.thinkgeek.com/product/ivom/?pfm=HP_TopCMD_ivom';
+  describe('testing an item item', () => {
+    const uri = 'https://www.thinkgeek.com/product/kgii/';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -22,7 +20,7 @@ describe('price-finder for Thinkgeek Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'BB-8 Tea Set', 'Other');
+        verifyItemDetails(itemDetails, 'Legend of Zelda Hylian Shield Backpack', 'Other');
         done();
       });
     });
