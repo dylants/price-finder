@@ -1,3 +1,9 @@
+# v5.1.0
+
+Bug Fixes:
+
+- [#122](https://github.com/dylants/price-finder/pull/122) Fix sites, update dependencies. Also disable some e2e tests for Best Buy (support for this site is unknown at this time).
+
 # v5.0.0
 
 New Features and Bug Fixes:
