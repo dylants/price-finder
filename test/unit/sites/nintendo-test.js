@@ -95,6 +95,21 @@ describe('The Nintendo Site', () => {
         const nameFound = nintendo.findNameOnPage(bad$);
         should(nameFound).be.null();
       });
+
+      it('should return the sale price when available', () => {
+        const salePrice = 49.99;
+        $ = cheerio.load(
+          `<span id='purchase-options'>
+             <div class="price discounted loaded" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+               <span class="sale-price">$${salePrice}</span>
+               <span class="msrp">$${price}</span>
+             </div>
+           </span>`,
+        );
+
+        const priceFound = nintendo.findPriceOnPage($);
+        should(priceFound).equal(salePrice);
+      });
     });
   });
 });

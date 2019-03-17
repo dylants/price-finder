@@ -8,7 +8,7 @@ const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 describe('price-finder for Gog Store URIs', () => {
   describe('testing an item', () => {
     // Don't Starve
-    const uri = 'http://www.gog.com/game/dont_starve';
+    const uri = 'https://www.gog.com/game/dont_starve';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {

@@ -59,6 +59,9 @@ describe('PriceFinder', () => {
         get() {
           return this;
         },
+        set() {
+          return this;
+        },
 
         end(callback) {
           // setup valid response
@@ -109,6 +112,9 @@ describe('PriceFinder', () => {
         get() {
           return this;
         },
+        set() {
+          return this;
+        },
 
         end(callback) {
           // setup invalid response code
@@ -146,6 +152,9 @@ describe('PriceFinder', () => {
       // set request to return a specific body
       const request = {
         get() {
+          return this;
+        },
+        set() {
           return this;
         },
 
