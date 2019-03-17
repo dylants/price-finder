@@ -121,7 +121,7 @@ $ DEBUG=price-finder* node app.js
 The current supported sites are listed below.
 
 - Amazon
-- Best Buy
+- Best Buy (\*)
   - API support is available but requires an API key.  To enable, set the
    `BESTBUY_KEY` environment variable to the value of the API key. For more
    information on how to obtain an API key, refer to the
@@ -131,17 +131,19 @@ The current supported sites are listed below.
 - GameStop
 - GOG
 - Google Play
-- Greenman Gaming
-- Infibeam
+- Greenman Gaming (\*)
+- Infibeam (\*)
 - Newegg
 - Nintendo
-- PriceMinister
+- PriceMinister (\*)
 - Snapdeal
 - Sony Playstation
 - Steam
 - Target
 - Thinkgeek
 - Walmart
+
+(\*Support unknown at this time)
 
 Don't see your site listed? Please consider [contributing](#contributing) to
 the project!

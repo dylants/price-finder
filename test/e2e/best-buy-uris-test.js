@@ -24,7 +24,7 @@ describe('price-finder for Best Buy URIs', () => {
       // Blues Brothers: Briefcase Full of Blues
       const uri = 'https://www.bestbuy.com/site/briefcase-full-of-blues-cd/17112312.p?id=1889657&skuId=17112312';
 
-      it('should respond with a price for findItemPrice()', (done) => {
+      xit('should respond with a price for findItemPrice()', (done) => {
         priceFinder.findItemPrice(uri, (err, price) => {
           should(err).be.null();
           verifyPrice(price);
@@ -32,7 +32,7 @@ describe('price-finder for Best Buy URIs', () => {
         });
       });
 
-      it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
+      xit('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
           verifyItemDetails(itemDetails, 'Briefcase Full of Blues [CD]', 'Music');
@@ -58,7 +58,7 @@ describe('price-finder for Best Buy URIs', () => {
       // Legend of Zelda
       const uri = 'https://www.bestbuy.com/site/the-legend-of-zelda-breath-of-the-wild-nintendo-switch/5721500.p?skuId=5721500';
 
-      it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
+      xit('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
           verifyItemDetails(itemDetails, 'The Legend of Zelda: Breath of the Wild - Nintendo Switch', 'Video Games');

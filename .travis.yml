@@ -2,7 +2,10 @@ env:
   # We want to run both (unit) tests and end to end tests as a matrix
   # https://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines
   - TEST_SUITE=test
-  - TEST_SUITE=test-e2e
+  # Disable the end to end tests in CI, since the CI boxes seem to be blocked by some sites at the
+  # moment. Going to have to run these locally for now to verify the behavior still works. Hope the
+  # CI boxes are unblocked at some point in the future.
+  # - TEST_SUITE=test-e2e
 language: node_js
 node_js:
   - "8"

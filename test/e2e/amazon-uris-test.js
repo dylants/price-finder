@@ -104,7 +104,7 @@ describe('price-finder for Amazon URIs', () => {
         should(err).be.null();
 
         // Amazon reports 'apparel' for luggage, so we default to 'other'
-        verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel', 'Other');
+        verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel Bag Luggage - Carry-On - (Blue Yonder)', 'Other');
         done();
       });
     });
