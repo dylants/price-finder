@@ -10,11 +10,6 @@ module.exports = function exports(grunt) {
         quiet: true,
       },
     },
-    env: {
-      e2e: {
-        DEBUG: 'price-finder*',
-      },
-    },
     mochaTest: {
       unit: {
         src: ['test/unit/**/*test.js'],
@@ -35,5 +30,5 @@ module.exports = function exports(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('test', ['eslint', 'mochaTest:unit']);
-  grunt.registerTask('e2e', ['env:e2e', 'mochaTest:e2e']);
+  grunt.registerTask('e2e', ['mochaTest:e2e']);
 };
