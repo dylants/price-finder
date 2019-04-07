@@ -121,7 +121,7 @@ $ DEBUG=price-finder* node app.js
 The current supported sites are listed below.
 
 - Amazon
-- Best Buy (\*)
+- Best Buy
   - API support is available but requires an API key.  To enable, set the
    `BESTBUY_KEY` environment variable to the value of the API key. For more
    information on how to obtain an API key, refer to the

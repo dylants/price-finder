@@ -64,14 +64,13 @@ describe('The Crutchfield Site', () => {
 
         $ = cheerio.load(
           '<div id="breadCrumbNav">'
-          + '<div class="crumb">Home  /  </div>'
-          + '<div class="crumb">TVs & Video  /  </div>'
-          + '<div class="crumb">Category  /  </div>'
+          + '<div class="breadcrumb-item">Home  /  </div>'
+          + '<div class="breadcrumb-item">TVs & video  /  </div>'
+          + '<div class="breadcrumb-item">Category  /  </div>'
           + '</div>'
-          + '<h1>'
-          + `<span itemprop="name">${name}</span>`
+          + `<h1 class="prod-title">${name}</span>`
           + '</h1>'
-          + `<meta itemprop="price" content="${price}">`,
+          + `<meta data-cf-price="${price}">`,
         );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
@@ -94,8 +93,8 @@ describe('The Crutchfield Site', () => {
       it('should return OTHER when the category is not setup', () => {
         $ = cheerio.load(
           '<div id="breadCrumbNav">'
-          + '<div class="crumb">Home  /  </div>'
-          + '<div class="crumb">Category  /  </div>'
+          + '<div class="breadcrumb-item">Home  /  </div>'
+          + '<div class="breadcrumb-item">Category  /  </div>'
           + '</div>',
         );
         const categoryFound = crutchfield.findCategoryOnPage($);

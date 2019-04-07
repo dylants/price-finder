@@ -21,10 +21,10 @@ describe('price-finder for Best Buy URIs', () => {
 
     // Music
     describe('testing a Music item', () => {
-      // Blues Brothers: Briefcase Full of Blues
-      const uri = 'https://www.bestbuy.com/site/briefcase-full-of-blues-cd/17112312.p?id=1889657&skuId=17112312';
+      // Queen: Greatest Hits
+      const uri = 'https://www.bestbuy.com/site/greatest-hits-2-lp-lp-vinyl/5707458.p?skuId=5707458';
 
-      xit('should respond with a price for findItemPrice()', (done) => {
+      it('should respond with a price for findItemPrice()', (done) => {
         priceFinder.findItemPrice(uri, (err, price) => {
           should(err).be.null();
           verifyPrice(price);
@@ -32,10 +32,10 @@ describe('price-finder for Best Buy URIs', () => {
         });
       });
 
-      xit('should respond with a price, and the right category and name for findItemDetails()', (done) => {
+      it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
-          verifyItemDetails(itemDetails, 'Briefcase Full of Blues [CD]', 'Music');
+          verifyItemDetails(itemDetails, 'Greatest Hits [2 LP] [LP] - VINYL', 'Music');
           waitForDone(done);
         });
       });
@@ -58,7 +58,7 @@ describe('price-finder for Best Buy URIs', () => {
       // Legend of Zelda
       const uri = 'https://www.bestbuy.com/site/the-legend-of-zelda-breath-of-the-wild-nintendo-switch/5721500.p?skuId=5721500';
 
-      xit('should respond with a price, and the right category and name for findItemDetails()', (done) => {
+      it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
           verifyItemDetails(itemDetails, 'The Legend of Zelda: Breath of the Wild - Nintendo Switch', 'Video Games');
