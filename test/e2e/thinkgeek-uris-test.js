@@ -7,7 +7,7 @@ const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 
 describe('price-finder for Thinkgeek Store URIs', () => {
   describe('testing an item item', () => {
-    const uri = 'https://www.thinkgeek.com/product/kgii/';
+    const uri = 'https://www.thinkgeek.com/product/kskl/';
 
     it('should respond with a price for findItemPrice()', (done) => {
       priceFinder.findItemPrice(uri, (err, price) => {
@@ -20,7 +20,7 @@ describe('price-finder for Thinkgeek Store URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Legend of Zelda Hylian Shield Backpack', 'Other');
+        verifyItemDetails(itemDetails, 'Nintendo Super Mario Shower Curtain', 'Other');
         done();
       });
     });
