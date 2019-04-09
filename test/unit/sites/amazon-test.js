@@ -78,7 +78,14 @@ describe('The Amazon Site', () => {
         should(priceFound).equal(-1);
       });
 
-      it('should return the category when displayed on the page', () => {
+      it('should return the category when displayed on the page, in data-category', () => {
+        const categoryFound = amazon.findCategoryOnPage($);
+        should(categoryFound).equal(category);
+      });
+
+      it('should return the category when displayed on the page, in breadcrums', () => {
+        $ = cheerio.load(`<div id="wayfinding-breadcrumbs_container">
+          <ul><li><span><a>Books</a></span></li></ul></div>`);
         const categoryFound = amazon.findCategoryOnPage($);
         should(categoryFound).equal(category);
       });
