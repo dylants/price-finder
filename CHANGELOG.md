@@ -1,3 +1,12 @@
+# v5.0.2
+
+Bug Fixes:
+
+- [#125](https://github.com/dylants/price-finder/pull/125) Amazon fixes: add selectors for price and category
+- [#126](https://github.com/dylants/price-finder/pull/126) Update dependencies
+- [#127](https://github.com/dylants/price-finder/pull/127) Enable end to end tests in CI. Fix Crutchfield and Best Buy (re-enabling support).
+
+
 # v5.0.1
 
 Bug Fixes:
