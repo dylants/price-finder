@@ -140,7 +140,6 @@ The current supported sites are listed below.
 - Sony Playstation
 - Steam
 - Target
-- Thinkgeek
 - Walmart
 
 (\*Support unknown at this time)
@@ -155,7 +154,7 @@ cloning the repository make sure node is installed. Once cloned, install
 dependencies by issuing:
 
 ```
-$ npm install
+$ yarn
 ```
 
 #### Tests ####
@@ -169,14 +168,14 @@ tests for any new features).
 To run the unit tests execute:
 
 ```
-$ npm test
+$ yarn test
 ```
 
 These tests can be run in watch mode, listening for any file changes and
 re-running when that occurs. To do so execute:
 
 ```
-$ npm run test:watch
+$ yarn test:watch
 ```
 
 ##### End To End Tests #####
@@ -191,14 +190,14 @@ sites have been known to throw up CAPTCHA's after repeated, automated page reque
 To execute the end to end tests run:
 
 ```
-$ npm run test-e2e
+$ yarn test-e2e
 ```
 
 If you would like to run a single end to end test (rather than all of them),
 use the `test-e2e-single` script. For example:
 
 ```
-$ npm run test-e2e-single test/e2e/amazon-uris-test.js
+$ yarn test-e2e-single test/e2e/amazon-uris-test.js
 ```
 
 #### Adding Sites ####

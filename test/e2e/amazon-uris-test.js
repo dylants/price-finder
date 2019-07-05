@@ -14,7 +14,7 @@ const { priceFinder, verifyPrice, verifyItemDetails } = testHelper;
 describe('price-finder for Amazon URIs', () => {
   // Digital Music
   describe('testing a Digital Music item', () => {
-    // Coldplay: A Rush Of Blood To The Head
+    // Coldplay: A Rush of Blood to the Head
     const uri = 'https://www.amazon.com/gp/product/B00KHEHEGM';
 
     it('should respond with a price for findItemPrice()', (done) => {
@@ -28,7 +28,7 @@ describe('price-finder for Amazon URIs', () => {
     it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
       priceFinder.findItemDetails(uri, (err, itemDetails) => {
         should(err).be.null();
-        verifyItemDetails(itemDetails, 'Coldplay: A Rush Of Blood To The Head', 'Digital Music');
+        verifyItemDetails(itemDetails, 'Coldplay: A Rush of Blood to the Head', 'Digital Music');
         done();
       });
     });
@@ -104,7 +104,7 @@ describe('price-finder for Amazon URIs', () => {
         should(err).be.null();
 
         // Amazon reports 'apparel' for luggage, so we default to 'other'
-        verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel Bag Luggage - Carry-On - (Blue Yonder)', 'Other');
+        verifyItemDetails(itemDetails, 'eBags TLS Mother Lode Mini 21" Wheeled Duffel Bag Luggage - Carry-On', 'Other');
         done();
       });
     });

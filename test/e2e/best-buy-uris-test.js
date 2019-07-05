@@ -35,7 +35,7 @@ describe('price-finder for Best Buy URIs', () => {
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
-          verifyItemDetails(itemDetails, 'Greatest Hits [2 LP] [LP] - VINYL', 'Music');
+          verifyItemDetails(itemDetails, 'Greatest Hits [2 LP] [LP] - VINYL', 'Other');
           waitForDone(done);
         });
       });
@@ -61,7 +61,7 @@ describe('price-finder for Best Buy URIs', () => {
       it('should respond with a price, and the right category and name for findItemDetails()', (done) => {
         priceFinder.findItemDetails(uri, (err, itemDetails) => {
           should(err).be.null();
-          verifyItemDetails(itemDetails, 'The Legend of Zelda: Breath of the Wild - Nintendo Switch', 'Video Games');
+          verifyItemDetails(itemDetails, 'The Legend of Zelda: Breath of the Wild - Nintendo Switch', 'Other');
           done();
         });
       });
