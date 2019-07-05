@@ -126,8 +126,8 @@ describe('The Site Utils', () => {
       should(siteUtils.processPrice('GBP 3.99')).equal(3.99);
     });
 
-    it('should process R (INR) price correctly', () => {
-      should(siteUtils.processPrice('R 9,444')).equal(9444);
+    it('should process ₹ (INR) price correctly', () => {
+      should(siteUtils.processPrice('₹ 9,444')).equal(9444);
     });
 
     it('should process INR price correctly', () => {
