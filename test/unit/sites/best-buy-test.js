@@ -70,21 +70,15 @@ describe('The Best Buy Site', () => {
       let $;
       let bad$;
       let price;
-      let category;
       let name;
 
       beforeEach(() => {
         price = 2.99;
-        category = siteUtils.categories.MUSIC;
         name = 'Awesome Product';
 
         $ = cheerio.load(`
-          <div id="price"><div class="price-block" data-customer-price="${price}"></div></div>
+          <div class="pricing-price"><div class="priceView-customer-price">${price}</div></div>
           <div class="sku-title" itemprop="name">${name}</div>
-          <script>
-            track.uberCatName = "Movies & Music";foo = "bar";
-            track.parentCatName = "Music (CDs & Vinyl): R&B & Soul";bar = "baz";
-          </script>
         `);
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
@@ -101,16 +95,16 @@ describe('The Best Buy Site', () => {
 
       it('should always return the category', () => {
         const categoryFound = site.findCategoryOnPage($);
-        should(categoryFound).equal(category);
+        should(categoryFound).equal(siteUtils.categories.OTHER);
       });
 
       it('should return the name when displayed on the page', () => {
-        const nameFound = site.findNameOnPage($, category);
+        const nameFound = site.findNameOnPage($);
         should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
-        const nameFound = site.findNameOnPage(bad$, category);
+        const nameFound = site.findNameOnPage(bad$);
         should(nameFound).be.null();
       });
     });
@@ -198,12 +192,12 @@ describe('The Best Buy Site', () => {
       });
 
       it('should return the name when displayed on the page', () => {
-        const nameFound = bestBuy.findNameOnPage($, category);
+        const nameFound = bestBuy.findNameOnPage($);
         should(nameFound).equal(name);
       });
 
       it('should return null when the name is not displayed on the page', () => {
-        const nameFound = bestBuy.findNameOnPage(bad$, category);
+        const nameFound = bestBuy.findNameOnPage(bad$);
         should(nameFound).be.null();
       });
     });

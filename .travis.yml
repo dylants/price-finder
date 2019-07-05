@@ -7,5 +7,5 @@ language: node_js
 node_js:
   - "8"
   - "10"
-script: "CI=true npm run $TEST_SUITE"
+script: "CI=true yarn $TEST_SUITE"
 sudo: false
