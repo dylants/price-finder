@@ -1,5 +1,12 @@
 # price-finder #
 
+---
+
+# **!! THIS PROJECT IS DEPRECATED !!** #
+Please reach out if you'd like to support building a new version, thank you!
+
+---
+
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
