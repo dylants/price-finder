@@ -1,15 +1,7 @@
 # price-finder #
 
----
-
-# **!! THIS PROJECT IS DEPRECATED !!** #
-Please reach out if you'd like to support building a new version, thank you!
-
----
-
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
 
 Finds the price of retail items online, either by scraping the web page or
 through product APIs.
@@ -294,8 +286,6 @@ class Site {
 [npm-url]: https://npmjs.org/package/price-finder
 [downloads-image]: https://img.shields.io/npm/dm/price-finder.svg
 [downloads-url]: https://npmjs.org/package/price-finder
-[travis-image]: https://img.shields.io/travis/dylants/price-finder/master.svg
-[travis-url]: https://travis-ci.org/dylants/price-finder
 [license-image]: https://img.shields.io/github/license/dylants/price-finder.svg
 [license-url]: LICENSE
 [david-image]: https://img.shields.io/david/dylants/price-finder.svg

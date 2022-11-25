@@ -1,31 +1,24 @@
-'use strict';
-
-const cheerio = require('cheerio');
-const should = require('should');
-const siteUtils = require('../../lib/site-utils');
+import * as cheerio from 'cheerio';
+import * as siteUtils from '../../lib/site-utils';
 
 describe('The Site Utils', () => {
-  it('should exist', () => {
-    should.exist(siteUtils);
-  });
-
   it('should have categories', () => {
-    should.exist(siteUtils.categories);
+    expect(siteUtils.categories).toBeTruthy();
   });
 
   it('should be at least 1 category in categories', () => {
     const keys = Object.keys(siteUtils.categories);
-    should(keys.length).be.above(0);
+    expect(keys.length).toBeGreaterThan(0);
   });
 
   it('should have some known categories', () => {
-    should(siteUtils.categories.MUSIC).equal('Music');
-    should(siteUtils.categories.VIDEO_GAMES).equal('Video Games');
-    should(siteUtils.categories.BOOKS).equal('Books');
+    expect(siteUtils.categories.MUSIC).toEqual('Music');
+    expect(siteUtils.categories.VIDEO_GAMES).toEqual('Video Games');
+    expect(siteUtils.categories.BOOKS).toEqual('Books');
   });
 
   describe('findContentOnPage() with a populated page', () => {
-    let $;
+    let $: cheerio.CheerioAPI;
 
     beforeEach(() => {
       $ = cheerio.load(`
@@ -43,103 +36,95 @@ describe('The Site Utils', () => {
     });
 
     it('should return the price given the correct selector', () => {
-      const selectors = [
-        '#price-tag',
-      ];
+      const selectors = ['#price-tag'];
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      should(price).equal('$9.99');
+      expect(price).toEqual('$9.99');
     });
 
     it('should return the price given the multiple matches for selector', () => {
-      const selectors = [
-        '.multi-price',
-      ];
+      const selectors = ['.multi-price'];
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      should(price).equal('$1.99');
+      expect(price).toEqual('$1.99');
     });
 
     it('should return the price given a first() element', () => {
       const jQuery = $('.outer-multi').first();
 
-      const selectors = [
-        '.inner',
-      ];
+      const selectors = ['.inner'];
 
       const price = siteUtils.findContentOnPage(jQuery, selectors);
 
-      should(price).equal('$12.34');
+      expect(price).toEqual('$12.34');
     });
 
     it('should return null given incorrect selector', () => {
-      const selectors = [
-        '#name-tag',
-      ];
+      const selectors = ['#name-tag'];
 
       const price = siteUtils.findContentOnPage($, selectors);
 
-      should(price).be.null();
+      expect(price).toBeNull();
     });
   });
 
   describe('processPrice()', () => {
     it('should process $ price correctly', () => {
-      should(siteUtils.processPrice('$3.99')).equal(3.99);
+      expect(siteUtils.processPrice('$3.99')).toEqual(3.99);
     });
 
     it('should process USD price correctly', () => {
-      should(siteUtils.processPrice('USD 3.99')).equal(3.99);
+      expect(siteUtils.processPrice('USD 3.99')).toEqual(3.99);
     });
 
     it('should process EUR price correctly', () => {
-      should(siteUtils.processPrice('EUR 79,40')).equal(79.40);
+      expect(siteUtils.processPrice('EUR 79,40')).toEqual(79.4);
     });
 
     it('should process eur price correctly', () => {
-      should(siteUtils.processPrice('eur 79,40')).equal(79.40);
+      expect(siteUtils.processPrice('eur 79,40')).toEqual(79.4);
     });
 
     it('should process Euros price correctly', () => {
-      should(siteUtils.processPrice('Euros 79,40')).equal(79.40);
+      expect(siteUtils.processPrice('Euros 79,40')).toEqual(79.4);
     });
 
     it('should process € price correctly', () => {
-      should(siteUtils.processPrice('€ 79,40')).equal(79.40);
+      expect(siteUtils.processPrice('€ 79,40')).toEqual(79.4);
     });
 
     it('should process YEN_TEXT price correctly', () => {
-      should(siteUtils.processPrice('7,940 円')).equal(7940);
+      expect(siteUtils.processPrice('7,940 円')).toEqual(7940);
     });
 
     it('should process YEN_SYMBOL price correctly', () => {
-      should(siteUtils.processPrice('￥ 7,940')).equal(7940);
+      expect(siteUtils.processPrice('￥ 7,940')).toEqual(7940);
     });
 
     it('should process £ price correctly', () => {
-      should(siteUtils.processPrice('£3.99')).equal(3.99);
+      expect(siteUtils.processPrice('£3.99')).toEqual(3.99);
     });
 
     it('should process GBP price correctly', () => {
-      should(siteUtils.processPrice('GBP 3.99')).equal(3.99);
+      expect(siteUtils.processPrice('GBP 3.99')).toEqual(3.99);
     });
 
     it('should process R (INR) price correctly', () => {
-      should(siteUtils.processPrice('R 9,444')).equal(9444);
+      expect(siteUtils.processPrice('R 9,444')).toEqual(9444);
     });
 
     it('should process INR price correctly', () => {
-      should(siteUtils.processPrice('INR 9,444')).equal(9444);
+      expect(siteUtils.processPrice('INR 9,444')).toEqual(9444);
     });
 
     it('should process a price without a currency correctly', () => {
-      should(siteUtils.processPrice('35')).equal(35);
+      expect(siteUtils.processPrice('35')).toEqual(35);
     });
 
     it('should process a non-price correctly', () => {
-      should(siteUtils.processPrice('no')).equal(-1);
+      expect(siteUtils.processPrice('no')).toEqual(-1);
     });
   });
 });

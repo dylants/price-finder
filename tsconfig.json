@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "types",
+    "outDir": "build",
+    "strict": true,
+  },
+  "include": ["lib"],
+  "exclude": ["node_modules"]
+}
