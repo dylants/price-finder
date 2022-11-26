@@ -31,9 +31,9 @@
   ],
   "files": [
     "LICENSE",
-    "lib"
+    "src"
   ],
-  "main": "./lib/price-finder",
+  "main": "./src/price-finder",
   "scripts": {
     "build:ts": "tsc -p tsconfig-build.json",
     "build": "yarn clean:build && yarn build:ts",

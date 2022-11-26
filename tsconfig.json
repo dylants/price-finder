@@ -6,6 +6,6 @@
     "outDir": "build",
     "strict": true,
   },
-  "include": ["lib"],
+  "include": ["src", "test"],
   "exclude": ["node_modules"]
 }
