@@ -1,6 +1,7 @@
 import * as siteUtils from '../site-utils';
 import logger from '../logger';
 import Site from '../Site';
+import { CheerioAPI } from 'cheerio';
 
 export default class AmazonSite implements Site {
   constructor(protected uri: string) {
@@ -10,17 +11,11 @@ export default class AmazonSite implements Site {
     }
   }
 
-  getURIForPageData() {
+  getURIForPageData(): string {
     return this.uri;
   }
 
-  isJSON() {
-    return false;
-  }
-
-  // TODO any type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  findPriceOnPage($: any) {
+  findPriceOnPage($: CheerioAPI): number {
     // the various ways we can find the price on an amazon page
     const selectors = [
       // used in amazon fashion, home audio and video, and when sale price not in buy box
@@ -72,7 +67,7 @@ export default class AmazonSite implements Site {
     return price;
   }
 
-  static isSite(uri: string) {
+  static isSite(uri: string): boolean {
     // (attempt) to support more countries than just amazon.com
     // we'll see how many we can actually support...
     if (uri.indexOf('www.amazon.') > -1) {

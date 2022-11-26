@@ -1,3 +1,5 @@
+import { CheerioAPI } from 'cheerio';
+
 export default abstract class Site {
   /**
    * Returns the URI used to find the page data
@@ -8,22 +10,12 @@ export default abstract class Site {
   abstract getURIForPageData(): string;
 
   /**
-   * Returns true if the page data is JSON
-   *
-   * @return {boolean} true if the page data is JSON, false otherwise
-   */
-  abstract isJSON(): boolean;
-
-  /**
    * Returns the price found on the page
    *
-   * @param  {any} $/pageData jQuery object used to search the page, or
-   *                             JSON page data if JSON based site
-   * @return {number}            The price found on the page
+   * @param  {CheerioAPI} $ jQuery object used to search the page
+   * @return {number}       The price found on the page
    */
-  // TODO any type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  abstract findPriceOnPage($: any): number;
+  abstract findPriceOnPage($: CheerioAPI): number;
 
   /**
    * Returns true if this site supports the incoming URI

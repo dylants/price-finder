@@ -17,9 +17,7 @@ describe('The Amazon Site', () => {
 
   it('should throw an exception trying to create a new AmazonSite with an incorrect uri', () => {
     expect(() => {
-      /* eslint-disable no-new */
       new AmazonSite(INVALID_URI);
-      /* eslint-enable no-new */
     }).toThrow(/invalid uri for Amazon/);
   });
 
@@ -32,10 +30,6 @@ describe('The Amazon Site', () => {
 
     it('should return the same URI for getURIForPageData()', () => {
       expect(amazon.getURIForPageData()).toEqual(VALID_URI);
-    });
-
-    it('should return false for isJSON()', () => {
-      expect(amazon.isJSON()).toEqual(false);
     });
 
     describe('with a populated page', () => {

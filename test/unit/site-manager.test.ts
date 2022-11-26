@@ -28,7 +28,7 @@ describe('The Site Manager', () => {
     });
 
     it('should have site operations available', () => {
-      expect(site.isJSON).toBeTruthy();
+      expect(typeof site.findPriceOnPage).toEqual('function');
     });
   });
 });
