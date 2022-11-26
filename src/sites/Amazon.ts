@@ -16,43 +16,8 @@ export default class AmazonSite implements Site {
   }
 
   findPriceOnPage($: CheerioAPI): number {
-    // the various ways we can find the price on an amazon page
-    const selectors = [
-      // used in amazon fashion, home audio and video, and when sale price not in buy box
-      '#priceblock_saleprice',
-
-      // these specific selectors were added to support new pages, that did NOT contain
-      // a decimal point in the price... so we're just grabbing the dollar amount (not cents)
-      // https://github.com/dylants/price-finder/issues/97
-      // used in (at least) video games
-      '#price #newPrice .buyingPrice',
-      '#price #newPitchPrice .price-large',
-
-      // used in (at least) mobile apps
-      '#actualPriceValue',
-
-      // used in electronics, subscription items (without subscription)
-      '#priceblock_ourprice',
-
-      // used in CDs, DVDs, tools and home improvement, household items
-      '#buybox .a-color-price',
-
-      // used in (at least) digital music
-      '#buybox_feature_div .a-button-primary .a-text-bold',
-
-      // used in (at least) books
-      '.a-color-price.header-price',
-
-      // used when amazon is NOT showing their price, to instead look at other seller's price
-      '#moreBuyingChoices_feature_div .a-color-price',
-
-      // used in (at least) video games, when new price is NOT available
-      '#price #usedPrice .buyingPrice',
-      '#price #usedPitchPrice .price-large',
-    ];
-
     // find the price on the page
-    const priceString = siteUtils.findContentOnPage($, selectors);
+    const priceString = $('#twister-plus-price-data-price').val();
 
     // were we successful?
     if (!priceString) {
@@ -62,7 +27,7 @@ export default class AmazonSite implements Site {
     }
 
     // process the price string
-    const price = siteUtils.processPrice(priceString);
+    const price = siteUtils.processPrice(<string>priceString);
 
     return price;
   }

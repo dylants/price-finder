@@ -1,7 +1,7 @@
 {
   "name": "price-finder",
   "description": "Finds the prices of retail items online",
-  "version": "next",
+  "version": "6.0.0",
   "engines": {
     "node": "^18"
   },
@@ -33,7 +33,7 @@
     "LICENSE",
     "src"
   ],
-  "main": "./src/price-finder",
+  "main": "./build/PriceFinder",
   "scripts": {
     "build:ts": "tsc -p tsconfig-build.json",
     "build": "yarn clean:build && yarn build:ts",

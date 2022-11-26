@@ -39,7 +39,10 @@ describe('PriceFinder', () => {
         // set request to return a specific body
         nock('http://www.amazon.com')
           .get('/product/cat-in-the-hat')
-          .reply(200, `<div id='actualPriceValue'>$${testPrice}</div>`);
+          .reply(
+            200,
+            `<input id='twister-plus-price-data-price' value='${testPrice}'>`
+          );
       });
 
       it('should return the item price', (done) => {

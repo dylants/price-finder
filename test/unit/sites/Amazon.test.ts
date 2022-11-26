@@ -40,7 +40,9 @@ describe('The Amazon Site', () => {
       beforeEach(() => {
         price = 9.99;
 
-        $ = cheerio.load(`<div id='actualPriceValue'>$${price}</div>`);
+        $ = cheerio.load(
+          `<input id='twister-plus-price-data-price' value='${price}'>`
+        );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });
 
