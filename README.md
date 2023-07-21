@@ -13,7 +13,7 @@ const priceFinder = new PriceFinder();
 
 // Led Zeppelin II vinyl (from Amazon)
 const uri = 'https://www.amazon.com/Led-Zeppelin-II/dp/B00IXHBUG0';
-const price = priceFinder.findItemPrice(uri);
+const price = await priceFinder.findItemPrice(uri);
 console.log(price); // 22.97
 ```
 
@@ -21,7 +21,7 @@ console.log(price); // 22.97
 
 - [Configuration Options](#configuration-options)
 - [API](#api)
-  - [findItemPrice(uri)](#finditempriceuri-callback)
+  - [findItemPrice(uri)](#async-finditempriceuri-string-number)
 - [Debugging Price Finder](#debugging-price-finder)
 - [Supported Sites](#supported-sites)
 - [Contributing](#contributing)
