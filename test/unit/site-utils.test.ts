@@ -1,5 +1,5 @@
-import * as cheerio from 'cheerio';
 import * as siteUtils from '../../src/site-utils';
+import * as cheerio from 'cheerio';
 
 describe('The Site Utils', () => {
   it('should have categories', () => {

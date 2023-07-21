@@ -1,5 +1,5 @@
-import * as cheerio from 'cheerio';
 import AmazonSite from '../../../src/sites/Amazon';
+import * as cheerio from 'cheerio';
 
 const VALID_URI = 'http://www.amazon.com/123/product';
 const INVALID_URI = 'http://www.bad.com/123/product';
@@ -41,7 +41,7 @@ describe('The Amazon Site', () => {
         price = 9.99;
 
         $ = cheerio.load(
-          `<input id='twister-plus-price-data-price' value='${price}'>`
+          `<input id='twister-plus-price-data-price' value='${price}'>`,
         );
         bad$ = cheerio.load('<h1>Nothin here</h1>');
       });

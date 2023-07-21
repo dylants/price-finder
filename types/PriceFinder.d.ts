@@ -13,11 +13,10 @@ export default class PriceFinder {
      * Scrapes a website specified by the uri and finds the item price.
      *
      * @param  {string}   uri      The uri of the website to scan
-     * @param  {Function} callback Callback called when complete, with first argument
-     *                             a possible error object, and second argument the
-     *                             item price (number).
+     * @return {number | undefined} the item price if found
+     * @throws Error if the scrape fails
      */
-    findItemPrice(uri: string, callback: (err: unknown | string | null, price: number | undefined) => void): void;
+    findItemPrice(uri: string): Promise<number | undefined>;
     private pageScrape;
 }
 export {};

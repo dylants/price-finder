@@ -1,6 +1,6 @@
 import Site from './Site';
 declare class SiteManager {
-    sites: Site[];
+    sites: typeof Site[];
     constructor();
     /**
      * Loads a Site that can handle the given URI. If no matches are found,

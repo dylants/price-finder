@@ -36,53 +36,47 @@ export default class PriceFinder {
    * Scrapes a website specified by the uri and finds the item price.
    *
    * @param  {string}   uri      The uri of the website to scan
-   * @param  {Function} callback Callback called when complete, with first argument
-   *                             a possible error object, and second argument the
-   *                             item price (number).
+   * @return {number | undefined} the item price if found
+   * @throws Error if the scrape fails
    */
-  findItemPrice(
-    uri: string,
-    callback: (err: unknown | string | null, price: number | undefined) => void,
-  ) {
+  async findItemPrice(uri: string): Promise<number | undefined> {
     logger.debug('findItemPrice with uri: %s', uri);
 
     let site: Site;
     try {
       site = siteManager.loadSite(uri);
-    } catch (error: unknown) {
+    } catch (error) {
       logger.error('error loading site: ', error);
-      if (error instanceof Error) {
-        return callback((<Error>error).message, undefined);
-      } else {
-        return callback(error, undefined);
-      }
+      throw error;
     }
 
     logger.debug('scraping the page...');
 
     // page scrape the site to load the page data
-    return this.pageScrape(site, (err, pageData) => {
-      if (err) {
-        logger.error('error retrieving pageData: ', err);
-        return callback(err, undefined);
-      }
+    return new Promise((resolve, reject) =>
+      this.pageScrape(site, (err, pageData) => {
+        if (err) {
+          logger.error('error retrieving pageData: ', err);
+          return reject(err);
+        }
 
-      logger.debug('pageData found, loading price from site...');
+        logger.debug('pageData found, loading price from site...');
 
-      // find the price on the website
-      const price = site.findPriceOnPage(pageData);
+        // find the price on the website
+        const price = site.findPriceOnPage(pageData);
 
-      // error check
-      if (price === -1) {
-        logger.error('unable to find price');
-        return callback(`unable to find price for uri: ${uri}`, undefined);
-      }
+        // error check
+        if (price === -1) {
+          logger.error('unable to find price');
+          return reject(Error(`unable to find price for uri: ${uri}`));
+        }
 
-      logger.debug('price found, returning price: %s', price);
+        logger.debug('price found, returning price: %s', price);
 
-      // call the callback with the item price (null error)
-      return callback(null, price);
-    });
+        // return the item price
+        return resolve(price);
+      }),
+    );
   }
 
   // ==================================================

@@ -1,5 +1,5 @@
-import nock from 'nock';
 import PriceFinder from '../../src/PriceFinder';
+import nock from 'nock';
 
 describe('PriceFinder', () => {
   let priceFinder: PriceFinder;
@@ -18,11 +18,10 @@ describe('PriceFinder', () => {
       priceFinder = new PriceFinder();
     });
 
-    it('should throw an exception in findItemPrice() when presented with an unsupported URI', (done) => {
-      priceFinder.findItemPrice('www.bad_uri.bad', (error) => {
-        expect(error).toBeDefined();
-        done();
-      });
+    it('should throw an exception in findItemPrice() when presented with an unsupported URI', async () => {
+      expect(
+        async () => await priceFinder.findItemPrice('www.bad_uri.bad'),
+      ).rejects.toThrow();
     });
 
     it('should have the default options set', () => {
@@ -41,19 +40,15 @@ describe('PriceFinder', () => {
           .get('/product/cat-in-the-hat')
           .reply(
             200,
-            `<input id='twister-plus-price-data-price' value='${testPrice}'>`
+            `<input id='twister-plus-price-data-price' value='${testPrice}'>`,
           );
       });
 
-      it('should return the item price', (done) => {
-        priceFinder.findItemPrice(
+      it('should return the item price', async () => {
+        const price = await priceFinder.findItemPrice(
           'http://www.amazon.com/product/cat-in-the-hat',
-          (error, price) => {
-            expect(error).toBeNull();
-            expect(price).toEqual(testPrice);
-            done();
-          }
         );
+        expect(price).toEqual(testPrice);
       });
     });
 
@@ -62,14 +57,13 @@ describe('PriceFinder', () => {
         nock('http://www.amazon.com').get('/product/cat-in-the-hat').reply(404);
       });
 
-      it('should return an error for findItemPrice()', (done) => {
-        priceFinder.findItemPrice(
-          'http://www.amazon.com/product/cat-in-the-hat',
-          (error) => {
-            expect(error).toBeDefined();
-            done();
-          }
-        );
+      it('should return an error for findItemPrice()', async () => {
+        expect(
+          async () =>
+            await priceFinder.findItemPrice(
+              'http://www.amazon.com/product/cat-in-the-hat',
+            ),
+        ).rejects.toThrow();
       });
     });
 
@@ -80,14 +74,13 @@ describe('PriceFinder', () => {
           .reply(200, '<h1>Nothin here</h1>');
       });
 
-      it('should return an error for findItemPrice()', (done) => {
-        priceFinder.findItemPrice(
-          'http://www.amazon.com/product/cat-in-the-hat',
-          (error) => {
-            expect(error).toBeDefined();
-            done();
-          }
-        );
+      it('should return an error for findItemPrice()', async () => {
+        expect(
+          async () =>
+            await priceFinder.findItemPrice(
+              'http://www.amazon.com/product/cat-in-the-hat',
+            ),
+        ).rejects.toThrowError();
       });
     });
   });
