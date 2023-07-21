@@ -38,8 +38,9 @@
     "clean:build": "rimraf build coverage",
     "clean:dependencies": "rimraf node_modules",
     "clean": "yarn clean:build && yarn clean:dependencies",
-    "eslint": "eslint .",
-    "lint": "yarn eslint && yarn check-types",
+    "lint": "yarn rome:check && yarn rome:format && yarn check-types",
+    "rome:check": "yarn rome check src/ test/",
+    "rome:format": "yarn rome format src/ test/",
     "test": "jest test/unit",
     "test:e2e": "jest test/e2e",
     "test:watch": "yarn test --watch"
