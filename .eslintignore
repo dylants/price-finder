@@ -1,6 +1,0 @@
-node_modules
-build
-types
-
-# temporarily ignore .js files as we port
-*.js

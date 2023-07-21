@@ -2,8 +2,12 @@ import fs from 'fs';
 import logger from './logger';
 import Site from './Site';
 
+interface SiteClass {
+  new (uri: string): Site;
+}
+
 function loadAllSites() {
-  const sites: Site[] = [];
+  const sites: typeof Site[] = [];
 
   // reads all the files from the sites directory
   fs.readdirSync(`${__dirname}/sites`).forEach((site) => {
@@ -17,7 +21,7 @@ function loadAllSites() {
 }
 
 class SiteManager {
-  sites: Site[];
+  sites: typeof Site[];
   constructor() {
     logger.debug('initializing SiteManager');
     // first, load all the sites we have available
@@ -36,15 +40,14 @@ class SiteManager {
 
     // loop over all our sites
     for (let i = 0; i < this.sites.length; i++) {
-      // TODO any type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const site: any = this.sites[i];
+      const siteClass = this.sites[i];
       // if one matches...
-      if (site.isSite(uri)) {
-        logger.debug('match found, using site: %s', site.name);
+      if (siteClass.isSite(uri)) {
+        logger.debug('match found, using site: %s', siteClass.name);
 
         // return a new instance of it passing in the URI
-        return new site(uri);
+        const Class: SiteClass = siteClass as unknown as SiteClass;
+        return new Class(uri);
       }
     }
 

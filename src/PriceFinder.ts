@@ -42,7 +42,7 @@ export default class PriceFinder {
    */
   findItemPrice(
     uri: string,
-    callback: (err: unknown | string | null, price: number | undefined) => void
+    callback: (err: unknown | string | null, price: number | undefined) => void,
   ) {
     logger.debug('findItemPrice with uri: %s', uri);
 
@@ -92,8 +92,8 @@ export default class PriceFinder {
     site: Site,
     callback: (
       err: Error | null | undefined,
-      pageData: cheerio.CheerioAPI
-    ) => void
+      pageData: cheerio.CheerioAPI,
+    ) => void,
   ) {
     let pageData: cheerio.CheerioAPI;
 
@@ -110,7 +110,7 @@ export default class PriceFinder {
           .set('Accept-Language', 'en-US')
           .set('Accept', 'text/html')
           // TODO any type
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // rome-ignore lint/suspicious/noExplicitAny: use any for now
           .end((err: any, response: request.Response) => {
             if (err) {
               return whilstCallback(err);
@@ -130,18 +130,18 @@ export default class PriceFinder {
                 // if we get a statusCode that we should retry, try again
                 logger.debug(
                   'response status part of retryStatusCodes, status: %s, retrying...',
-                  response.statusCode
+                  response.statusCode,
                 );
 
                 logger.debug(`sleeping for: ${this.config.retrySleepTime}ms`);
                 return setTimeout(
                   () => whilstCallback(),
-                  this.config.retrySleepTime
+                  this.config.retrySleepTime,
                 );
               } else {
                 // else it's a bad response status, all stop
                 return whilstCallback(
-                  new Error(`response status: ${response.statusCode}`)
+                  new Error(`response status: ${response.statusCode}`),
                 );
               }
             } else {
@@ -151,7 +151,7 @@ export default class PriceFinder {
       },
 
       // once we have the pageData, or error, return
-      (err) => callback(err, pageData)
+      (err) => callback(err, pageData),
     );
   }
 }

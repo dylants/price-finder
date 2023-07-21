@@ -34,9 +34,9 @@ export const categories = Object.freeze({
  */
 export function findContentOnPage(
   // TODO can we do better here than any?
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // rome-ignore lint/suspicious/noExplicitAny: use any for now
   $: any,
-  selectors: Array<string>
+  selectors: Array<string>,
 ): string | null {
   logger.debug('selectors: %j', selectors);
 
@@ -52,7 +52,10 @@ export function findContentOnPage(
       // if it's an array, return the first element
       if (content.length && content.length > 1) {
         logger.debug('content is an array, attempting to return first entry');
-        return jQuery(selectors[i]).first().text().trim();
+        return jQuery(selectors[i])
+          .first()
+          .text()
+          .trim();
       } else if (_.isFunction(content.text) && content.text().trim()) {
         // if we have text, return it
         return content.text().trim();
@@ -119,7 +122,7 @@ export function processPrice(priceStringInput: string): number {
     logger.debug('no currency symbol was found, verifying this is a number');
     if (!isNumber(priceString)) {
       logger.debug(
-        'price string is NOT a number, unable to process, returning -1'
+        'price string is NOT a number, unable to process, returning -1',
       );
       price = -1;
     } else {

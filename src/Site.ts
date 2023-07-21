@@ -23,7 +23,6 @@ export default abstract class Site {
    * @param  {string}  uri The URI to test
    * @return {boolean}     true if this Site supports the URI, false otherwise
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static isSite(uri: string): boolean {
     /*
      * interfaces can not have static methods.
