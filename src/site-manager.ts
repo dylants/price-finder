@@ -1,6 +1,6 @@
-import fs from 'fs';
-import logger from './logger';
 import Site from './Site';
+import logger from './logger';
+import fs from 'fs';
 
 interface SiteClass {
   new (uri: string): Site;

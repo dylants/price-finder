@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import accounting from 'accounting';
 import logger from './logger';
+import accounting from 'accounting';
+import _ from 'lodash';
 
 const isNumber = (value: string) => !Number.isNaN(parseFloat(value));
 

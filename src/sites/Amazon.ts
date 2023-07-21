@@ -1,6 +1,6 @@
-import * as siteUtils from '../site-utils';
-import logger from '../logger';
 import Site from '../Site';
+import logger from '../logger';
+import * as siteUtils from '../site-utils';
 import { CheerioAPI } from 'cheerio';
 
 export default class AmazonSite implements Site {

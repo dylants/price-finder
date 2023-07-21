@@ -1,10 +1,10 @@
-import _ from 'lodash';
-import async, { AsyncBooleanResultCallback } from 'async';
-import request from 'superagent';
-import * as cheerio from 'cheerio';
-import siteManager from './site-manager';
-import logger from './logger';
 import Site from './Site';
+import logger from './logger';
+import siteManager from './site-manager';
+import async, { AsyncBooleanResultCallback } from 'async';
+import * as cheerio from 'cheerio';
+import _ from 'lodash';
+import request from 'superagent';
 
 interface Config {
   retrySleepTime: number;
