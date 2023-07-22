@@ -1,3 +1,14 @@
+# v6.0.0-alpha.0
+
+- [#137](https://github.com/dylants/price-finder/pull/137) Start of v6, which includes:
+  * Upgrade the project to use Typescript
+  * Switch to using Jest for tests, and remove Travis in place of Github Actions
+  * Change the main signature of PriceFinder to return a Promise, rather than use callbacks
+  * Reduce the scope of PriceFinder to solely return the item's price
+  * All the Sites needed updating, so remove the legacy and start anew, with only Amazon
+  * Remove Eslint and replace it with Rome
+- [#138](https://github.com/dylants/price-finder/pull/138) Fixes for npm publish
+
 # v5.0.2
 
 Bug Fixes:
