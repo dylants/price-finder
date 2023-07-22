@@ -1,6 +1,4 @@
 # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-name: CI
-
 on:
   push:
     branches: [master]
@@ -9,6 +7,7 @@ on:
 
 jobs:
   build:
+    name: CI
     runs-on: ubuntu-latest
 
     strategy:
