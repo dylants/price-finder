@@ -29,8 +29,8 @@
     "item",
     "amazon"
   ],
-  "files": ["LICENSE", "src"],
-  "main": "./build/PriceFinder",
+  "main": "./build/PriceFinder.js",
+  "types": "./types/PriceFinder.d.ts",
   "scripts": {
     "build:ts": "tsc -p tsconfig-build.json",
     "build": "yarn clean:build && yarn build:ts",
