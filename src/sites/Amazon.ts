@@ -3,10 +3,10 @@ import logger from '../logger';
 import * as siteUtils from '../site-utils';
 import { CheerioAPI } from 'cheerio';
 
-export default class AmazonSite implements Site {
+export default class Amazon implements Site {
   constructor(protected uri: string) {
     // error check to make sure this is a valid uri for Amazon
-    if (!AmazonSite.isSite(uri)) {
+    if (!Amazon.isSite(uri)) {
       throw new Error(`invalid uri for Amazon: ${uri}`);
     }
   }
@@ -43,4 +43,4 @@ export default class AmazonSite implements Site {
   }
 }
 
-module.exports = AmazonSite;
+module.exports = Amazon;
