@@ -1,4 +1,4 @@
-import AmazonSite from '../../../src/sites/Amazon';
+import Amazon from '../../../src/sites/Amazon';
 import * as cheerio from 'cheerio';
 
 const VALID_URI = 'http://www.amazon.com/123/product';
@@ -7,25 +7,25 @@ const INVALID_URI = 'http://www.bad.com/123/product';
 describe('The Amazon Site', () => {
   describe('isSite() function', () => {
     it('should return true for a correct site', () => {
-      expect(AmazonSite.isSite(VALID_URI)).toEqual(true);
+      expect(Amazon.isSite(VALID_URI)).toEqual(true);
     });
 
     it('should return false for a bad site', () => {
-      expect(AmazonSite.isSite(INVALID_URI)).toEqual(false);
+      expect(Amazon.isSite(INVALID_URI)).toEqual(false);
     });
   });
 
-  it('should throw an exception trying to create a new AmazonSite with an incorrect uri', () => {
+  it('should throw an exception trying to create a new Amazon with an incorrect uri', () => {
     expect(() => {
-      new AmazonSite(INVALID_URI);
+      new Amazon(INVALID_URI);
     }).toThrow(/invalid uri for Amazon/);
   });
 
   describe('a new Amazon Site', () => {
-    let amazon: AmazonSite;
+    let amazon: Amazon;
 
     beforeEach(() => {
-      amazon = new AmazonSite(VALID_URI);
+      amazon = new Amazon(VALID_URI);
     });
 
     it('should return the same URI for getURIForPageData()', () => {
