@@ -1,3 +1,7 @@
+# v6.0.0-alpha.2
+
+- [#143](https://github.com/dylants/price-finder/pull/143) Include build resources
+
 # v6.0.0-alpha.1
 
 - [#141](https://github.com/dylants/price-finder/pull/141) Add support for HomeDepot.com

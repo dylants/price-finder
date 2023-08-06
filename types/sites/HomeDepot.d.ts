@@ -1,6 +1,6 @@
 import Site from '../Site';
 import { CheerioAPI } from 'cheerio';
-export default class Amazon implements Site {
+export default class HomeDepot implements Site {
     protected uri: string;
     constructor(uri: string);
     getURIForPageData(): string;
