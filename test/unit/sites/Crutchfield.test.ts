@@ -1,5 +1,5 @@
-import * as cheerio from 'cheerio';
 import Crutchfield from '../../../src/sites/Crutchfield';
+import * as cheerio from 'cheerio';
 
 const VALID_URI = 'http://www.crutchfield.com/product';
 const INVALID_URI = 'http://www.bad.com/product';
