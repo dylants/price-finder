@@ -110,6 +110,12 @@ To execute the end to end tests run:
 $ yarn test:e2e
 ```
 
+To execute a specific end to end test run:
+
+```
+$ yarn test:e2e:single test/e2e/<test file>
+```
+
 #### Adding Sites ####
 
 This project was built to easily drop in support for new sites. The `site-manager` iterates over all files contained within the `sites` directory, and adds it to the list of available sites. When a request is issued to price-finder to look up a price, it asks each site if the `uri` is supported by the site, and if so, uses that site to find the price.
