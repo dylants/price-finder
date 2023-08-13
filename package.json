@@ -3,7 +3,7 @@
   "description": "Finds the prices of retail items online",
   "version": "6.0.0-alpha.2",
   "engines": {
-    "node": "^18"
+    "node": ">=16"
   },
   "author": {
     "name": "Dylan Smith"
@@ -43,6 +43,7 @@
     "rome:format": "yarn rome format src/ test/",
     "test": "jest test/unit",
     "test:e2e": "jest test/e2e",
+    "test:e2e:single": "jest $1",
     "test:watch": "yarn test --watch"
   },
   "dependencies": {
