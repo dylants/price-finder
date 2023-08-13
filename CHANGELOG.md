@@ -1,3 +1,9 @@
+# v6.0.0-alpha.3
+
+- [#144](https://github.com/dylants/price-finder/pull/144) chore: update readme: creating new site, releasing
+- [#145](https://github.com/dylants/price-finder/pull/145) chore: support node 16, single e2e
+- [#146](https://github.com/dylants/price-finder/pull/146) feat: add Crutchfield site
+
 # v6.0.0-alpha.2
 
 - [#143](https://github.com/dylants/price-finder/pull/143) Include build resources
