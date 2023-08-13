@@ -27,6 +27,7 @@ console.log(price); // 22.97
 - [Contributing](#contributing)
   - [Tests](#tests)
   - [Adding Sites](#adding-sites)
+  - [Releasing](#releasing)
 
 ### Configuration Options ###
 
@@ -67,6 +68,7 @@ The <a href="https://www.npmjs.org/package/pino">pino</a> package is used within
 The current supported sites are listed below.
 
 - Amazon
+- Home Depot
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
 
@@ -112,6 +114,61 @@ $ yarn test:e2e
 
 This project was built to easily drop in support for new sites. The `site-manager` iterates over all files contained within the `sites` directory, and adds it to the list of available sites. When a request is issued to price-finder to look up a price, it asks each site if the `uri` is supported by the site, and if so, uses that site to find the price.
 
+1. Create a new `Site` in `src/sites`:
+
+```typescript
+export default class MySite implements Site {
+
+  ...
+
+}
+```
+
+2. Add unit and e2e tests for the site
+
+- unit: `test/unit/sites/MySite.test.ts`
+
+- e2e: `test/e2e/MySite.e2e.test.ts`
+
+3. Add site to [Supported Sites](#supported-sites)
+
+4. Create pull request to submit!
+
+#### Releasing ####
+
+(These notes require admin permissions)
+
+1. Update `package.json` with new version.
+
+2. Update `CHANGELOG.md` with new version along with included PRs and short description.
+
+3. Run `yarn build`
+
+4. Create pull request for release with updated files. Merge.
+
+5. Git tag:
+
+```
+$ git tag -a < version >
+(enter in message  "Tag < version >" and include changelog message)
+
+$ git show < version >       (shows data on specific tag)
+
+$ git push origin —tags      (push all tags to remote)
+```
+
+6. GitHub release:
+
+* Go to releases, click "Draft a new release"
+* Select the tag from the drop down list
+* Release title is version: "< version >"
+* Description is changelog message
+
+7. npm publish:
+
+```
+$ npm publish
+```
 
 ## Etc ##
 
