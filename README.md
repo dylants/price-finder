@@ -68,6 +68,7 @@ The <a href="https://www.npmjs.org/package/pino">pino</a> package is used within
 The current supported sites are listed below.
 
 - Amazon
+- Crutchfield (requires Node 16)
 - Home Depot
 
 Don't see your site listed? Please consider [contributing](#contributing) to the project!
